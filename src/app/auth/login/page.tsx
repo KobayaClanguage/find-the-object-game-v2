@@ -102,7 +102,7 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-4 text-center text-sm font-semibold">
-            <Link href={"/auth/account/password/change"}>
+            <Link href={"/auth/reset/password"}>
               パスワードをお忘れの方はこちら
             </Link>
           </div>
