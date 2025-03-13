@@ -1,27 +1,28 @@
 "use client";
 import  { useRouter } from "next/router";
-import { applyActionCode, confirmPasswordReset } from "firebase/auth";
+import { confirmPasswordReset } from "firebase/auth";
 import { auth } from "@/app/config";
 import { useState, useEffect } from "react";
 import { useForm } from 'react-hook-form'
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useSearchParams } from "next/navigation";
 
 export default function PasswordResetPage() {
   const [newPassword, setNewPassword] = useState("");
   const onChangeNewPassword = (event: React.ChangeEvent<HTMLInputElement>): void => setNewPassword(event.target.value);
   const { handleSubmit } = useForm();
+  const urlParams = useSearchParams();
+  const oobCode = urlParams.get("oobCode");
 
   // パスワードのリセット
   const resetPassword = handleSubmit(() => {
-    const queryParams = new URLSearchParams(window.location.search);
-    const oobCode = queryParams.get('oobCode');
-
     if (!oobCode) {
         console.log("oobCodeがありません")
         return;
     }
+
     // oobCode（Firebaseのリセットコード）が有効か確認
     confirmPasswordReset(auth, oobCode, newPassword)
     .then(() => {
