@@ -35,10 +35,8 @@ export default function GamePage() {
   };
 
   return (
-    // <div className="relative h-full">
-    // {/* <h1 className="text-center text-white bg-[#0094f4]">{getTitle()}</h1> */}
-    <div>
-      <h1>{getTitle()}</h1>
+    <div className="relative h-full">
+      <h1 className="text-center text-white bg-[#0094f4]">{getTitle()}</h1>
       <Tabs defaultValue={pageType} className="h-full space-y-6">
         <TabsContent value="stamp">
           <p>stamp</p>
