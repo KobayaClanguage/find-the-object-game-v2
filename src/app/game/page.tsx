@@ -35,6 +35,8 @@ export default function GamePage() {
   };
 
   return (
+    // <div className="relative h-full">
+    // {/* <h1 className="text-center text-white bg-[#0094f4]">{getTitle()}</h1> */}
     <div>
       <h1>{getTitle()}</h1>
       <Tabs defaultValue={pageType} className="h-full space-y-6">
@@ -47,7 +49,7 @@ export default function GamePage() {
         <TabsContent value="settings">
           <p>settings</p>
         </TabsContent>
-        <TabsList>
+        <TabsList className="fixed bottom-0 left-0 right-0 flex justify-around bg-white p-4 shadow-md">
           <Link href="?pageType=stamp">
             <TabsTrigger value="stamp">
               <StampScreen />
