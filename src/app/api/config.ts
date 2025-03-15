@@ -8,4 +8,4 @@ if (!admin.apps.length) {
     });
 }
 
-export let adminAuth = admin.auth();
+export const adminAuth = admin.auth();
