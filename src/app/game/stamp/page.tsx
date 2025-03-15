@@ -1,7 +1,7 @@
 'use client'
-import { onAuthStateChanged, User } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/app/config";
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRouter } from "next/navigation";
 
 export default function stamp() {
