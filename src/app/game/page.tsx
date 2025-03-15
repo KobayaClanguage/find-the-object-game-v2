@@ -36,32 +36,29 @@ export default function GamePage() {
 
   return (
     <div className="relative h-full">
-      <h1 className="text-center text-white bg-[#0094f4]">{getTitle()}</h1>
+      <h1 className="text-center text-white bg-[#0094f4] p-4">{getTitle()}</h1>
       <Tabs defaultValue={pageType} className="h-full space-y-6">
-        <TabsContent value="stamp">
-          <p>stamp</p>
-        </TabsContent>
-        <TabsContent value="scan">
-          <p>scan</p>
-        </TabsContent>
-        <TabsContent value="settings">
-          <p>settings</p>
-        </TabsContent>
+        <div className="flex flex-col h-[calc(100vh-8rem)]">
+          {/* Adjust height considering title and bottom buttons */}
+          <TabsContent value="stamp" className="flex-grow">
+            <StampScreen />
+          </TabsContent>
+          <TabsContent value="scan" className="flex-grow">
+            <ScanScreen />
+          </TabsContent>
+          <TabsContent value="settings" className="flex-grow">
+            <SettingsScreen />
+          </TabsContent>
+        </div>
         <TabsList className="fixed bottom-0 left-0 right-0 flex justify-around bg-white p-4 shadow-md">
           <Link href="?pageType=stamp">
-            <TabsTrigger value="stamp">
-              <StampScreen />
-            </TabsTrigger>
+            <TabsTrigger value="stamp">stamp</TabsTrigger>
           </Link>
           <Link href="?pageType=scan">
-            <TabsTrigger value="scan">
-              <ScanScreen />
-            </TabsTrigger>
+            <TabsTrigger value="scan">scan</TabsTrigger>
           </Link>
           <Link href="?pageType=settings">
-            <TabsTrigger value="settings">
-              <SettingsScreen />
-            </TabsTrigger>
+            <TabsTrigger value="settings">settings</TabsTrigger>
           </Link>
         </TabsList>
       </Tabs>
