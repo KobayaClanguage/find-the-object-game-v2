@@ -17,7 +17,7 @@ export default function PasswordResetPage() {
   const sendEmail = handleSubmit(() => {
     sendPasswordResetEmail(auth, email)
       .then(() => {
-        router.push("/game/settings/account/change/password/complete");
+        router.push("/auth/reset/password/complete");
       })
       .catch((error) => {
         console.log("error", error.message);
