@@ -26,8 +26,7 @@ export default function LoginPage() {
 
   const signIn = handleSubmit(() => {
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        console.log("login success");
+      .then(() => {
         router.push("/game/stamp");
       })
       .catch((error) => {
