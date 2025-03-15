@@ -6,16 +6,18 @@ import { useForm } from 'react-hook-form'
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function PasswordResetPage() {
   const [email, setEmail] = useState("");
   const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>): void => setEmail(event.target.value);
   const { handleSubmit } = useForm();
+  const router = useRouter();
 
   const sendEmail = handleSubmit(() => {
     sendPasswordResetEmail(auth, email)
-      .then((userCredential) => {
-        console.log("sending email is success");
+      .then(() => {
+        router.push("/auth/reset/password/complete");
       })
       .catch((error) => {
         console.log("error", error.message);

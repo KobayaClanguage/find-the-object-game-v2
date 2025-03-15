@@ -1,22 +1,21 @@
 'use client'
-import { onAuthStateChanged, User } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/app/config";
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useRouter } from "next/router";
 
-export default function stamp() {
-  const [user, setUser] = useState<User | null>(null);
+export default function Stamp() {
+  const router = useRouter();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
-      setUser(user);
+      if(user === null) {
+        router.push("/auth/login");
+      }  
     });
 
-    if(user === null) {
-      console.log("ログインしていません");
-    }
 
-    auth.currentUser?.getIdToken(/* forceRefresh */ true).then(async function(idToken) {
-      // Send token to your backend via HTTPS
+    auth.currentUser?.getIdToken(true).then(async function(idToken) {
       const response = await fetch("/api/auth", {
           method: "POST",
           headers: {
@@ -24,16 +23,14 @@ export default function stamp() {
           },
           body: JSON.stringify({ idToken }),
       });
-      let Userdata = await response.json();
+      // 今後、userIDを使用する可能性があるためjsonで取得しておく
+      const Userdata = await response.json();
       console.log("Validation idToken is success", Userdata.uid, Userdata.email);
       }).catch(function(error) {
-          // Handle error
           console.log("Validation of idToken is failed", error);
   });
 
   });
-
-
 
   return (
     <div>

@@ -1,8 +1,7 @@
 "use client";
-import  { useRouter } from "next/router";
 import { confirmPasswordReset } from "firebase/auth";
 import { auth } from "@/app/config";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from 'react-hook-form'
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";

@@ -110,7 +110,6 @@ export default function LoginPage() {
           <Button
             asChild
             className="mt-8 w-full h-14 bg-white text-[#0094f4] rounded-none font-sans font-bold text-2xl border-[#0094f4] border-[3px]"
-            onClick={ signUp }
           >
             <Link href={"/auth/account/login"}>
               ログイン
