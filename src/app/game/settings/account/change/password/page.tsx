@@ -17,8 +17,8 @@ export default function chang_email() {
   // メールアドレス取得
   const [password, setPassword] = useState("")
   const [newPassword, setNewPassword] = useState("")
-  const onChangeNewPassword = (event: React.ChangeEvent<HTMLInputElement>): void => setNewPassword(event.target.value);
   const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>): void => setPassword(event.target.value);
+  const onChangeNewPassword = (event: React.ChangeEvent<HTMLInputElement>): void => setNewPassword(event.target.value);
 
 
   // ログインしているか確認
