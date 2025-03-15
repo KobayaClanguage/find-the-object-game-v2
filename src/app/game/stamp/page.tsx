@@ -24,7 +24,7 @@ export default function Stamp() {
           body: JSON.stringify({ idToken }),
       });
       // 今後、userIDを使用する可能性があるためjsonで取得しておく
-      let Userdata = await response.json();
+      const Userdata = await response.json();
       console.log("Validation idToken is success", Userdata.uid, Userdata.email);
       }).catch(function(error) {
           console.log("Validation of idToken is failed", error);
