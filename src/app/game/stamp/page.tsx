@@ -2,17 +2,16 @@
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/app/config";
 import { useEffect } from 'react'
-import { useRouter } from "next/navigation";
+import { useRouter } from "next/router";
 
-export default function stamp() {
+export default function Stamp() {
   const router = useRouter();
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if(user === null) {
         router.push("/auth/login");
-      }
-  
+      }  
     });
 
 
