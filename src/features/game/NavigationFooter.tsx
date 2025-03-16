@@ -1,18 +1,34 @@
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function NavigationFooter() {
+  const buttonSize = { x: 40, y: 40 };
   return (
     <>
-      <Button asChild>
-        <Link href="/game/stamp">stamp</Link>
-      </Button>
-      <Button asChild>
-        <Link href="/game/scan">scan</Link>
-      </Button>
-      <Button asChild>
-        <Link href="/game/settings">settings</Link>
-      </Button>
+      <Link href="/game/scan">
+        <Image
+          src={"/game/navigationBarIcons/scan.png"}
+          alt="home"
+          width={buttonSize.x}
+          height={buttonSize.y}
+        />
+      </Link>
+      <Link href="/game/stamp">
+        <Image
+          src={"/game/navigationBarIcons/home.png"}
+          alt="home"
+          width={buttonSize.x}
+          height={buttonSize.y}
+        />
+      </Link>
+      <Link href="/game/settings">
+        <Image
+          src={"/game/navigationBarIcons/settings.png"}
+          alt="home"
+          width={buttonSize.x}
+          height={buttonSize.y}
+        />
+      </Link>
     </>
   );
 }

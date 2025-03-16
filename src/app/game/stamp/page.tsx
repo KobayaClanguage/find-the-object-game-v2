@@ -10,16 +10,16 @@ type Stamp = {
   mapUrl: string;
 };
 
-// ダミーデータ
+// TODO: ダミーデータ
 const stamps: Stamp[] = [];
 for (let i = 0; i < 30; i++) {
   stamps.push({
     id: i,
-    // TODO: スタンプ名を実際のスタンプ名に変更
     name: "駐車場",
-    // TODO: 画像URLを実際の画像に変更
+    // アイコン画像(publicディレクトリからのパス)
     iconUrl: "/images/stampIcon/stamp-icon-sample.png",
     isCollected: false,
+    // マップ画像
     mapUrl: "/images/game/stamp-map-sample.png",
   });
 }
@@ -52,7 +52,7 @@ export default function GamePage() {
           ))}
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 flex items-center justify-center bg-white p-4 shadow-md">
+      <div className="fixed bottom-0 left-0 right-0 flex items-center justify-around bg-white p-4 shadow-md border">
         <NavigationFooter />
       </div>
     </div>
