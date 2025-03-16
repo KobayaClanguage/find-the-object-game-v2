@@ -29,11 +29,11 @@ export default function GamePage() {
 
   return (
     <div className="relative h-full">
-      <h1 className="fixed top-0 left-0 right-0 text-center text-white bg-[#0094f4] p-4 pt-7 text-3xl">
+      <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
         {pageTitle}
       </h1>
-      <div className="pt-24 pb-16">
-        <div className="flex justify-around items-center p-4">
+      <div className="pb-16 pt-24">
+        <div className="flex items-center justify-around p-4">
           <Image
             src={"/images/nukaLogo.png"}
             alt="額のロゴ"
@@ -53,7 +53,7 @@ export default function GamePage() {
             height={75}
           />
         </div>
-        <h2 className="w-full text-center font-bold text-lg">オブジェ一覧</h2>
+        <h2 className="w-full text-center text-lg font-bold">オブジェ一覧</h2>
         {/* スタンプ一覧 */}
         <div className="grid grid-cols-2 gap-2 p-4">
           {stamps.map((item) => (
@@ -72,7 +72,7 @@ export default function GamePage() {
           ))}
         </div>
       </div>
-      <div className="fixed bottom-0 left-0 right-0 flex items-center justify-around bg-white p-4 shadow-md border">
+      <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
         <NavigationFooter />
       </div>
     </div>
