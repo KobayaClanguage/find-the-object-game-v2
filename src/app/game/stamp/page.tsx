@@ -16,7 +16,7 @@ for (let i = 0; i < 30; i++) {
     id: i,
     name: "駐車場",
     // アイコン画像(publicディレクトリからのパス)
-    isCollected: i%3 === 0,
+    isCollected: i % 3 === 0,
     // マップ画像
     mapUrl: "/images/game/stamp-map-sample.png",
   });
@@ -33,6 +33,26 @@ export default function GamePage() {
         {pageTitle}
       </h1>
       <div className="pt-24 pb-16">
+        <div className="flex justify-around items-center p-4">
+          <Image
+            src={"/images/nukaLogo.png"}
+            alt="額のロゴ"
+            width={158}
+            height={51}
+          />
+          <Image
+            src="/images/cross.png"
+            alt="☓アイコン"
+            width={30}
+            height={30}
+          />
+          <Image
+            src="/images/KITimage.png"
+            alt="KITロゴ"
+            width={150}
+            height={75}
+          />
+        </div>
         <h2 className="w-full text-center font-bold text-lg">オブジェ一覧</h2>
         {/* スタンプ一覧 */}
         <div className="grid grid-cols-2 gap-2 p-4">
