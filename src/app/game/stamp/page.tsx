@@ -5,7 +5,6 @@ import Link from "next/link";
 type Stamp = {
   id: number;
   name: string;
-  iconUrl: string;
   isCollected: boolean;
   mapUrl: string;
 };
@@ -17,8 +16,7 @@ for (let i = 0; i < 30; i++) {
     id: i,
     name: "駐車場",
     // アイコン画像(publicディレクトリからのパス)
-    iconUrl: "/images/stampIcon/stamp-icon-sample.png",
-    isCollected: false,
+    isCollected: i%3 === 0,
     // マップ画像
     mapUrl: "/images/game/stamp-map-sample.png",
   });
@@ -26,6 +24,8 @@ for (let i = 0; i < 30; i++) {
 
 export default function GamePage() {
   const pageTitle = "ホーム";
+  const completeIconUrl = "/game/stamp/stamp-complete.png";
+  const uncompleteIconUrl = "/game/stamp/stamp-uncomplete.png";
 
   return (
     <div className="relative h-full">
@@ -40,7 +40,7 @@ export default function GamePage() {
             <div key={item.id} className="flex flex-col items-center">
               <Link href={`/game/stamp/${item.id}`}>
                 <Image
-                  src={item.iconUrl}
+                  src={item.isCollected ? completeIconUrl : uncompleteIconUrl}
                   alt={item.name}
                   width={120}
                   height={120}
