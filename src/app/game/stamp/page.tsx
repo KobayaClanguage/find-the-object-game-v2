@@ -29,7 +29,7 @@ export default function GamePage() {
 
   return (
     <div className="relative h-full">
-      <h1 className="fixed top-0 left-0 right-0 text-center text-white bg-[#0094f4] p-4 text-3xl">
+      <h1 className="fixed top-0 left-0 right-0 text-center text-white bg-[#0094f4] p-4 pt-7 text-3xl">
         {pageTitle}
       </h1>
       <div className="pt-24 pb-16">
