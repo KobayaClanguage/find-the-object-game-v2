@@ -1,10 +1,9 @@
 'use client'
-import React, { useState } from 'react';
 import { useEffect, useRef } from "react";
 import jsQR from 'jsqr'
 import { auth } from "@/app/config";
 import { db } from "@/app/config";
-import { collection, doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 
 export default function Home() {
     const canvasRef = useRef<HTMLCanvasElement | null>(null);

@@ -47,7 +47,7 @@ export default function Stamp() {
         }
       })
     })();
-  }, [])
+  }, [router])
   
 
   return (
