@@ -3,7 +3,7 @@ import { auth } from "@/app/config";
 import { deleteUser } from "firebase/auth";
 import { useForm } from 'react-hook-form'
 
-export default function delete_account() {
+export default function DeleteAccount() {
     const { handleSubmit } = useForm();
 
     const deleteAccount = handleSubmit(() => {

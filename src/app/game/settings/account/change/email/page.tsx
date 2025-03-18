@@ -5,11 +5,12 @@ import { useForm } from 'react-hook-form'
 import { reauthenticateWithCredential,
          verifyBeforeUpdateEmail,
          EmailAuthProvider,
-         onAuthStateChanged
+         onAuthStateChanged,
+         User
 } from 'firebase/auth';
 import { auth } from "@/app/config";
 
-export default function chang_email() {
+export default function ChangEmail() {
   const { handleSubmit } = useForm();
 
   // メールアドレス取得
@@ -20,7 +21,7 @@ export default function chang_email() {
 
 
   // ログインしているか確認
-  const [user, setUser] = useState<any>(null);
+  const [user, setUser] = useState<User | null>(null);
   const router = useRouter();
   
   useEffect(() => {
@@ -35,6 +36,7 @@ export default function chang_email() {
   // メールアドレス変更
   const submitEmail = handleSubmit(() => {
         const credential = EmailAuthProvider.credential(user?.email ?? '', password);
+        if (user === null) return;
         reauthenticateWithCredential(user, credential)
         .then(() => {
             console.log("再認証成功");

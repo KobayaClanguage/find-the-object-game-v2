@@ -1,19 +1,17 @@
 'use client'
 
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from "next/navigation";
-import { applyActionCode } from 'firebase/auth';
-import { auth } from '@/app/config';
 import { useSearchParams } from "next/navigation";
 
-export default function updateEmail() {
+export default function UpdateEmail() {
     const router = useRouter();
-
     const urlParams = useSearchParams();
-    const oobCode = urlParams.get("oobCode");
-    const mode = urlParams.get("mode");
 
     useEffect(() => {
+        const oobCode = urlParams.get("oobCode");
+        const mode = urlParams.get("mode");
+    
         if (!oobCode) {
             // oobCodeがない場合            
             return;
@@ -24,7 +22,7 @@ export default function updateEmail() {
         } else if (mode === "resetPassword") {
             router.push("/auth/reset/password/register?oobCode=" + oobCode);
         }
-    }, [oobCode]);
+    }, [router, urlParams]);
 
 
       return(

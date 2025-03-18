@@ -4,19 +4,15 @@ import{ auth } from "@/app/config";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useRef } from "react";
 
-export default function complete() {
+export default function Complete() {
     const executed = useRef<boolean | null>(null);
     const urlParams = useSearchParams();
     const oobCode = urlParams.get("oobCode");
 
-    if (!oobCode) {
-        console.log("oobCodeがありません")
-        return;
-    }
-
     useEffect(() => {
         if(executed.current) return; // 2回実行されるのを防ぐ
         executed.current = true; // フラグを立てる
+        if (!oobCode) return;
 
         applyActionCode(auth, oobCode)
         .then(() => {
