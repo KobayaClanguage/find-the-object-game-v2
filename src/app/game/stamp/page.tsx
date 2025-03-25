@@ -1,99 +1,80 @@
-'use client';
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/app/config";
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { doc, getDoc } from "firebase/firestore";
-import { db } from "@/app/config";
+import NavigationFooter from "@/features/game/NavigationFooter";
+import Image from "next/image";
+import Link from "next/link";
 
-export default function Stamp() {
-  const [object_1, setObject_1] = useState("False");
-  const [object_2, setObject_2] = useState("False");
-  const [object_3, setObject_3] = useState("False");
-  const [object_4, setObject_4] = useState("False");
-  const [object_5, setObject_5] = useState("False");
-  const [object_6, setObject_6] = useState("False");
-  const router = useRouter();
-  
-  useEffect(() => {
-    (() => {
-      onAuthStateChanged(auth, async(user) => {
-        if (user) {
-          const docRef = doc(db, "game_progress", user.uid);
-          const docSnap = await getDoc(docRef);
-          if(docSnap.exists()){
-            if (docSnap.data().object_1) {
-              setObject_1("True");
-            }
-            if (docSnap.data().object_2) {
-              setObject_2("True");
-            }
-            if (docSnap.data().object_3) {
-              setObject_3("True");
-            }
-            if (docSnap.data().object_4) {
-              setObject_4("True");
-            }
-            if (docSnap.data().object_5) {
-              setObject_5("True");
-            }
-            if (docSnap.data().object_6) {
-              setObject_6("True");
-            }
-          }
-    
-        } else {
-          router.push("/auth/login");
-        }
-      })
-    })();
-  }, [router])
-  
+type Stamp = {
+  id: number;
+  name: string;
+  isCollected: boolean;
+  mapUrl: string;
+};
+
+// TODO: ダミーデータ
+const stamps: Stamp[] = [];
+for (let i = 0; i < 30; i++) {
+  stamps.push({
+    id: i,
+    name: "駐車場",
+    // アイコン画像(publicディレクトリからのパス)
+    isCollected: i % 3 === 0,
+    // マップ画像
+    mapUrl: "/images/game/stamp-map-sample.png",
+  });
+}
+
+export default function GamePage() {
+  const pageTitle = "ホーム";
+  const completeIconUrl = "/game/stamp/stamp-complete.png";
+  const uncompleteIconUrl = "/game/stamp/stamp-uncomplete.png";
 
   return (
-    <div>
-      <h1>Find-the-object-game</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>オブジェ名</th>
-            <th>発見状況</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr>
-            <th>object_1</th>
-            <th>{object_1}</th>
-          </tr>
-
-          <tr>
-            <th>object_2</th>
-            <th>{object_2}</th>
-          </tr>
-
-          <tr>
-            <th>object_3</th>
-            <th>{object_3}</th>
-          </tr>
-
-          <tr>
-            <th>object_4</th>
-            <th>{object_4}</th>
-          </tr>
-
-          <tr>
-            <th>object_5</th>
-            <th>{object_5}</th>
-          </tr>
-
-          <tr>
-            <th>object_6</th>
-            <th>{object_6}</th>
-          </tr>
-
-        </tbody>
-      </table>
+    <div className="relative h-full">
+      <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
+        {pageTitle}
+      </h1>
+      <div className="pb-16 pt-24">
+        <div className="flex items-center justify-around p-4">
+          <Image
+            src={"/images/nukaLogo.png"}
+            alt="額のロゴ"
+            width={158}
+            height={51}
+          />
+          <Image
+            src="/images/cross.png"
+            alt="☓アイコン"
+            width={30}
+            height={30}
+          />
+          <Image
+            src="/images/KITimage.png"
+            alt="KITロゴ"
+            width={150}
+            height={75}
+          />
+        </div>
+        <h2 className="w-full text-center text-lg font-bold">オブジェ一覧</h2>
+        {/* スタンプ一覧 */}
+        <div className="grid grid-cols-2 gap-2 p-4">
+          {stamps.map((item) => (
+            <div key={item.id} className="flex flex-col items-center">
+              <Link href={`/game/stamp/${item.id}`}>
+                <Image
+                  src={item.isCollected ? completeIconUrl : uncompleteIconUrl}
+                  alt={item.name}
+                  width={120}
+                  height={120}
+                  className="object-contain"
+                />
+                <p className="text-center">{item.name}</p>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
+        <NavigationFooter />
+      </div>
     </div>
   );
 }
