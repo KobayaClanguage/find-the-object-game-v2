@@ -84,12 +84,8 @@ export default function LoginPage() {
                 type="email"
                 placeholder="ID (メールアドレス)"
                 required
-<<<<<<< HEAD
                 className="h-[40px] text-sm border-gray-500 rounded-none"
                 onChange={ onChangeEmail }
-=======
-                className="h-[40px] rounded-none border-gray-500 text-sm"
->>>>>>> origin
               />
             </div>
             <div className="mb-6">
@@ -101,18 +97,11 @@ export default function LoginPage() {
                 type="password"
                 placeholder="パスワード"
                 required
-<<<<<<< HEAD
                 className="h-[40px] text-sm border-gray-500 rounded-none"
                 onChange={ onChangePassword }
               />
             </div>
             <Button className="mt-6 w-full h-14 bg-[#0094f4] text-white text-2xl font-semibold rounded-none" onClick={ signUp }>
-=======
-                className="h-[40px] rounded-none border-gray-500 text-sm"
-              />
-            </div>
-            <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white">
->>>>>>> origin
               新規登録
             </Button>
           </form>

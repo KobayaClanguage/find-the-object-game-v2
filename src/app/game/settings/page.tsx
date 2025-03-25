@@ -11,8 +11,8 @@ export default function GamePage() {
         {pageTitle}
       </h1>
 
-    <div className="pb-24 pt-28 justify-center mx-auto">
-        <div className="flex items-center mb-3 w-[70%] mx-auto">
+    <div className="mx-auto justify-center pb-24 pt-28">
+        <div className="mx-auto mb-3 flex w-[70%] items-center">
             <Image
                 src={"/images/diamond.png"}
                 alt="ダイヤモンド"
@@ -23,8 +23,8 @@ export default function GamePage() {
             <h2>ユーザー設定</h2>
         </div>
 
-        <div className="w-[50%] mx-auto">
-            <div className="flex items-center mb-3">
+        <div className="mx-auto w-1/2">
+            <div className="mb-3 flex items-center">
                 <Image
                     src={"/images/mail.png"}
                     alt="メール"
@@ -39,7 +39,7 @@ export default function GamePage() {
 
             </div>
 
-            <div className="flex items-center mb-3">
+            <div className="mb-3 flex items-center">
                 <Image
                     src={"/images/key.png"}
                     alt="かぎ"
@@ -52,7 +52,7 @@ export default function GamePage() {
                 </Link>
             </div>
 
-            <div className="flex items-center mb-3">
+            <div className="mb-3 flex items-center">
                 <Image
                     src={"/images/logout.png"}
                     alt="ログアウト"
@@ -65,7 +65,7 @@ export default function GamePage() {
                 </Link>
             </div>
 
-            <div className="flex items-center mb-3">
+            <div className="mb-3 flex items-center">
                 <Image
                     src={"/images/delete.png"}
                     alt="削除"
@@ -81,7 +81,7 @@ export default function GamePage() {
         </div>
 
 
-        <div className="flex items-center mb-3 w-[70%] mx-auto">
+        <div className="mx-auto mb-3 flex w-[70%] items-center">
             <Image
                 src={"/images/diamond.png"}
                 alt="ダイヤモンド"
@@ -92,8 +92,8 @@ export default function GamePage() {
             <h2>サイト情報</h2>
         </div>
 
-        <div className="w-[50%] mx-auto">
-            <div className="flex items-center mb-3">
+        <div className="mx-auto w-1/2">
+            <div className="mb-3 flex items-center">
                 <Image
                     src={"/images/game.png"}
                     alt="ゲーム"
@@ -106,7 +106,7 @@ export default function GamePage() {
                 </Link>
             </div>
 
-            <div className="flex items-center mb-3">
+            <div className="mb-3 flex items-center">
                 <Image
                     src={"/images/info.png"}
                     alt="インフォメーション"
