@@ -30,7 +30,7 @@ export default function GameStampId() {
         <div className="relative h-[calc(100vh-80px-74px-80px)] w-full">
           <Image
             src={`/game/stamp/maps/map${stampId}.png`}
-            layout="fill"
+            fill
             alt="map image"
           />
         </div>
