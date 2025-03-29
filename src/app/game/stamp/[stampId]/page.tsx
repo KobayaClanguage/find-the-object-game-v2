@@ -31,7 +31,7 @@ export default function GameStampId() {
           <Image
             src={`/game/stamp/maps/map${stampId}.png`}
             fill
-            alt="map image"
+            alt={`${stampName} map`}
           />
         </div>
       </div>
