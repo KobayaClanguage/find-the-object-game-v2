@@ -12,7 +12,7 @@ export default function GamePage() {
       </h1>
 
     <div className="mx-auto justify-center pb-24 pt-28">
-        <div className="mx-auto mb-3 flex w-[70%] items-center">
+        <div className="mx-auto mb-5 flex w-4/5 items-center">
             <Image
                 src={"/images/diamond.png"}
                 alt="ダイヤモンド"
@@ -20,11 +20,11 @@ export default function GamePage() {
                 height={50}
                 className="mr-5"
             />
-            <h2>ユーザー設定</h2>
+            <span className="text-3xl">ユーザー設定</span>
         </div>
 
-        <div className="mx-auto w-1/2">
-            <div className="mb-3 flex items-center">
+        <div className="mx-auto w-2/3">
+            <div className="mb-5 flex items-center">
                 <Image
                     src={"/images/mail.png"}
                     alt="メール"
@@ -34,12 +34,12 @@ export default function GamePage() {
                 />
 
                 <Link href={`/game/settings/account/change/email`}>
-                    <h2>メールアドレス変更</h2>
+                    <h2 className="text-2xl">メールアドレス変更</h2>
                 </Link>
 
             </div>
 
-            <div className="mb-3 flex items-center">
+            <div className="mb-5 flex items-center">
                 <Image
                     src={"/images/key.png"}
                     alt="かぎ"
@@ -48,11 +48,11 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/account/change/password`}>
-                    <h2>パスワード変更</h2>
+                    <h2 className="text-2xl">パスワード変更</h2>
                 </Link>
             </div>
 
-            <div className="mb-3 flex items-center">
+            <div className="mb-5 flex items-center">
                 <Image
                     src={"/images/logout.png"}
                     alt="ログアウト"
@@ -61,11 +61,11 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/account/logout`}>
-                    <h2>ログアウト</h2>
+                    <h2 className="text-2xl">ログアウト</h2>
                 </Link>
             </div>
 
-            <div className="mb-3 flex items-center">
+            <div className="mb-5 flex items-center">
                 <Image
                     src={"/images/delete.png"}
                     alt="削除"
@@ -74,14 +74,14 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/account/delete`}>
-                    <h2>アカウント削除</h2>
+                    <h2 className="text-2xl">アカウント削除</h2>
                 </Link>
             </div>
 
         </div>
 
 
-        <div className="mx-auto mb-3 flex w-[70%] items-center">
+        <div className="mx-auto mb-5 flex w-4/5 items-center">
             <Image
                 src={"/images/diamond.png"}
                 alt="ダイヤモンド"
@@ -89,11 +89,11 @@ export default function GamePage() {
                 height={50}
                 className="mr-5"
             />
-            <h2>サイト情報</h2>
+            <span className="text-3xl">サイト情報</span>
         </div>
 
-        <div className="mx-auto w-1/2">
-            <div className="mb-3 flex items-center">
+        <div className="mx-auto w-2/3">
+            <div className="mb-5 flex items-center">
                 <Image
                     src={"/images/game.png"}
                     alt="ゲーム"
@@ -102,11 +102,11 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/info/howToPlay`}>
-                    <h2>遊び方</h2>
+                    <h2 className="text-2xl">遊び方</h2>
                 </Link>
             </div>
 
-            <div className="mb-3 flex items-center">
+            <div className="mb-5 flex items-center">
                 <Image
                     src={"/images/info.png"}
                     alt="インフォメーション"
@@ -115,7 +115,7 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/info/aboutUs`}>
-                    <h2>本ウェブサイトについて</h2>
+                    <h2 className="text-2xl">本ウェブサイトについて</h2>
                 </Link>
             </div>
 
@@ -128,7 +128,7 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/info/termsOfUse`}>
-                    <h2>利用規約</h2>
+                    <h2 className="text-2xl">利用規約</h2>
                 </Link>
             </div>
         </div>

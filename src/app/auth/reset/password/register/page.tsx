@@ -34,6 +34,7 @@ export default function PasswordResetPage() {
   })
 
     return (
+        // TODO:フロントエンド実装
         <div>
             <h1>find-the-object-game パスワードの再設定</h1>
             <Label htmlFor="password" className="text-sm">

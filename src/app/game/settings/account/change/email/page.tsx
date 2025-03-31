@@ -47,16 +47,17 @@ export default function ChangEmail() {
             })
             .catch((error) => {
                 console.log(error);
-            })
+            });
+        })          
         .catch((error) => {
             console.log(error);
-        })
         });
   })
 
 
 
   return (
+    // TODO: フロントエンド実装
     <div>
       <h1>Find-the-object-game</h1>
       <h1>メールアドレスを変更</h1>

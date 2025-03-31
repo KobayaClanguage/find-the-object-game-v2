@@ -43,48 +43,31 @@ export default function Home() {
         const checkImage = async () => {
             const imageData = ctx.getImageData(0, 0, contentWidth, contentHeight);
             const code = jsQR(imageData.data, contentWidth, contentHeight);
+
+            const objects: String[] = ["object_1", "object_2", "object_3", "object_4", "object_5", "object_6"];
+
             if (code) {
                 const saveData = async () => {
                     if(auth.currentUser === null) return;
 
                     const objectsRef = doc(db, "game_progress", auth.currentUser.uid.toString());
-                    if (code.data === "object_1"){
-                        await updateDoc(objectsRef, {
-                            object_1: true
-                        });
-                        clearTimeout(timerID);
-                    } else if (code.data === "object_2") {
-                        await updateDoc(objectsRef, {
-                            object_2: true
-                        });
-                        clearTimeout(timerID);
-                    } else if (code.data === "object_3") {
-                        await updateDoc(objectsRef, {
-                            object_3: true
-                        });
-                        clearTimeout(timerID);
-                    } else if (code.data === "object_4") {
-                        await updateDoc(objectsRef, {
-                            object_4: true
-                        });
-                        clearTimeout(timerID);
-                    } else if (code.data === "object_5") {
-                        await updateDoc(objectsRef, {
-                            object_5: true
-                        });
-                        clearTimeout(timerID);
-                    } else if (code.data === "object_6") {
-                        await updateDoc(objectsRef, {
-                            object_6: true
-                        });
-                        clearTimeout(timerID);
+
+                    console.log("code.data");
+
+                    for (const object of objects ) {
+                        if (code.data === object) {
+                            console.log(code.data);
+                            await updateDoc(objectsRef, {
+                                [code.data]: true
+                            })
+                            clearTimeout(timerID);
+                        }
                     }
                 };
                 saveData();
-
             }
+            const timerID = setTimeout(checkImage, 300);
         }
-        const timerID = setTimeout(checkImage, 300);
     }, []);
 
 

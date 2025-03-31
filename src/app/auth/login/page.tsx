@@ -12,9 +12,6 @@ import { useForm } from 'react-hook-form'
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '@/app/config';
 
-
-// npm install react-hook-formを実行する必要がある
-
 export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");

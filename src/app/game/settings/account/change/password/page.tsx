@@ -59,6 +59,7 @@ export default function ChangEmail() {
 
 
   return (
+    // TODO: フロントエンド実装
     <div>
       <h1>Find-the-object-game</h1>
       <h1>パスワードを変更</h1>

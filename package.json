@@ -16,7 +16,6 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "firebase": "^11.4.0",
-    "firebase-admin": "^13.2.0",
     "firebase-tools": "^13.33.0",
     "jsqr": "^1.4.0",
     "lucide-react": "^0.475.0",

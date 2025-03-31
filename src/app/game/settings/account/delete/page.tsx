@@ -18,6 +18,7 @@ export default function DeleteAccount() {
     })
 
     return (
+        // TODO: フロントエンド実装
         <div>
             <h1>アカウント削除</h1>
             <button onClick={ deleteAccount }>アカウント削除</button>
