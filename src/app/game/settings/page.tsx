@@ -12,7 +12,7 @@ export default function GamePage() {
       </h1>
 
     <div className="mx-auto justify-center pb-24 pt-28">
-        <div className="mx-auto mb-5 flex w-4/5 items-center">
+        <div className="mx-auto mb-5 flex w-[90%] items-center">
             <Image
                 src={"/images/diamond.png"}
                 alt="ダイヤモンド"
@@ -23,7 +23,7 @@ export default function GamePage() {
             <span className="text-3xl">ユーザー設定</span>
         </div>
 
-        <div className="mx-auto w-2/3">
+        <div className="mx-auto w-3/4">
             <div className="mb-5 flex items-center">
                 <Image
                     src={"/images/mail.png"}
@@ -36,6 +36,14 @@ export default function GamePage() {
                 <Link href={`/game/settings/account/change/email`}>
                     <h2 className="text-2xl">メールアドレス変更</h2>
                 </Link>
+
+                <Image
+                    src={"/images/right.png"}
+                    alt="右"
+                    width={30}
+                    height={30}
+                    className="ml-auto"
+                />
 
             </div>
 
@@ -50,6 +58,15 @@ export default function GamePage() {
                 <Link href={`/game/settings/account/change/password`}>
                     <h2 className="text-2xl">パスワード変更</h2>
                 </Link>
+
+                <Image
+                    src={"/images/right.png"}
+                    alt="右"
+                    width={30}
+                    height={30}
+                    className="ml-auto"
+                />
+
             </div>
 
             <div className="mb-5 flex items-center">
@@ -63,6 +80,17 @@ export default function GamePage() {
                 <Link href={`/game/settings/account/logout`}>
                     <h2 className="text-2xl">ログアウト</h2>
                 </Link>
+
+                <Image
+                    src={"/images/right.png"}
+                    alt="右"
+                    width={30}
+                    height={30}
+                    className="ml-auto"
+
+                />
+
+
             </div>
 
             <div className="mb-5 flex items-center">
@@ -76,12 +104,22 @@ export default function GamePage() {
                 <Link href={`/game/settings/account/delete`}>
                     <h2 className="text-2xl">アカウント削除</h2>
                 </Link>
+
+                <Image
+                    src={"/images/right.png"}
+                    alt="右"
+                    width={30}
+                    height={30}
+                    className="ml-auto"
+                />
+
+
             </div>
 
         </div>
 
 
-        <div className="mx-auto mb-5 flex w-4/5 items-center">
+        <div className="mx-auto mb-5 flex w-[90%] items-center">
             <Image
                 src={"/images/diamond.png"}
                 alt="ダイヤモンド"
@@ -92,7 +130,7 @@ export default function GamePage() {
             <span className="text-3xl">サイト情報</span>
         </div>
 
-        <div className="mx-auto w-2/3">
+        <div className="mx-auto w-3/4">
             <div className="mb-5 flex items-center">
                 <Image
                     src={"/images/game.png"}
@@ -104,6 +142,16 @@ export default function GamePage() {
                 <Link href={`/game/settings/info/howToPlay`}>
                     <h2 className="text-2xl">遊び方</h2>
                 </Link>
+
+                <Image
+                    src={"/images/right.png"}
+                    alt="右"
+                    width={30}
+                    height={30}
+                    className="ml-auto"
+                />
+
+
             </div>
 
             <div className="mb-5 flex items-center">
@@ -117,6 +165,15 @@ export default function GamePage() {
                 <Link href={`/game/settings/info/aboutUs`}>
                     <h2 className="text-2xl">本ウェブサイトについて</h2>
                 </Link>
+
+                <Image
+                    src={"/images/right.png"}
+                    alt="右"
+                    width={30}
+                    height={30}
+                    className="ml-auto"
+                />
+
             </div>
 
             <div className="flex items-center">
@@ -130,6 +187,16 @@ export default function GamePage() {
                 <Link href={`/game/settings/info/termsOfUse`}>
                     <h2 className="text-2xl">利用規約</h2>
                 </Link>
+
+                <Image
+                    src={"/images/right.png"}
+                    alt="右"
+                    width={30}
+                    height={30}
+                    className="ml-auto"
+                />
+
+
             </div>
         </div>
 
