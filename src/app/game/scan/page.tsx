@@ -44,7 +44,7 @@ export default function Home() {
             const imageData = ctx.getImageData(0, 0, contentWidth, contentHeight);
             const code = jsQR(imageData.data, contentWidth, contentHeight);
 
-            const objects: String[] = ["object_1", "object_2", "object_3", "object_4", "object_5", "object_6"];
+            const objects: string[] = ["object_1", "object_2", "object_3", "object_4", "object_5", "object_6"];
 
             if (code) {
                 const saveData = async () => {
