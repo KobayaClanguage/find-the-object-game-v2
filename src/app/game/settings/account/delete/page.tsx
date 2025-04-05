@@ -22,7 +22,7 @@ export default function GameSettingsAccountDelete() {
           </div>
           <h1 className="text-2xl">{pageSubTitle}</h1>
         </div>
-        {/* (画面サイズの縦幅:100vh) - (タイトルバーの縦幅:80px) - (ナビゲーションバーの縦幅:74px) - (スタンプ名タイトルの縦幅:80px) */}
+        {/* (画面サイズの縦幅:100vh) - (タイトルバーの縦幅:80px) - (ナビゲーションバーの縦幅:74px) - (サブタイトルバーの縦幅:80px) */}
         <div className="relative mt-4 flex h-[calc(100vh-80px-74px-80px)] w-full flex-col items-center justify-start px-9 text-xl">
           <p className="text-2xl">本当にアカウントを削除しますか？</p>
           <p className="text-xl">削除したアカウントは元に戻せません。</p>
