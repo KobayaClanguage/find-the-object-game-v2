@@ -10,6 +10,7 @@ export default function Complete() {
     const oobCode = urlParams.get("oobCode");
 
     useEffect(() => {
+        // TODO: フロントエンド実装
         if(executed.current) return; // 2回実行されるのを防ぐ
         executed.current = true; // フラグを立てる
         if (!oobCode) return;
