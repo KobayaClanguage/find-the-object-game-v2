@@ -7,6 +7,7 @@ export default function Logout() {
     signOut(auth);
 
     return (
+        // TODO: フロントエンド実装
         <div>ログアウト</div>
     )
 }

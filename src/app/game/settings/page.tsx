@@ -34,7 +34,7 @@ export default function GamePage() {
                 />
 
                 <Link href={`/game/settings/account/change/email`}>
-                    <h2 className="text-2xl">メールアドレス変更</h2>
+                    <span className="text-2xl">メールアドレス変更</span>
                 </Link>
 
                 <Image
@@ -56,7 +56,7 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/account/change/password`}>
-                    <h2 className="text-2xl">パスワード変更</h2>
+                    <span className="text-2xl">パスワード変更</span>
                 </Link>
 
                 <Image
@@ -78,7 +78,7 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/account/logout`}>
-                    <h2 className="text-2xl">ログアウト</h2>
+                    <span className="text-2xl">ログアウト</span>
                 </Link>
 
                 <Image
@@ -102,7 +102,7 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/account/delete`}>
-                    <h2 className="text-2xl">アカウント削除</h2>
+                    <span className="text-2xl">アカウント削除</span>
                 </Link>
 
                 <Image
@@ -140,7 +140,7 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/info/howToPlay`}>
-                    <h2 className="text-2xl">遊び方</h2>
+                    <span className="text-2xl">遊び方</span>
                 </Link>
 
                 <Image
@@ -163,7 +163,7 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/info/aboutUs`}>
-                    <h2 className="text-2xl">本ウェブサイトについて</h2>
+                    <span className="text-2xl">本webサイトについて</span>
                 </Link>
 
                 <Image
@@ -185,7 +185,7 @@ export default function GamePage() {
                     className="mr-5"
                 />
                 <Link href={`/game/settings/info/termsOfUse`}>
-                    <h2 className="text-2xl">利用規約</h2>
+                    <span className="text-2xl">利用規約</span>
                 </Link>
 
                 <Image

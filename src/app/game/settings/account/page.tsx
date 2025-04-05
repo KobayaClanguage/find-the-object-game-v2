@@ -13,10 +13,9 @@ export default function UpdateEmail() {
         const mode = urlParams.get("mode");
     
         if (!oobCode) {
-            // oobCodeがない場合            
             return;
         }
-        // modeに応じてパスワード変更完了画面もしくはメールアドレス完了画面に遷移させる
+
         if (mode === "verifyAndChangeEmail") {
             router.push("/game/settings/account/change/email/complete?oobCode=" + oobCode);
         } else if (mode === "resetPassword") {
@@ -26,7 +25,9 @@ export default function UpdateEmail() {
 
 
       return(
+        
         <div>
+            <h1>アカウント設定画面</h1>
         </div>
     );
 }

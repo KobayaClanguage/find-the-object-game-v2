@@ -25,6 +25,7 @@ export default function PasswordResetPage() {
   })
 
     return (
+        // TODO: フロントエンド実装
         <div>
             <h1>find-the-object-game パスワードの再設定メール送信</h1>
             <Label htmlFor="email" className="text-sm">
