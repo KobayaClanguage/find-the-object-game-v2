@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import NavigationFooter from "@/features/game/NavigationFooter";
 import React from "react";
 
 export default function GameSettingsAccountDeleteComplete() {
@@ -26,9 +25,6 @@ export default function GameSettingsAccountDeleteComplete() {
             <Link href="/auth/register">新規登録画面に戻る</Link>
           </Button>
         </div>
-      </div>
-      <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
-        <NavigationFooter />
       </div>
     </div>
   );
