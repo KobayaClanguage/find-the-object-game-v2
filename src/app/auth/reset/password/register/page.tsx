@@ -42,6 +42,7 @@ export default function AuthResetPasswordRegister() {
           <Label className="text-xl font-normal">新しいパスワード</Label>
           <Input
             placeholder="新しいパスワード"
+            type="password"
             className="h-10 rounded-none border-black shadow-none"
           />
         </div>
@@ -52,6 +53,7 @@ export default function AuthResetPasswordRegister() {
           <Label className="text-xl font-normal">新しいパスワード(確認)</Label>
           <Input
             placeholder="新しいパスワード(確認)"
+            type="password"
             className="h-10 rounded-none border-black shadow-none"
           />
         </div>
