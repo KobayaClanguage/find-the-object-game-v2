@@ -27,8 +27,8 @@ export default function GameSettingsAccountDelete() {
         </div>
       </div>
 
-      <div className="w-4/5 mx-auto">
-        <p className="text-xl mb-2">確認のため、<span className="font-bold">パスワード</span>を入力してください。</p>
+      <div className="mx-auto w-4/5">
+        <p className="mb-2 text-xl">確認のため、<span className="font-bold">パスワード</span>を入力してください。</p>
         <div className="mb-8">
             <Label className="text-xl font-normal">パスワード</Label>
             <Input
@@ -37,7 +37,7 @@ export default function GameSettingsAccountDelete() {
             />
         </div>
         
-        <p className="text-xl mb-2"><span className="font-bold">新しいメールアドレス</span>を入力してください。</p>
+        <p className="mb-2 text-xl"><span className="font-bold">新しいメールアドレス</span>を入力してください。</p>
         <div className="mb-8">
             <Label className="text-xl font-normal">新しいメールアドレス</Label>
             <Input
@@ -47,7 +47,7 @@ export default function GameSettingsAccountDelete() {
         </div>
 
 
-        <p className="text-xl mb-2">確認のため、もう一度<span className="font-bold">新しいメールアドレス</span>を入力してください。</p>
+        <p className="mb-2 text-xl">確認のため、もう一度<span className="font-bold">新しいメールアドレス</span>を入力してください。</p>
         <div className="mb-8">
             <Label className="text-xl font-normal">新しいメールアドレス（確認）</Label>
             <Input
