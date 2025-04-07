@@ -5,7 +5,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-export default function GamesettingsAccountChangePassword() {
+export default function GameSettingsAccountChangePassword() {
   const pageTitle = "設定";
   const pageSubTitle = "パスワード変更";
 
@@ -32,6 +32,7 @@ export default function GamesettingsAccountChangePassword() {
             <Label className="text-xl font-normal">現在のパスワード</Label>
             <Input
               placeholder="現在のパスワード"
+              type="password"
               className="h-10 rounded-none border-black shadow-none"
             />
           </div>
@@ -42,6 +43,7 @@ export default function GamesettingsAccountChangePassword() {
             <Label className="text-xl font-normal">新しいパスワード</Label>
             <Input
               placeholder="新しいパスワード"
+              type="password"
               className="h-10 rounded-none border-black shadow-none"
             />
           </div>
@@ -52,6 +54,7 @@ export default function GamesettingsAccountChangePassword() {
             <Label className="text-xl font-normal">新しいパスワード(確認)</Label>
             <Input
               placeholder="新しいパスワード"
+              type="password"
               className="h-10 rounded-none border-black shadow-none"
             />
           </div>
