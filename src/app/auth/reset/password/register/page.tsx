@@ -51,7 +51,7 @@ export default function AuthResetPasswordRegister() {
         <div className="w-full">
           <Label className="text-xl font-normal">新しいパスワード(確認)</Label>
           <Input
-            placeholder="新しいパスワード"
+            placeholder="新しいパスワード(確認)"
             className="h-10 rounded-none border-black shadow-none"
           />
         </div>
