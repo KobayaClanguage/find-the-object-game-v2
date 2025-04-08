@@ -30,9 +30,10 @@ export default function GameSettingsAccountChangeEmailSend() {
         
         <p className="mb-2 text-2xl">メールが届かない場合は、迷惑メールフォルダーなどもご確認ください。</p>
 
+        
 
-        <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white">
-              ログイン画面に戻る
+        <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white" >
+            <Link href="/auth/login">ログイン画面に戻る</Link>
         </Button>
       </div>
 
