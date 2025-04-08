@@ -33,6 +33,7 @@ export default function GameSettingsAccountDelete() {
             <Label className="text-xl font-normal">パスワード</Label>
             <Input
                 placeholder="パスワード"
+                type="password"
                 className="h-10 rounded-none border-black shadow-none"
             />
         </div>
