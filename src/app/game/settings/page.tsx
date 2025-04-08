@@ -1,5 +1,4 @@
 import NavigationFooter from "@/features/game/NavigationFooter";
-import Image from "next/image";
 import Link from "next/link";
 import { Diamond,
          Mail,
