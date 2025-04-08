@@ -6,7 +6,7 @@ import { ChevronLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export default function GameSettingsAccountDelete() {
+export default function GameSettingsAccountChangeEmail() {
   const pageTitle = "設定";
   const pageSubTitle = "メールアドレス変更";
 
@@ -28,7 +28,7 @@ export default function GameSettingsAccountDelete() {
       </div>
 
       <div className="mx-auto w-4/5">
-        <p className="mb-2 text-xl">確認のため、<span className="font-bold">パスワード</span>を入力してください。</p>
+        <p className="mb-2 text-2xl">確認のため、<b>パスワード</b>を入力してください。</p>
         <div className="mb-8">
             <Label className="text-xl font-normal">パスワード</Label>
             <Input
@@ -38,7 +38,7 @@ export default function GameSettingsAccountDelete() {
             />
         </div>
         
-        <p className="mb-2 text-xl"><span className="font-bold">新しいメールアドレス</span>を入力してください。</p>
+        <p className="mb-2 text-2xl"><b>新しいメールアドレス</b>を入力してください。</p>
         <div className="mb-8">
             <Label className="text-xl font-normal">新しいメールアドレス</Label>
             <Input
@@ -47,8 +47,7 @@ export default function GameSettingsAccountDelete() {
             />
         </div>
 
-
-        <p className="mb-2 text-xl">確認のため、もう一度<span className="font-bold">新しいメールアドレス</span>を入力してください。</p>
+        <p className="mb-2 text-2xl">確認のため、もう一度<b>新しいメールアドレス</b>を入力してください。</p>
         <div className="mb-8">
             <Label className="text-xl font-normal">新しいメールアドレス（確認）</Label>
             <Input
@@ -60,8 +59,6 @@ export default function GameSettingsAccountDelete() {
         <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white">
               確認メールを送信
             </Button>
-
-
       </div>
 
 
