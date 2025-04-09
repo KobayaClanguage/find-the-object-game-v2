@@ -14,7 +14,7 @@ export default function GameSettingsAccountChangeEmailSend() {
         {pageTitle}
       </h1>
 
-      <div className="pb-16 pt-32 relative mx-6 flex h-[80px] items-center justify-around">
+      <div className="relative mx-6 flex h-[80px] items-center justify-around pb-16 pt-32">
         <div className="absolute left-0">
           <Link href="/game/settings" className="p-0">
             <ChevronLeft color="#000000" size={50} />
