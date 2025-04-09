@@ -14,15 +14,13 @@ export default function GameSettingsAccountChangeEmailSend() {
         {pageTitle}
       </h1>
 
-      <div className="pb-16 pt-20">
-        <div className="relative mx-6 flex h-[80px] items-center justify-around">
-          <div className="absolute left-0">
-            <Link href="/game/settings" className="p-0">
-              <ChevronLeft color="#000000" size={50} />
-            </Link>
-          </div>
-          <h1 className="text-2xl">{pageSubTitle}</h1>
+      <div className="pb-16 pt-32 relative mx-6 flex h-[80px] items-center justify-around">
+        <div className="absolute left-0">
+          <Link href="/game/settings" className="p-0">
+            <ChevronLeft color="#000000" size={50} />
+          </Link>
         </div>
+        <h1 className="text-2xl">{pageSubTitle}</h1>
       </div>
 
       <div className="mx-auto w-4/5">
@@ -32,7 +30,7 @@ export default function GameSettingsAccountChangeEmailSend() {
 
         
 
-        <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white" >
+        <Button asChild className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white" >
             <Link href="/auth/login">ログイン画面に戻る</Link>
         </Button>
       </div>
