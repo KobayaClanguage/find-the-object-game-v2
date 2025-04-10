@@ -1,35 +1,46 @@
-import Link from "next/link";
+"use client";
+
 import { Button } from "@/components/ui/button";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import React from "react";
+import Link from "next/link";
+import Image from "next/image";
 
-export default function GameSettingsAccountChangePasswordComplete() {
-  const pageTitle = "設定";
-  const pageSubTitle = "メールアドレス変更";
-
+export default function AuthResetPasswordComplete() {
   return (
-    <div className="relative h-full">
-      <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
-        {pageTitle}
-      </h1>
-      <div className="pb-16 pt-20">
-        <div className="relative mx-6 flex h-[80px] items-center justify-around">
-          <h1 className="text-2xl">{pageSubTitle}</h1>
-        </div>
-        {/* (画面サイズの縦幅:100vh) - (タイトルバーの縦幅:80px) - (ナビゲーションバーの縦幅:74px) - (スタンプ名タイトルの縦幅:80px) */}
-        <div className="relative mt-4 flex h-[calc(100vh-80px-74px-80px)] w-full flex-col items-center justify-start px-9 text-xl">
-          <p>メールアドレスの変更が完了しました。</p>
-          <p>ログインし直してください。</p>
-          <Button
-            asChild
-            className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
-          >
-            <Link href="/auth/login">ログイン画面に戻る</Link>
-          </Button>
-        </div>
+    <div className="my-2 mt-11 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-start space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
+      {/* ヘッダー部分 */}
+      <div className="mb-6 flex flex-col items-center space-y-2 text-center">
+        <Image
+          src={"/images/commentLogo.png"}
+          alt="額ロゴの吹き出し"
+          width={120}
+          height={49}
+        />
+        <Image
+          src={"/images/nukaLogo.png"}
+          alt="額のロゴ"
+          width={198}
+          height={64}
+        />
+        <Image src="/images/cross.png" alt="☓アイコン" width={29} height={29} />
+        <Image
+          src="/images/KITimage.png"
+          alt="KITロゴ"
+          width={150}
+          height={75}
+        />
       </div>
-      <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
-        <NavigationFooter />
+      <div className="mb-4 mt-10 flex flex-col items-center space-y-2">
+        <h2 className="text-2xl font-bold">オブジェを探せゲーム</h2>
+        <p className="text-2xl text-gray-700">メールアドレス変更</p>
+      </div>
+      <div className="px-10">
+        <p className="text-2xl">メールアドレスの変更が完了しました。</p>
+        <Button
+          asChild
+          className="mb-4 mt-14 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
+        >
+          <Link href="/auth/login">ログイン画面に戻る</Link>
+        </Button>
       </div>
     </div>
   );
