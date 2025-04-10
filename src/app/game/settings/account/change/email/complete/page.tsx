@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function AuthResetPasswordComplete() {
+export default function GameSettingsAccountChangeEmailComplete() {
   return (
     <div className="my-2 mt-11 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-start space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
       {/* ヘッダー部分 */}
