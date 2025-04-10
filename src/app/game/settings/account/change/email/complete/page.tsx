@@ -35,6 +35,7 @@ export default function AuthResetPasswordComplete() {
       </div>
       <div className="px-10">
         <p className="text-2xl">メールアドレスの変更が完了しました。</p>
+        <p className="text-2xl">ログインし直してください。</p>
         <Button
           asChild
           className="mb-4 mt-14 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
