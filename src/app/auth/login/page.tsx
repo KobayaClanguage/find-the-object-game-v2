@@ -19,15 +19,17 @@ export default function LoginPage() {
   const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>): void => setPassword(event.target.value);
   const { handleSubmit } = useForm();
 
+
   const router = useRouter();
+  const [error_message, setErrorMessage] = useState("");
 
   const signIn = handleSubmit(() => {
     signInWithEmailAndPassword(auth, email, password)
       .then(() => {
         router.push("/game/stamp");
       })
-      .catch((error) => {
-        console.log("log in error", error.message);
+      .catch(() => {
+        setErrorMessage("ログインに失敗しました");
       });
   })
 
@@ -91,6 +93,11 @@ export default function LoginPage() {
                 onChange={ onChangePassword }
               />
             </div>
+
+            <div className="text-center text-red-500">
+              { error_message }
+            </div>
+
             <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"  onClick={ signIn }>
               ログイン
             </Button>
