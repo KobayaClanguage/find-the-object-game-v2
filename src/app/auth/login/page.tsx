@@ -6,8 +6,32 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import Image from "next/image";
+import { useForm } from 'react-hook-form'
+import { useState } from "react";
+import { useRouter } from 'next/navigation'
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '@/api/firebase/config';
 
 export default function LoginPage() {
+  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
+  const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>): void => setEmail(event.target.value);
+  const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>): void => setPassword(event.target.value);
+  const { handleSubmit } = useForm();
+
+  const router = useRouter();
+
+  const signIn = handleSubmit(() => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        router.push("/game/stamp");
+      })
+      .catch((error) => {
+        console.log("log in error", error.message);
+      });
+  })
+
+
   return (
     <div className="my-2 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-center space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
       {/* ヘッダー部分 */}
@@ -51,6 +75,7 @@ export default function LoginPage() {
                 placeholder="ID (メールアドレス)"
                 required
                 className="h-[40px] rounded-none border-gray-500 text-sm"
+                onChange={ onChangeEmail }
               />
             </div>
             <div className="mb-6">
@@ -63,9 +88,10 @@ export default function LoginPage() {
                 placeholder="パスワード"
                 required
                 className="h-[40px] rounded-none border-gray-500 text-sm"
+                onChange={ onChangePassword }
               />
             </div>
-            <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white">
+            <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"  onClick={ signIn }>
               ログイン
             </Button>
           </form>
