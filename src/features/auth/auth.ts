@@ -6,7 +6,7 @@ export async function signinWithEmail(email: string, password: string) {
   try {
     await signInWithEmailAndPassword(auth, email, password);
     return { success: true };
-  } catch (error: any) {
+  } catch {
     return { success: false, error_message: "ログインに失敗しました"};
   }
 }
