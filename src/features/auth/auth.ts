@@ -1,0 +1,12 @@
+// features/auth/signInWithEmail.ts
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from '@/api/firebase/config';
+
+export async function signinWithEmail(email: string, password: string) {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    return { success: true };
+  } catch (error: any) {
+    return { success: false, error_message: "ログインに失敗しました"};
+  }
+}

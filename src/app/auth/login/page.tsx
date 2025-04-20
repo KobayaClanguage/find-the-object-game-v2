@@ -9,8 +9,7 @@ import Image from "next/image";
 import { useForm } from 'react-hook-form'
 import { useState } from "react";
 import { useRouter } from 'next/navigation'
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '@/api/firebase/config';
+import { signinWithEmail } from "@/features/auth/auth";
 
 export default function LoginPage() {
   const [password, setPassword] = useState("");
@@ -19,18 +18,21 @@ export default function LoginPage() {
   const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>): void => setPassword(event.target.value);
   const { handleSubmit } = useForm();
 
-
   const router = useRouter();
   const [error_message, setErrorMessage] = useState("");
 
-  const signIn = handleSubmit(() => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then(() => {
+  const signIn = handleSubmit(async () => {
+    signinWithEmail(email, password)
+    .then((result) => {
+      if(result.success) {
         router.push("/game/stamp");
-      })
-      .catch(() => {
-        setErrorMessage("ログインに失敗しました");
-      });
+      } else {
+        setErrorMessage(result.error_message ?? "ログインに失敗しました")
+      }
+    })
+    .catch(() => {
+      setErrorMessage("ログインに失敗しました");
+    })
   })
 
 
