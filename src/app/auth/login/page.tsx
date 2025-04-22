@@ -6,22 +6,23 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import Image from "next/image";
-import { useForm } from 'react-hook-form'
 import { useState } from "react";
 import { useRouter } from 'next/navigation'
 import { signinWithEmail } from "@/features/auth/auth";
 
 export default function LoginPage() {
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
-  const onChangeEmail = (event: React.ChangeEvent<HTMLInputElement>): void => setEmail(event.target.value);
-  const onChangePassword = (event: React.ChangeEvent<HTMLInputElement>): void => setPassword(event.target.value);
-  const { handleSubmit } = useForm();
-
   const router = useRouter();
   const [error_message, setErrorMessage] = useState("");
 
-  const signIn = handleSubmit(async () => {
+  function signin(formData: FormData) {
+    const email = formData.get("email");
+    const password = formData.get("password");
+
+    if (typeof email !== "string" || typeof password !== "string") {
+      setErrorMessage("入力値が不正です");
+      return;
+    }
+
     signinWithEmail(email, password)
     .then((result) => {
       if(result.success) {
@@ -33,12 +34,12 @@ export default function LoginPage() {
     .catch(() => {
       setErrorMessage("ログインに失敗しました");
     })
-  })
+  }
+
 
 
   return (
     <div className="my-2 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-center space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
-      {/* ヘッダー部分 */}
       <div className="mb-6 flex flex-col items-center space-y-2 text-center">
         <Image
           src={"/images/commentLogo.png"}
@@ -65,21 +66,20 @@ export default function LoginPage() {
         <p className="text-xl text-gray-700">ログイン</p>
       </div>
 
-      {/* ログインフォーム */}
       <Card className="w-5/6 rounded-none border-2 border-gray-400 py-10">
         <CardContent className="m-0 flex w-full flex-col items-center">
-          <form className="mt-4 w-full">
+          <form className="mt-4 w-full" action={ signin }>
             <div className="mb-4">
               <Label htmlFor="email" className="text-sm">
                 ID（メールアドレス）
               </Label>
               <Input
                 id="email"
+                name="email"
                 type="email"
                 placeholder="ID (メールアドレス)"
                 required
                 className="h-[40px] rounded-none border-gray-500 text-sm"
-                onChange={ onChangeEmail }
               />
             </div>
             <div className="mb-6">
@@ -88,11 +88,11 @@ export default function LoginPage() {
               </Label>
               <Input
                 id="password"
+                name="password"
                 type="password"
                 placeholder="パスワード"
                 required
                 className="h-[40px] rounded-none border-gray-500 text-sm"
-                onChange={ onChangePassword }
               />
             </div>
 
@@ -100,7 +100,7 @@ export default function LoginPage() {
               { error_message }
             </div>
 
-            <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"  onClick={ signIn }>
+            <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white" type="submit">
               ログイン
             </Button>
           </form>
@@ -111,7 +111,6 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          {/* 新規登録ボタン */}
           <Button
             asChild
             className="mt-8 h-14 w-full rounded-none border-[3px] border-[#0094f4] bg-white font-sans text-2xl font-bold text-[#0094f4]"
