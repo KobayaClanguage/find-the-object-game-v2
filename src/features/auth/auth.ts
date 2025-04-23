@@ -1,6 +1,6 @@
 // features/auth/signInWithEmail.ts
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '@/api/firebase/config';
+import { auth } from '@/firebase/config';
 
 export async function signinWithEmail(email: string, password: string) {
   try {
