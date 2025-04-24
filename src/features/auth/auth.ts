@@ -1,5 +1,4 @@
-"use client";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '@/firebase/config';
 
 export async function signupWithEmail(email: string, password: string) {
@@ -11,3 +10,14 @@ export async function signupWithEmail(email: string, password: string) {
       return { success: false, error_message: "アカウント登録に失敗しました"};
     }
   }
+}
+
+export async function signinWithEmail(email: string, password: string) {
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+    return { success: true };
+  } catch {
+    return { success: false, error_message: "ログインに失敗しました"};
+  }
+}
+
