@@ -1,12 +1,31 @@
+"use client";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import NavigationFooter from "@/features/game/NavigationFooter";
-import React from "react";
+import React, { useState } from "react";
 import { ChevronLeft } from "lucide-react";
+import { logout } from "@/features/auth/auth";
+import { useRouter } from "next/navigation";
 
 export default function GameSettingsAccountLogout() {
   const pageTitle = "設定";
   const pageSubTitle = "ログアウト";
+  const router = useRouter();
+  const [error_message, setErrorMessage] = useState("");
+
+  const logoutButton = ( async() => {
+    logout()
+    .then((result) => {
+      if(result.success) {
+        router.push("/game/settings/account/logout/complete");
+      } else {
+        setErrorMessage(result.error_message ?? "ログアウトに失敗しました");
+      }
+    })
+    .catch(() => {
+      setErrorMessage("ログアウトに失敗しました");
+    })
+  })
 
   return (
     <div className="relative h-full">
@@ -24,10 +43,13 @@ export default function GameSettingsAccountLogout() {
         </div>
         {/* (画面サイズの縦幅:100vh) - (タイトルバーの縦幅:80px) - (ナビゲーションバーの縦幅:74px) - (スタンプ名タイトルの縦幅:80px) */}
         <div className="relative mt-4 flex h-[calc(100vh-80px-74px-80px)] w-full flex-col items-center justify-start px-9 text-xl">
-          <p className="text-2xl">本当にログアウトしますか？</p>
-          <Button
-            className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
-          >
+          <p className="mb-9 text-2xl">本当にログアウトしますか？</p>
+
+          <div className="text-center text-red-500">
+              { error_message }
+          </div>
+
+          <Button className="mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl" onClick={ logoutButton }>
             ログアウト
           </Button>
         </div>
