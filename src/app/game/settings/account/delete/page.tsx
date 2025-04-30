@@ -1,14 +1,31 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import NavigationFooter from "@/features/game/NavigationFooter";
-import React from "react";
+import React, { useState } from "react";
 import { ChevronLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { deleteAccount } from "@/features/auth/auth";
+import { useRouter } from 'next/navigation'
 
 export default function GameSettingsAccountDelete() {
   const pageTitle = "設定";
   const pageSubTitle = "アカウント削除";
+  const [error_message, setErrorMessage] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const deleteButton = async() => {    
+    const result = await deleteAccount(password);
+    if(result.success) {
+      router.push("/game/settings/account/delete/complete");
+    } else {
+      setErrorMessage(result.error_message ?? "アカウント削除に失敗しました")
+    }
+  }
+
 
   return (
     <div className="relative h-full">
@@ -36,10 +53,15 @@ export default function GameSettingsAccountDelete() {
                     placeholder="パスワード"
                     type="password"
                     className="h-10 rounded-none border-black shadow-none"
+                    value={ password }
+                    onChange={(e) => setPassword(e.target.value)}
                 />
             </div>          
           </div>
-          <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#ff0000] text-2xl">
+          <div className="text-center text-red-500">
+              { error_message }
+            </div>
+          <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#ff0000] text-2xl" onClick={ deleteButton }>
             アカウント削除
           </Button>
         </div>

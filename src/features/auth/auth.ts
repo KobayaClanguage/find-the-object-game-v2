@@ -10,7 +10,6 @@ import { EmailAuthProvider } from "firebase/auth/web-extension";
 export async function signupWithEmail(email: string, password: string) {
   try {
     const result = await createUserWithEmailAndPassword(auth, email, password);
-    console.log(result);
     return { success: true };
   } catch {
     return { success: false, error_message: "アカウント登録に失敗しました" };
@@ -40,7 +39,7 @@ export async function deleteAccount(password: string) {
       password
     )
 
-    await reauthenticateWithCredential(user, credential);
+    await reauthenticateWithCredential(user, credential)
     await deleteUser(user);
 
     return { success: true};
