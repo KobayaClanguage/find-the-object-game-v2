@@ -9,7 +9,7 @@ import { EmailAuthProvider } from "firebase/auth/web-extension";
 
 export async function signupWithEmail(email: string, password: string) {
   try {
-    const result = await createUserWithEmailAndPassword(auth, email, password);
+    await createUserWithEmailAndPassword(auth, email, password);
     return { success: true };
   } catch {
     return { success: false, error_message: "アカウント登録に失敗しました" };
