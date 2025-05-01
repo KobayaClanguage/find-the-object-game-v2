@@ -11,7 +11,7 @@ export default function GameSettingsAccountLogout() {
   const pageTitle = "設定";
   const pageSubTitle = "ログアウト";
   const router = useRouter();
-  const [ErrorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const logoutButton = ( async() => {
     logout()
@@ -19,7 +19,7 @@ export default function GameSettingsAccountLogout() {
       if(result.success) {
         router.push("/game/settings/account/logout/complete");
       } else {
-        setErrorMessage(result.ErrorMessage ?? "ログアウトに失敗しました");
+        setErrorMessage(result.errorMessage ?? "ログアウトに失敗しました");
       }
     })
     .catch(() => {
@@ -46,7 +46,7 @@ export default function GameSettingsAccountLogout() {
           <p className="mb-9 text-2xl">本当にログアウトしますか？</p>
 
           <div className="text-center text-red-500">
-              { ErrorMessage }
+              { errorMessage }
           </div>
 
           <Button className="mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl" onClick={ logoutButton }>
