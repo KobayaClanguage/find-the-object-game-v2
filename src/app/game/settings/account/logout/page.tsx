@@ -25,9 +25,7 @@ export default function GameSettingsAccountLogout() {
         {/* (画面サイズの縦幅:100vh) - (タイトルバーの縦幅:80px) - (ナビゲーションバーの縦幅:74px) - (スタンプ名タイトルの縦幅:80px) */}
         <div className="relative mt-4 flex h-[calc(100vh-80px-74px-80px)] w-full flex-col items-center justify-start px-9 text-xl">
           <p className="text-2xl">本当にログアウトしますか？</p>
-          <Button
-            className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
-          >
+          <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl">
             ログアウト
           </Button>
         </div>

@@ -28,39 +28,46 @@ export default function GameSettingsAccountChangeEmail() {
       </div>
 
       <div className="mx-auto w-4/5">
-        <p className="mb-2 text-2xl">確認のため、<b>パスワード</b>を入力してください。</p>
+        <p className="mb-2 text-2xl">
+          確認のため、<b>パスワード</b>を入力してください。
+        </p>
         <div className="mb-8">
-            <Label className="text-xl font-normal">パスワード</Label>
-            <Input
-                placeholder="パスワード"
-                type="password"
-                className="h-10 rounded-none border-black shadow-none"
-            />
-        </div>
-        
-        <p className="mb-2 text-2xl"><b>新しいメールアドレス</b>を入力してください。</p>
-        <div className="mb-8">
-            <Label className="text-xl font-normal">新しいメールアドレス</Label>
-            <Input
-                placeholder="新しいメールアドレス"
-                className="h-10 rounded-none border-black shadow-none"
-            />
+          <Label className="text-xl font-normal">パスワード</Label>
+          <Input
+            placeholder="パスワード"
+            type="password"
+            className="h-10 rounded-none border-black shadow-none"
+          />
         </div>
 
-        <p className="mb-2 text-2xl">確認のため、もう一度<b>新しいメールアドレス</b>を入力してください。</p>
+        <p className="mb-2 text-2xl">
+          <b>新しいメールアドレス</b>を入力してください。
+        </p>
         <div className="mb-8">
-            <Label className="text-xl font-normal">新しいメールアドレス（確認）</Label>
-            <Input
-                placeholder="新しいメールアドレス（確認）"
-                className="h-10 rounded-none border-black shadow-none"
-            />
+          <Label className="text-xl font-normal">新しいメールアドレス</Label>
+          <Input
+            placeholder="新しいメールアドレス"
+            className="h-10 rounded-none border-black shadow-none"
+          />
+        </div>
+
+        <p className="mb-2 text-2xl">
+          確認のため、もう一度<b>新しいメールアドレス</b>を入力してください。
+        </p>
+        <div className="mb-8">
+          <Label className="text-xl font-normal">
+            新しいメールアドレス（確認）
+          </Label>
+          <Input
+            placeholder="新しいメールアドレス（確認）"
+            className="h-10 rounded-none border-black shadow-none"
+          />
         </div>
 
         <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white">
-              確認メールを送信
-            </Button>
+          確認メールを送信
+        </Button>
       </div>
-
 
       <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
         <NavigationFooter />
