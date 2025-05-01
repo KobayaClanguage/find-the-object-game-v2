@@ -29,6 +29,6 @@ export async function logout() {
     await signOut(auth);
     return { success: true };
   } catch {
-    return { success:false, error_message: "ログアウトに失敗しました" };
+    return { success:false, ErrorMessage: "ログアウトに失敗しました" };
   }
 }

@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import NavigationFooter from "@/features/game/NavigationFooter";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronLeft } from "lucide-react";
 import { logout } from "@/features/auth/auth";
 import { useRouter } from "next/navigation";
@@ -11,7 +11,7 @@ export default function GameSettingsAccountLogout() {
   const pageTitle = "設定";
   const pageSubTitle = "ログアウト";
   const router = useRouter();
-  const [error_message, setErrorMessage] = useState("");
+  const [ErrorMessage, setErrorMessage] = useState("");
 
   const logoutButton = ( async() => {
     logout()
@@ -19,7 +19,7 @@ export default function GameSettingsAccountLogout() {
       if(result.success) {
         router.push("/game/settings/account/logout/complete");
       } else {
-        setErrorMessage(result.error_message ?? "ログアウトに失敗しました");
+        setErrorMessage(result.ErrorMessage ?? "ログアウトに失敗しました");
       }
     })
     .catch(() => {
@@ -46,7 +46,7 @@ export default function GameSettingsAccountLogout() {
           <p className="mb-9 text-2xl">本当にログアウトしますか？</p>
 
           <div className="text-center text-red-500">
-              { error_message }
+              { ErrorMessage }
           </div>
 
           <Button className="mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl" onClick={ logoutButton }>
