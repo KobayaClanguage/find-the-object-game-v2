@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import NavigationFooter from "@/features/game/NavigationFooter";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ChevronLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -13,7 +13,7 @@ import { useRouter } from 'next/navigation'
 export default function GameSettingsAccountDelete() {
   const pageTitle = "設定";
   const pageSubTitle = "アカウント削除";
-  const [error_message, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
@@ -22,7 +22,7 @@ export default function GameSettingsAccountDelete() {
     if(result.success) {
       router.push("/game/settings/account/delete/complete");
     } else {
-      setErrorMessage(result.error_message ?? "アカウント削除に失敗しました")
+      setErrorMessage(result.errorMessage ?? "アカウント削除に失敗しました")
     }
   }
 
@@ -59,7 +59,7 @@ export default function GameSettingsAccountDelete() {
             </div>          
           </div>
           <div className="text-center text-red-500">
-              { error_message }
+              { errorMessage }
             </div>
           <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#ff0000] text-2xl" onClick={ deleteButton }>
             アカウント削除
