@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 import { signinWithEmail } from "@/features/auth/auth";
 
 export default function LoginPage() {
@@ -24,19 +24,17 @@ export default function LoginPage() {
     }
 
     signinWithEmail(email, password)
-    .then((result) => {
-      if(result.success) {
-        router.push("/game/stamp");
-      } else {
-        setErrorMessage(result.error_message ?? "ログインに失敗しました")
-      }
-    })
-    .catch(() => {
-      setErrorMessage("ログインに失敗しました");
-    })
+      .then((result) => {
+        if (result.success) {
+          router.push("/game/stamp");
+        } else {
+          setErrorMessage(result.error_message ?? "ログインに失敗しました");
+        }
+      })
+      .catch(() => {
+        setErrorMessage("ログインに失敗しました");
+      });
   }
-
-
 
   return (
     <div className="my-2 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-center space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
@@ -68,7 +66,7 @@ export default function LoginPage() {
 
       <Card className="w-5/6 rounded-none border-2 border-gray-400 py-10">
         <CardContent className="m-0 flex w-full flex-col items-center">
-          <form className="mt-4 w-full" action={ signin }>
+          <form className="mt-4 w-full" action={signin}>
             <div className="mb-4">
               <Label htmlFor="email" className="text-sm">
                 ID（メールアドレス）
@@ -96,11 +94,12 @@ export default function LoginPage() {
               />
             </div>
 
-            <div className="text-center text-red-500">
-              { error_message }
-            </div>
+            <div className="text-center text-red-500">{error_message}</div>
 
-            <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white" type="submit">
+            <Button
+              className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"
+              type="submit"
+            >
               ログイン
             </Button>
           </form>
