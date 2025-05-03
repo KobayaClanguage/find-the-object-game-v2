@@ -17,23 +17,25 @@ export default function RegisterPage() {
   function signup(formData: FormData) {
     const email = formData.get("email");
     const password = formData.get("password");
-  
+
     if (typeof email !== "string" || typeof password !== "string") {
       setErrorMessage("入力値が不正です");
       return;
     }
-  
+
     signupWithEmail(email, password)
-    .then((result) => {
-      if(result.success) {
-        router.push("/game/stamp");
-      } else {
-        setErrorMessage(result.error_message ?? "アカウント登録に失敗しました");
-      }
-    })
-    .catch(() => {
-      setErrorMessage("アカウント登録に失敗しました");
-    })
+      .then((result) => {
+        if (result.success) {
+          router.push("/game/stamp");
+        } else {
+          setErrorMessage(
+            result.error_message ?? "アカウント登録に失敗しました",
+          );
+        }
+      })
+      .catch(() => {
+        setErrorMessage("アカウント登録に失敗しました");
+      });
   }
 
   return (
@@ -77,7 +79,7 @@ export default function RegisterPage() {
 
       <Card className="w-5/6 rounded-none border-2 border-gray-400 py-10">
         <CardContent className="m-0 flex w-full flex-col items-center">
-          <form className="mt-4 w-full"  action={signup}>
+          <form className="mt-4 w-full" action={signup}>
             <div className="mb-4">
               <Label htmlFor="email" className="text-sm">
                 ID（メールアドレス）
@@ -105,11 +107,12 @@ export default function RegisterPage() {
               />
             </div>
 
-            <div className="text-center text-red-500">
-              { error_message }
-            </div>
+            <div className="text-center text-red-500">{error_message}</div>
 
-            <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white" type="submit">
+            <Button
+              className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"
+              type="submit"
+            >
               新規登録
             </Button>
           </form>
@@ -118,9 +121,7 @@ export default function RegisterPage() {
             asChild
             className="mt-8 h-14 w-full rounded-none border-[3px] border-[#0094f4] bg-white font-sans text-2xl font-bold text-[#0094f4]"
           >
-            <Link href={"/auth/account/login"}>
-              ログイン
-            </Link>
+            <Link href={"/auth/account/login"}>ログイン</Link>
           </Button>
         </CardContent>
       </Card>

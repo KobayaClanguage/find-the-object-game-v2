@@ -51,7 +51,9 @@ export default function GameSettingsAccountChangePassword() {
             もう一度<strong>新しいパスワード</strong>を入力してください
           </p>
           <div className="w-full">
-            <Label className="text-xl font-normal">新しいパスワード(確認)</Label>
+            <Label className="text-xl font-normal">
+              新しいパスワード(確認)
+            </Label>
             <Input
               placeholder="新しいパスワード"
               type="password"
