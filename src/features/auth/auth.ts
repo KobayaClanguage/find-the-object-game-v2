@@ -1,6 +1,7 @@
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signOut,
   deleteUser,
   reauthenticateWithCredential,
 } from "firebase/auth";
@@ -22,6 +23,16 @@ export async function signinWithEmail(email: string, password: string) {
     return { success: true };
   } catch {
     return { success: false, error_message: "ログインに失敗しました" };
+  }
+}
+
+
+export async function logout() {
+  try {
+    await signOut(auth);
+    return { success: true };
+  } catch {
+    return { success:false, errorMessage: "ログアウトに失敗しました" };
   }
 }
 
