@@ -30,9 +30,9 @@ export async function deleteAccount(password: string) {
     const user = auth.currentUser;
     const email = auth.currentUser?.email;
 
-    if (user === null || email === null || email === undefined) {
-      return { success: false, error_message: "アカウント削除に失敗しました" };
-    }
+    if(user === null || email === null || email === undefined) {
+      return { success: false, errorMessage: "アカウント削除に失敗しました"};
+    } 
 
     const credential = EmailAuthProvider.credential(email, password);
 
