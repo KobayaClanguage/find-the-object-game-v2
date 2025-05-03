@@ -24,17 +24,21 @@ export default function GameSettingsAccountChangeEmailSend() {
       </div>
 
       <div className="mx-auto w-4/5">
-        <p className="mb-2 text-2xl">新しいメールアドレスに確認URLを送信しました。</p>
-        
-        <p className="mb-2 text-2xl">メールが届かない場合は、迷惑メールフォルダーなどもご確認ください。</p>
+        <p className="mb-2 text-2xl">
+          新しいメールアドレスに確認URLを送信しました。
+        </p>
 
-        
+        <p className="mb-2 text-2xl">
+          メールが届かない場合は、迷惑メールフォルダーなどもご確認ください。
+        </p>
 
-        <Button asChild className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white" >
-            <Link href="/auth/login">ログイン画面に戻る</Link>
+        <Button
+          asChild
+          className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"
+        >
+          <Link href="/auth/login">ログイン画面に戻る</Link>
         </Button>
       </div>
-
 
       <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
         <NavigationFooter />
