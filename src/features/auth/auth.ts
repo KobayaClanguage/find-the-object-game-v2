@@ -5,7 +5,6 @@ import {
   signInWithEmailAndPassword,
   deleteUser,
   reauthenticateWithCredential,
-  updateEmail,
   verifyBeforeUpdateEmail,
   applyActionCode,
 } from "firebase/auth";
@@ -50,7 +49,7 @@ export async function deleteAccount(password: string) {
   }
 }
 
-export async function sendChangeEmail(password: string, newEmail: string, newEmailConfirm: string) {
+export async function sendChangeEmail(password: string, newEmail: string) {
   try {
     const user = auth.currentUser;
     const email = auth.currentUser?.email;

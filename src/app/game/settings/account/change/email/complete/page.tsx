@@ -5,35 +5,34 @@ import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { changeEmail } from "@/features/auth/auth";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function GameSettingsAccountChangeEmailComplete() {
   const [resultMessage, setResultMessage] = useState("");
   const urlParams = useSearchParams();
   const oobCode = urlParams.get("oobCode");
-  var executed = false;
+  const executed = useRef<boolean>(false);
 
-  useEffect(() => {  
-    if(!executed) {
-      executed = true;
+  useEffect(() => {
+    if(executed.current) return;
+    executed.current = true;
 
-      if(oobCode === null) {
-        setResultMessage("メールアドレスの変更に失敗しました");
-        return;
-      }
-      const change = async () => {
-        changeEmail(oobCode)
-        .then((result) => {
-          setResultMessage(result.resultMessage);
-        })
-        .catch((result) => {
-          setResultMessage(result.resultMessage);
-        })
-      }
-      change();
+    if(oobCode === null) {
+      setResultMessage("メールアドレスの変更に失敗しました");
+      return;
     }
+    const change = async () => {
+      changeEmail(oobCode)
+      .then((result) => {
+        setResultMessage(result.resultMessage);
+      })
+      .catch((result) => {
+        setResultMessage(result.resultMessage);
+      })
+    }
+    change();
 
-  }, [])
+  }, [oobCode])
 
   return (
     <div className="my-2 mt-11 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-start space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">

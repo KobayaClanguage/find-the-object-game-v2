@@ -25,7 +25,7 @@ export default function GameSettingsAccountChangeEmail() {
       setErrorMessage("メールアドレスが一致していません");
       return;
     }
-    sendChangeEmail(password, newEmail, newEmailConfirm)
+    sendChangeEmail(password, newEmail)
     .then((result) => {
       if(result.success){
         router.push("/game/settings/account/change/email/send");
