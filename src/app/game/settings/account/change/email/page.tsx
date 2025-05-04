@@ -21,6 +21,10 @@ export default function GameSettingsAccountChangeEmail() {
   
 
   const sendEmail = ( async() => {
+    if (newEmail !== newEmailConfirm) {
+      setErrorMessage("メールアドレスが一致していません");
+      return;
+    }
     sendChangeEmail(password, newEmail, newEmailConfirm)
     .then((result) => {
       if(result.success){
