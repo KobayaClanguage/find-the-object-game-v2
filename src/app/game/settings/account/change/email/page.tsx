@@ -1,14 +1,38 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import NavigationFooter from "@/features/game/NavigationFooter";
-import React from "react";
+import { useState } from "react";
 import { ChevronLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { sendChangeEmail } from "@/features/auth/auth";
+import { useRouter } from "next/navigation";
 
 export default function GameSettingsAccountChangeEmail() {
   const pageTitle = "設定";
   const pageSubTitle = "メールアドレス変更";
+  const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [password, setPassword] = useState("");
+  const [newEmail, setNewEmail] = useState("");
+  const [newEmailConfirm, setNewEmailConfirm] = useState("");
+  
+
+  const sendEmail = ( async() => {
+    sendChangeEmail(password, newEmail, newEmailConfirm)
+    .then((result) => {
+      if(result.success){
+        router.push("/game/settings/account/change/email/send");
+      } else {
+        setErrorMessage(result.errorMessage ?? "確認メールの送信に失敗しました");
+      }
+    })
+    .catch(() => {
+      setErrorMessage("確認メールの送信に失敗しました")
+    })
+  })
 
   return (
     <div className="relative h-full">
@@ -37,6 +61,8 @@ export default function GameSettingsAccountChangeEmail() {
             placeholder="パスワード"
             type="password"
             className="h-10 rounded-none border-black shadow-none"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
@@ -48,6 +74,8 @@ export default function GameSettingsAccountChangeEmail() {
           <Input
             placeholder="新しいメールアドレス"
             className="h-10 rounded-none border-black shadow-none"
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
           />
         </div>
 
@@ -61,10 +89,12 @@ export default function GameSettingsAccountChangeEmail() {
           <Input
             placeholder="新しいメールアドレス（確認）"
             className="h-10 rounded-none border-black shadow-none"
+            value={newEmailConfirm}
+            onChange={(e) => setNewEmailConfirm(e.target.value)}            
           />
         </div>
-
-        <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white">
+        <div className="text-center text-red-500">{errorMessage}</div>
+        <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white" onClick={ sendEmail }>
           確認メールを送信
         </Button>
       </div>

@@ -3,8 +3,38 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import { changeEmail } from "@/features/auth/auth";
+import { useEffect, useState } from "react";
 
 export default function GameSettingsAccountChangeEmailComplete() {
+  const [resultMessage, setResultMessage] = useState("");
+  const urlParams = useSearchParams();
+  const oobCode = urlParams.get("oobCode");
+  var executed = false;
+
+  useEffect(() => {  
+    if(!executed) {
+      executed = true;
+
+      if(oobCode === null) {
+        setResultMessage("メールアドレスの変更に失敗しました");
+        return;
+      }
+      const change = async () => {
+        changeEmail(oobCode)
+        .then((result) => {
+          setResultMessage(result.resultMessage);
+        })
+        .catch((result) => {
+          setResultMessage(result.resultMessage);
+        })
+      }
+      change();
+    }
+
+  }, [])
+
   return (
     <div className="my-2 mt-11 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-start space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
       {/* ヘッダー部分 */}
@@ -34,8 +64,8 @@ export default function GameSettingsAccountChangeEmailComplete() {
         <p className="text-2xl text-gray-700">メールアドレス変更</p>
       </div>
       <div className="px-10">
-        <p className="text-2xl">メールアドレスの変更が完了しました。</p>
-        <p className="text-2xl">ログインし直してください。</p>
+        <p className="text-2xl">{ resultMessage }</p>
+        <p className="text-2xl">ログインし直してください</p>
         <Button
           asChild
           className="mb-4 mt-14 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
