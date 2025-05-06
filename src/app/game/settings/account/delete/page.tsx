@@ -8,7 +8,7 @@ import { ChevronLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { deleteAccount } from "@/features/auth/auth";
-import { useRouter } from 'next/navigation'
+import { useRouter } from "next/navigation";
 
 export default function GameSettingsAccountDelete() {
   const pageTitle = "設定";
@@ -17,13 +17,13 @@ export default function GameSettingsAccountDelete() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const deleteButton = async() => {    
+  const deleteButton = async() => {
     const result = await deleteAccount(password);
-    if(result.success) {
+    if (result.success) {
       router.push("/game/settings/account/delete/complete");
     } else {
       setErrorMessage(result.errorMessage ?? "アカウント削除に失敗しました")
-    }
+    };
   }
 
   return (
