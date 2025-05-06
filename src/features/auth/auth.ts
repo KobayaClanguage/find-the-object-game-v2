@@ -1,9 +1,11 @@
+"use client";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   deleteUser,
   reauthenticateWithCredential,
+  updatePassword,
 } from "firebase/auth";
 import { auth } from "@/firebase/config";
 import { EmailAuthProvider } from "firebase/auth/web-extension";
@@ -54,4 +56,25 @@ export async function deleteAccount(password: string) {
   } catch {
     return { success: false, error_message: "アカウント削除に失敗しました" };
   }
+}
+
+export async function changePassword(nowPassword: string, newPassword: string) {
+  try {
+    const user = auth.currentUser;
+    const email = auth.currentUser?.email;
+
+    if(user === null || email === null || email === undefined) {
+      return { success: false, errorMessage: "パスワード変更に失敗しました"};
+    }
+
+    const credential = EmailAuthProvider.credential(email, nowPassword);
+    
+    await reauthenticateWithCredential(user, credential);
+    await updatePassword(user, newPassword);
+
+    return { success: true };
+  } catch {
+    return { success: false, errorMessage: "パスワード変更に失敗しました" };
+  }
+  
 }
