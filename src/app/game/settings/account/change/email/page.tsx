@@ -44,7 +44,7 @@ export default function GameSettingsAccountChangeEmail() {
         {pageTitle}
       </h1>
 
-      <div className="pb-16 pt-20">
+      <div className="pb-15 pt-20">
         <div className="relative mx-6 flex h-[80px] items-center justify-around">
           <div className="absolute left-0">
             <Link href="/game/settings" className="p-0">
