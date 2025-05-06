@@ -45,7 +45,9 @@ export default function GameSettingsAccountDelete() {
           <p className="text-2xl">本当にアカウントを削除しますか？</p>
           <p className="mb-8 text-xl">削除したアカウントは元に戻せません。</p>
           <div className="mx-auto w-4/5">
-            <p className="mb-2 text-2xl">確認のため、<b>パスワード</b>を入力してください。</p>
+            <p className="mb-2 text-2xl">
+              確認のため、<b>パスワード</b>を入力してください。
+            </p>
             <div className="mb-8">
                 <Label className="text-xl font-normal">パスワード</Label>
                 <Input
