@@ -22,7 +22,7 @@ export default function GameSettingsAccountDelete() {
     if(result.success) {
       router.push("/game/settings/account/delete/complete");
     } else {
-      setErrorMessage(result.error_message ?? "アカウント削除に失敗しました")
+      setErrorMessage(result.errorMessage ?? "アカウント削除に失敗しました")
     }
   }
 

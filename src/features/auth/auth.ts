@@ -54,7 +54,7 @@ export async function deleteAccount(password: string) {
 
     return { success: true };
   } catch {
-    return { success: false, error_message: "アカウント削除に失敗しました" };
+    return { success: false, errorMessage: "アカウント削除に失敗しました" };
   }
 }
 
