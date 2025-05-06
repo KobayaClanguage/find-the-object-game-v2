@@ -17,13 +17,13 @@ export default function GameSettingsAccountDelete() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const deleteButton = async () => {
+  const deleteButton = async() => {
     const result = await deleteAccount(password);
     if (result.success) {
       router.push("/game/settings/account/delete/complete");
     } else {
       setErrorMessage(result.errorMessage ?? "アカウント削除に失敗しました")
-    }
+    };
   };
 
   return (
@@ -61,13 +61,8 @@ export default function GameSettingsAccountDelete() {
           </div>
           <div className="text-center text-red-500">
               { errorMessage }
-            </div>
           </div>
-          <div className="text-center text-red-500">{error_message}</div>
-          <Button
-            className="mb-4 mt-9 h-14 w-full rounded-none bg-[#ff0000] text-2xl"
-            onClick={deleteButton}
-          >
+          <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#ff0000] text-2xl" onClick={ deleteButton }>
             アカウント削除
           </Button>
         </div>
