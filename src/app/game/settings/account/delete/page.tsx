@@ -24,7 +24,7 @@ export default function GameSettingsAccountDelete() {
     } else {
       setErrorMessage(result.errorMessage ?? "アカウント削除に失敗しました")
     };
-  }
+  };
 
   return (
     <div className="relative h-full">
