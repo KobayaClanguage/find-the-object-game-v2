@@ -3,28 +3,29 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import NavigationFooter from "@/features/game/NavigationFooter";
-import { useState } from "react";
+import React, { useState } from "react";
 import { ChevronLeft } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { deleteAccount } from "@/features/auth/auth";
-import { useRouter } from "next/navigation";
+import { useRouter } from 'next/navigation'
 
 export default function GameSettingsAccountDelete() {
   const pageTitle = "設定";
   const pageSubTitle = "アカウント削除";
-  const [errorMessage, setErrorMessage] = useState("");
+  const [error_message, setErrorMessage] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const deleteButton = async () => {
+  const deleteButton = async() => {    
     const result = await deleteAccount(password);
-    if (result.success) {
+    if(result.success) {
       router.push("/game/settings/account/delete/complete");
     } else {
-      setErrorMessage(result.errorMessage ?? "アカウント削除に失敗しました")
+      setErrorMessage(result.error_message ?? "アカウント削除に失敗しました")
     }
-  };
+  }
+
 
   return (
     <div className="relative h-full">
@@ -45,9 +46,7 @@ export default function GameSettingsAccountDelete() {
           <p className="text-2xl">本当にアカウントを削除しますか？</p>
           <p className="mb-8 text-xl">削除したアカウントは元に戻せません。</p>
           <div className="mx-auto w-4/5">
-            <p className="mb-2 text-2xl">
-              確認のため、<b>パスワード</b>を入力してください。
-            </p>
+            <p className="mb-2 text-2xl">確認のため、<b>パスワード</b>を入力してください。</p>
             <div className="mb-8">
                 <Label className="text-xl font-normal">パスワード</Label>
                 <Input
@@ -60,14 +59,9 @@ export default function GameSettingsAccountDelete() {
             </div>          
           </div>
           <div className="text-center text-red-500">
-              { errorMessage }
-            </div>
+              { error_message }
           </div>
-          <div className="text-center text-red-500">{error_message}</div>
-          <Button
-            className="mb-4 mt-9 h-14 w-full rounded-none bg-[#ff0000] text-2xl"
-            onClick={deleteButton}
-          >
+          <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#ff0000] text-2xl" onClick={ deleteButton }>
             アカウント削除
           </Button>
         </div>
