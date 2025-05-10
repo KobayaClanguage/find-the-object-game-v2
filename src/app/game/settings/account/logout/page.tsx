@@ -13,19 +13,19 @@ export default function GameSettingsAccountLogout() {
   const router = useRouter();
   const [errorMessage, setErrorMessage] = useState("");
 
-  const logoutButton = ( async() => {
+  const logoutButton = async () => {
     logout()
-    .then((result) => {
-      if(result.success) {
-        router.push("/game/settings/account/logout/complete");
-      } else {
-        setErrorMessage(result.errorMessage ?? "ログアウトに失敗しました");
-      }
-    })
-    .catch(() => {
-      setErrorMessage("ログアウトに失敗しました");
-    })
-  })
+      .then((result) => {
+        if (result.success) {
+          router.push("/game/settings/account/logout/complete");
+        } else {
+          setErrorMessage(result.errorMessage ?? "ログアウトに失敗しました");
+        }
+      })
+      .catch(() => {
+        setErrorMessage("ログアウトに失敗しました");
+      });
+  };
 
   return (
     <div className="relative h-full">
@@ -45,11 +45,12 @@ export default function GameSettingsAccountLogout() {
         <div className="relative mt-4 flex h-[calc(100vh-80px-74px-80px)] w-full flex-col items-center justify-start px-9 text-xl">
           <p className="mb-9 text-2xl">本当にログアウトしますか？</p>
 
-          <div className="text-center text-red-500">
-              { errorMessage }
-          </div>
+          <div className="text-center text-red-500">{errorMessage}</div>
 
-          <Button className="mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl" onClick={ logoutButton }>
+          <Button
+            className="mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
+            onClick={logoutButton}
+          >
             ログアウト
           </Button>
         </div>
