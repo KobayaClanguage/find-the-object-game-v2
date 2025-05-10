@@ -1,17 +1,14 @@
-"use client";
-
-import { Suspense, useEffect } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 
-function Transition() {
+export function Transition() {
   const router = useRouter();
   const urlParams = useSearchParams();
+  const oobCode = urlParams.get("oobCode");
+  const mode = urlParams.get("mode");
 
   useEffect(() => {
-    const oobCode = urlParams.get("oobCode");
-    const mode = urlParams.get("mode");
-
     if (!oobCode) return;
 
     if (mode === "verifyAndChangeEmail") {
@@ -26,13 +23,5 @@ function Transition() {
       <br />
       変わらない場合は再度やり直してください。
     </div>
-  );
-}
-
-export default function UpdateEmail() {
-  return (
-    <Suspense>
-      <Transition />
-    </Suspense>
   );
 }
