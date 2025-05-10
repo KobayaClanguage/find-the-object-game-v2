@@ -62,7 +62,6 @@ export default function GameSettingsAccountDelete() {
             </div>
             <div className="text-center text-red-500">{errorMessage}</div>
           </div>
-          <div className="text-center text-red-500">{error_message}</div>
           <Button
             className="mb-4 mt-9 h-14 w-full rounded-none bg-[#ff0000] text-2xl"
             onClick={deleteButton}
