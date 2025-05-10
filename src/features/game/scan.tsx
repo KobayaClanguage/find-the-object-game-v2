@@ -14,7 +14,10 @@ export function Scan(
   let contentHeight = 500;
 
   navigator.mediaDevices
-    .getUserMedia({ audio: false, video: { width: 640, height: 480 } })
+    .getUserMedia({
+      audio: false,
+      video: { width: 640, height: 480, facingMode: { exact: "environment" } },
+    })
     .then((stream) => {
       video.srcObject = stream;
       video.onloadeddata = () => {
