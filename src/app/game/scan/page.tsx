@@ -21,8 +21,14 @@ export default function GameScan() {
       </h1>
       <div>
         <h1>Find-the-object-game</h1>
-        <video id="video" autoPlay muted playsInline></video>
-        <canvas id="camera-canvas" ref={canvasRef}></canvas>
+        <video
+          className="h-full w-full"
+          id="video"
+          autoPlay
+          muted
+          playsInline
+        ></video>
+        <canvas className="hidden" id="camera-canvas" ref={canvasRef}></canvas>
         <canvas id="react-canvas"></canvas>
       </div>
       <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
