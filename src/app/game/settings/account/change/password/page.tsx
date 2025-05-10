@@ -13,7 +13,7 @@ export default function GameSettingsAccountChangePassword() {
   const pageTitle = "設定";
   const pageSubTitle = "パスワード変更";
   const [errorMessage, setErrorMessage] = useState("");
-  const [nowPassword, setPassword] = useState("");
+  const [nowPassword, setNowPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const router = useRouter();
@@ -62,7 +62,7 @@ export default function GameSettingsAccountChangePassword() {
               type="password"
               className="h-10 rounded-none border-black shadow-none"
               value={nowPassword}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={(e) => setNowPassword(e.target.value)}
             />
           </div>
           <p className="text-2xl">
