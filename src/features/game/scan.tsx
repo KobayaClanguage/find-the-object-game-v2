@@ -76,5 +76,5 @@ export function Scan(
       saveData();
     }
   };
-  const timerID = setInterval(checkImage, 300);
+  setInterval(checkImage, 300);
 }
