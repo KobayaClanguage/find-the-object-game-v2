@@ -14,27 +14,26 @@ function ChangeEmail() {
   const [resultMessage, setResultMessage] = useState("");
 
   useEffect(() => {
-    if(executed.current) return;
+    if (executed.current) return;
     executed.current = true;
 
-    if(oobCode === null) {
+    if (oobCode === null) {
       return;
     }
 
     const change = async () => {
       changeEmail(oobCode)
-      .then((result) => {
-        setResultMessage(result.resultMessage);
-      })
-      .catch((result) => {
-        setResultMessage(result.resultMessage);
-      })
-    }
+        .then((result) => {
+          setResultMessage(result.resultMessage);
+        })
+        .catch((result) => {
+          setResultMessage(result.resultMessage);
+        });
+    };
     change();
+  }, [oobCode]);
 
-  }, [oobCode])
-
-  return <p className="text-2xl">{ resultMessage } </p>
+  return <p className="text-2xl">{resultMessage} </p>;
 }
 
 export default function GameSettingsAccountChangeEmailComplete() {
@@ -68,7 +67,7 @@ export default function GameSettingsAccountChangeEmailComplete() {
       </div>
       <div className="px-10">
         <Suspense>
-          <ChangeEmail/>
+          <ChangeEmail />
         </Suspense>
         <p className="text-2xl">ログインし直してください</p>
         <Button

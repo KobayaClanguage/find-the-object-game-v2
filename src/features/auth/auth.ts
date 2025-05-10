@@ -61,20 +61,25 @@ export async function sendChangeEmail(password: string, newEmail: string) {
     const credential = EmailAuthProvider.credential(email, password);
 
     await reauthenticateWithCredential(user, credential);
-    await verifyBeforeUpdateEmail(user, newEmail)
+    await verifyBeforeUpdateEmail(user, newEmail);
 
     return { success: true };
   } catch {
     return { success: false, errorMessage: "確認メールの送信に失敗しました" };
-  } 
+  }
 }
 
 export async function changeEmail(actionCode: string) {
   try {
-    await applyActionCode(auth, actionCode);  
-    return { success: true, resultMessage: "メールアドレスの変更が完了しました" }
-  }
-  catch {
-    return { success:false, resultMessage: "メールアドレスの変更に失敗しました"}
+    await applyActionCode(auth, actionCode);
+    return {
+      success: true,
+      resultMessage: "メールアドレスの変更が完了しました",
+    };
+  } catch {
+    return {
+      success: false,
+      resultMessage: "メールアドレスの変更に失敗しました",
+    };
   }
 }

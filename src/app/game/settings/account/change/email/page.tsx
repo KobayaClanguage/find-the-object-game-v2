@@ -18,25 +18,26 @@ export default function GameSettingsAccountChangeEmail() {
   const [password, setPassword] = useState("");
   const [newEmail, setNewEmail] = useState("");
   const [newEmailConfirm, setNewEmailConfirm] = useState("");
-  
 
-  const sendEmail = ( async() => {
+  const sendEmail = async () => {
     if (newEmail !== newEmailConfirm) {
       setErrorMessage("メールアドレスが一致していません");
       return;
     }
     sendChangeEmail(password, newEmail)
-    .then((result) => {
-      if(result.success){
-        router.push("/game/settings/account/change/email/send");
-      } else {
-        setErrorMessage(result.errorMessage ?? "確認メールの送信に失敗しました");
-      }
-    })
-    .catch(() => {
-      setErrorMessage("確認メールの送信に失敗しました")
-    })
-  })
+      .then((result) => {
+        if (result.success) {
+          router.push("/game/settings/account/change/email/send");
+        } else {
+          setErrorMessage(
+            result.errorMessage ?? "確認メールの送信に失敗しました",
+          );
+        }
+      })
+      .catch(() => {
+        setErrorMessage("確認メールの送信に失敗しました");
+      });
+  };
 
   return (
     <div className="relative h-full">
@@ -94,11 +95,14 @@ export default function GameSettingsAccountChangeEmail() {
             placeholder="新しいメールアドレス（確認）"
             className="h-10 rounded-none border-black shadow-none"
             value={newEmailConfirm}
-            onChange={(e) => setNewEmailConfirm(e.target.value)}            
+            onChange={(e) => setNewEmailConfirm(e.target.value)}
           />
         </div>
         <div className="text-center text-red-500">{errorMessage}</div>
-        <Button className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white" onClick={ sendEmail }>
+        <Button
+          className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"
+          onClick={sendEmail}
+        >
           確認メールを送信
         </Button>
       </div>
