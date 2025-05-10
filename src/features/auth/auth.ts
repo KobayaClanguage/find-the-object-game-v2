@@ -28,13 +28,12 @@ export async function signinWithEmail(email: string, password: string) {
   }
 }
 
-
 export async function logout() {
   try {
     await signOut(auth);
     return { success: true };
   } catch {
-    return { success:false, errorMessage: "ログアウトに失敗しました" };
+    return { success: false, errorMessage: "ログアウトに失敗しました" };
   }
 }
 
@@ -43,9 +42,9 @@ export async function deleteAccount(password: string) {
     const user = auth.currentUser;
     const email = auth.currentUser?.email;
 
-    if(user === null || email === null || email === undefined) {
-      return { success: false, errorMessage: "アカウント削除に失敗しました"};
-    } 
+    if (user === null || email === null || email === undefined) {
+      return { success: false, errorMessage: "アカウント削除に失敗しました" };
+    }
 
     const credential = EmailAuthProvider.credential(email, password);
 
@@ -63,12 +62,12 @@ export async function changePassword(nowPassword: string, newPassword: string) {
     const user = auth.currentUser;
     const email = auth.currentUser?.email;
 
-    if(user === null || email === null || email === undefined) {
-      return { success: false, errorMessage: "パスワード変更に失敗しました"};
+    if (user === null || email === null || email === undefined) {
+      return { success: false, errorMessage: "パスワード変更に失敗しました" };
     }
 
     const credential = EmailAuthProvider.credential(email, nowPassword);
-    
+
     await reauthenticateWithCredential(user, credential);
     await updatePassword(user, newPassword);
 
@@ -76,5 +75,4 @@ export async function changePassword(nowPassword: string, newPassword: string) {
   } catch {
     return { success: false, errorMessage: "パスワード変更に失敗しました" };
   }
-  
 }

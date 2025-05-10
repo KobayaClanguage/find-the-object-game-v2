@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import NavigationFooter from "@/features/game/NavigationFooter";
@@ -18,23 +18,27 @@ export default function GameSettingsAccountChangePassword() {
   const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
   const router = useRouter();
 
-  const submitChangePassword = (async () => {
-    if(newPassword == newPasswordConfirm) {
+  const submitChangePassword = async () => {
+    if (newPassword == newPasswordConfirm) {
       changePassword(nowPassword, newPassword)
-      .then((result) => {
-        if(result.success) {
-          router.push("/game/settings/account/change/password/complete");
-        } else {
-          setErrorMessage(result.errorMessage ?? "パスワード変更に失敗しました");
-        }
-      })
-      .catch((result) => {
-        setErrorMessage(result.errorMessage ?? "パスワード変更に失敗しました");
-      })
+        .then((result) => {
+          if (result.success) {
+            router.push("/game/settings/account/change/password/complete");
+          } else {
+            setErrorMessage(
+              result.errorMessage ?? "パスワード変更に失敗しました",
+            );
+          }
+        })
+        .catch((result) => {
+          setErrorMessage(
+            result.errorMessage ?? "パスワード変更に失敗しました",
+          );
+        });
     } else {
       setErrorMessage("パスワードの変更に失敗しました");
     }
-  })
+  };
 
   return (
     <div className="relative h-full">
@@ -91,13 +95,13 @@ export default function GameSettingsAccountChangePassword() {
               className="h-10 rounded-none border-black shadow-none"
               value={newPasswordConfirm}
               onChange={(e) => setNewPasswordConfirm(e.target.value)}
-
             />
           </div>
-          <div className="text-center text-red-500">
-              { errorMessage }
-          </div>
-          <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl" onClick={ submitChangePassword }>
+          <div className="text-center text-red-500">{errorMessage}</div>
+          <Button
+            className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
+            onClick={submitChangePassword}
+          >
             パスワードを変更
           </Button>
         </div>
