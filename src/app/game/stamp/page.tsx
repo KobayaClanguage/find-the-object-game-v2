@@ -56,13 +56,13 @@ export default function GamePage() {
         </div>
 
         {isClear && (
-          <div className="fixed inset-0 z-50 flex justify-center items-center bg-black bg-opacity-50">
-            <div className="bg-white rounded-2xl p-8 shadow-xl text-center">
-              <h2 className="text-2xl font-bold mb-4">🎉 おめでとう！ 🎉</h2>
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div className="rounded-2xl bg-white p-8 text-center shadow-xl">
+              <h2 className="mb-4 text-2xl font-bold">🎉 おめでとう！ 🎉</h2>
               <p className="mb-4">すべてのオブジェを見つけました！</p>
               <button
                 onClick={() => setIsClear(false)}
-                className="mt-4 px-6 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
+                className="mt-4 rounded bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 "
               >
                 閉じる
               </button>
