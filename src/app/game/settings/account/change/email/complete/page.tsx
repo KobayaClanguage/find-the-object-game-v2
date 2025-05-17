@@ -14,7 +14,7 @@ function ChangeEmail() {
   const [resultMessage, setResultMessage] = useState("");
 
   useEffect(() => {
-    if (executed.current) return;
+    if (executed.current) return; // ReactのStrictModeによる二重レンダリング対策
     executed.current = true;
 
     if (oobCode === null) {
