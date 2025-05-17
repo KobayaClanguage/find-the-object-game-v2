@@ -121,7 +121,7 @@ export default function RegisterPage() {
             asChild
             className="mt-8 h-14 w-full rounded-none border-[3px] border-[#0094f4] bg-white font-sans text-2xl font-bold text-[#0094f4]"
           >
-            <Link href={"/auth/account/login"}>ログイン</Link>
+            <Link href={"/auth/login"}>ログイン</Link>
           </Button>
         </CardContent>
       </Card>

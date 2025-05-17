@@ -105,7 +105,7 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-4 text-center text-sm font-semibold">
-            <Link href={"/auth/account/password/change"}>
+            <Link href={"/auth/reset/password"}>
               パスワードをお忘れの方はこちら
             </Link>
           </div>
@@ -114,7 +114,7 @@ export default function LoginPage() {
             asChild
             className="mt-8 h-14 w-full rounded-none border-[3px] border-[#0094f4] bg-white font-sans text-2xl font-bold text-[#0094f4]"
           >
-            <Link href={"/auth/account/register"}>新規登録</Link>
+            <Link href={"/auth/register"}>新規登録</Link>
           </Button>
         </CardContent>
       </Card>
