@@ -3,6 +3,38 @@
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
+import { changeEmail } from "@/features/auth/auth";
+import { useEffect, useRef, Suspense, useState } from "react";
+
+function ChangeEmail() {
+  const urlParams = useSearchParams();
+  const oobCode = urlParams.get("oobCode");
+  const executed = useRef<boolean>(false);
+  const [resultMessage, setResultMessage] = useState("");
+
+  useEffect(() => {
+    if (executed.current) return; // ReactのStrictModeによる二重レンダリング対策
+    executed.current = true;
+
+    if (oobCode === null) {
+      return;
+    }
+
+    const change = async () => {
+      changeEmail(oobCode)
+        .then((result) => {
+          setResultMessage(result.resultMessage);
+        })
+        .catch((result) => {
+          setResultMessage(result.resultMessage);
+        });
+    };
+    change();
+  }, [oobCode]);
+
+  return <p className="text-2xl">{resultMessage} </p>;
+}
 
 export default function GameSettingsAccountChangeEmailComplete() {
   return (
@@ -34,8 +66,10 @@ export default function GameSettingsAccountChangeEmailComplete() {
         <p className="text-2xl text-gray-700">メールアドレス変更</p>
       </div>
       <div className="px-10">
-        <p className="text-2xl">メールアドレスの変更が完了しました。</p>
-        <p className="text-2xl">ログインし直してください。</p>
+        <Suspense>
+          <ChangeEmail />
+        </Suspense>
+        <p className="text-2xl">ログインし直してください</p>
         <Button
           asChild
           className="mb-4 mt-14 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
