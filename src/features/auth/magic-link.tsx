@@ -13,7 +13,7 @@ export function Transition() {
 
     if (mode === "verifyAndChangeEmail") {
       router.push(
-        "/game/settings/account/change/email/complete?oobCode=" + oobCode,
+        `/game/settings/account/change/email/complete?oobCode=${oobCode}`,
       );
     }
   });
