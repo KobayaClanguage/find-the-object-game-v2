@@ -1,11 +1,11 @@
 "use client";
-
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   deleteUser,
   reauthenticateWithCredential,
+  updatePassword,
   verifyBeforeUpdateEmail,
   applyActionCode,
 } from "firebase/auth";
@@ -44,7 +44,7 @@ export async function deleteAccount(password: string) {
     const user = auth.currentUser;
     const email = auth.currentUser?.email;
 
-    if (user === null || email === null || email === undefined) {
+    if (!user || !email) {
       return { success: false, errorMessage: "アカウント削除に失敗しました" };
     }
 
@@ -55,7 +55,27 @@ export async function deleteAccount(password: string) {
 
     return { success: true };
   } catch {
-    return { success: false, error_message: "アカウント削除に失敗しました" };
+    return { success: false, errorMessage: "アカウント削除に失敗しました" };
+  }
+}
+
+export async function changePassword(nowPassword: string, newPassword: string) {
+  try {
+    const user = auth.currentUser;
+    const email = auth.currentUser?.email;
+
+    if (!user || !email) {
+      return { success: false, errorMessage: "パスワード変更に失敗しました" };
+    }
+
+    const credential = EmailAuthProvider.credential(email, nowPassword);
+
+    await reauthenticateWithCredential(user, credential);
+    await updatePassword(user, newPassword);
+
+    return { success: true };
+  } catch {
+    return { success: false, errorMessage: "パスワード変更に失敗しました" };
   }
 }
 
@@ -64,7 +84,7 @@ export async function sendChangeEmail(password: string, newEmail: string) {
     const user = auth.currentUser;
     const email = auth.currentUser?.email;
 
-    if (user === null || email === null || email === undefined) {
+    if (!user || !email) {
       return { success: false, errorMessage: "確認メールの送信に失敗しました" };
     }
 
