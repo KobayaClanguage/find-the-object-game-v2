@@ -84,7 +84,7 @@ export async function sendChangeEmail(password: string, newEmail: string) {
     const user = auth.currentUser;
     const email = auth.currentUser?.email;
 
-    if (user === null || email === null || email === undefined) {
+    if (!user || !email) {
       return { success: false, errorMessage: "確認メールの送信に失敗しました" };
     }
 
