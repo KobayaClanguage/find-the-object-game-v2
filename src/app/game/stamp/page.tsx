@@ -1,31 +1,32 @@
+"use client";
 import NavigationFooter from "@/features/game/NavigationFooter";
+import { fetchStamps, StampInfo } from "@/features/game/stamp";
 import Image from "next/image";
 import Link from "next/link";
-
-type Stamp = {
-  id: number;
-  name: string;
-  isCollected: boolean;
-  mapUrl: string;
-};
-
-// TODO: ダミーデータ
-const stamps: Stamp[] = [];
-for (let i = 0; i < 30; i++) {
-  stamps.push({
-    id: i,
-    name: "駐車場",
-    // アイコン画像(publicディレクトリからのパス)
-    isCollected: i % 3 === 0,
-    // マップ画像
-    mapUrl: "/images/game/stamp-map-sample.png",
-  });
-}
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/firebase/config";
 
 export default function GamePage() {
   const pageTitle = "ホーム";
   const completeIconUrl = "/game/stamp/stamp-complete.png";
   const uncompleteIconUrl = "/game/stamp/stamp-uncomplete.png";
+  const [stamps, setStamps] = useState<StampInfo[]>([]);
+  const [isClear, setIsClear] = useState(false);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      onAuthStateChanged(auth, async (user) => {
+        if (user) {
+          const Stamps = await fetchStamps(user.uid);
+          setStamps(Stamps.stamps ?? []);
+          setIsClear(Stamps.isClear);
+        }
+      });
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className="relative h-full">
@@ -53,6 +54,22 @@ export default function GamePage() {
             height={75}
           />
         </div>
+
+        {isClear && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div className="rounded-2xl bg-white p-8 text-center shadow-xl">
+              <h2 className="mb-4 text-2xl font-bold">🎉 おめでとう！ 🎉</h2>
+              <p className="mb-4">すべてのオブジェを見つけました！</p>
+              <button
+                onClick={() => setIsClear(false)}
+                className="mt-4 rounded bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 "
+              >
+                閉じる
+              </button>
+            </div>
+          </div>
+        )}
+
         <h2 className="w-full text-center text-lg font-bold">オブジェ一覧</h2>
         {/* スタンプ一覧 */}
         <div className="grid grid-cols-2 gap-2 p-4">
