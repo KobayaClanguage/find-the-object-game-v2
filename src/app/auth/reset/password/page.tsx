@@ -5,8 +5,24 @@ import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import { sendResetEmail } from "@/features/auth/auth"
 
 export default function AuthResetPassword() {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [email, setEmail] = useState("");
+  const router = useRouter();
+
+  const sendEmailButton = async () => {
+    const result = await sendResetEmail(email);
+    if (result.success) {
+      router.push("/auth/reset/password/send");
+    } else {
+      setErrorMessage(result.errorMessage ?? "メールの送信に失敗しました");
+    }
+  };
+
   return (
     <div className="my-2 mt-11 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-start space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
       {/* ヘッダー部分 */}
@@ -44,10 +60,13 @@ export default function AuthResetPassword() {
           <Input
             placeholder="ID(メールアドレス)"
             className="h-10 rounded-none border-black shadow-none"
+            value={ email }
+            onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <p>パスワード再設定用のURLをお送りします。</p>
-        <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl">
+        <div className="text-center text-red-500">{errorMessage}</div>
+        <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl" onClick={ sendEmailButton }>
           次へ
         </Button>
         <Button

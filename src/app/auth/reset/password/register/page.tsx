@@ -4,11 +4,35 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Suspense, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { resetPassword } from "@/features/auth/auth";
 
-export default function AuthResetPasswordRegister() {
+function Reset() {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
+  const urlParams = useSearchParams();
+  const oobCode = urlParams.get("oobCode");
+  const router = useRouter();
+
+  const resetPasswordButton = async () => {
+    if(oobCode === null) return;
+    if(newPassword === confirmNewPassword) {
+      const result = await resetPassword(newPassword, oobCode);
+      if (result.success) {
+        router.push("/auth/reset/password/complete");
+      } else {
+        setErrorMessage(result.errorMessage ?? "パスワードのリセットに失敗しました");
+      }
+    } else {
+      setErrorMessage("パスワードが一致していません");
+    }
+  };
+
   return (
-    <div className="my-2 mt-11 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-start space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
-      {/* ヘッダー部分 */}
+  <div className="my-2 mt-11 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-start space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
+     {/* ヘッダー部分 */}
       <div className="mb-6 flex flex-col items-center space-y-2 text-center">
         <Image
           src={"/images/commentLogo.png"}
@@ -44,6 +68,8 @@ export default function AuthResetPasswordRegister() {
             placeholder="新しいパスワード"
             type="password"
             className="h-10 rounded-none border-black shadow-none"
+            value={ newPassword }
+            onChange={(e) => setNewPassword(e.target.value)}
           />
         </div>
         <p className="text-2xl">
@@ -55,12 +81,29 @@ export default function AuthResetPasswordRegister() {
             placeholder="新しいパスワード(確認)"
             type="password"
             className="h-10 rounded-none border-black shadow-none"
+            value={ confirmNewPassword }
+            onChange={(e) => setConfirmNewPassword(e.target.value)}
           />
         </div>
-        <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl">
+
+        <div className="text-center text-red-500">
+          {errorMessage}
+        </div>
+
+        <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl" onClick={ resetPasswordButton }>
           パスワードを変更
         </Button>
       </div>
     </div>
+
+  )
+}
+
+
+export default function AuthResetPasswordRegister() {
+  return (
+    <Suspense>
+      <Reset/>
+    </Suspense>
   );
 }
