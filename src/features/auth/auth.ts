@@ -64,7 +64,7 @@ export async function changePassword(nowPassword: string, newPassword: string) {
     const user = auth.currentUser;
     const email = auth.currentUser?.email;
 
-    if (user === null || email === null || email === undefined) {
+    if (!user || !email) {
       return { success: false, errorMessage: "パスワード変更に失敗しました" };
     }
 
