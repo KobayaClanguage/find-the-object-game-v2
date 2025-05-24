@@ -8,6 +8,8 @@ import {
   updatePassword,
   verifyBeforeUpdateEmail,
   applyActionCode,
+  sendPasswordResetEmail,
+  confirmPasswordReset,
 } from "firebase/auth";
 import { auth } from "@/firebase/config";
 import { EmailAuthProvider } from "firebase/auth/web-extension";
@@ -111,5 +113,29 @@ export async function changeEmail(actionCode: string) {
       success: false,
       resultMessage: "メールアドレスの変更に失敗しました",
     };
+  }
+}
+
+export async function sendResetEmail(email: string) {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    return { success: true };
+  } catch {
+    return {
+      success: false,
+      errorMessage: "メールの送信に失敗しました"
+    }
+  }
+}
+
+export async function resetPassword(newPassword: string, oobCode: string) {
+  try {
+    await confirmPasswordReset(auth, oobCode, newPassword);
+    return { success: true };
+  } catch {
+    return {
+      success: false,
+      errorMessage: "パスワードのリセットに失敗しました"
+    }
   }
 }
