@@ -1,6 +1,6 @@
 "use client";
 import NavigationFooter from "@/features/game/NavigationFooter";
-import { Scan } from "@/features/game/scan";
+import { ScanQR } from "@/features/game/scan";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
@@ -16,10 +16,10 @@ export default function GameScan() {
 
   useEffect(() => {
     const video = document.getElementById("video") as HTMLVideoElement;
-    let stream: MediaStream | null = null;
+    let stopScan: (() => void) | null = null;
 
     const startScan = async () => {
-      stream = await Scan(video, canvasRef.current, (name) => {
+      stopScan = await ScanQR(video, canvasRef.current, (name) => {
         setDetectedName(name);
         setShowPopup(true);
       });
@@ -28,11 +28,9 @@ export default function GameScan() {
     startScan();
 
     return () => {
-      if (stream) {
-        stream.getTracks().forEach((track) => track.stop());
-      }
+      if (stopScan) stopScan();
     };
-  });
+  }, []);
 
   // TODO: フロントエンド実装
   const pageTitle = "QRコード読み取り";
