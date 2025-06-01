@@ -23,6 +23,7 @@ export async function ScanQR(
       video: {
         width: 640,
         height: 480,
+        // facingMode: { exact: "user" },
         facingMode: { exact: "environment" },
       },
     });

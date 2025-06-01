@@ -41,6 +41,7 @@ export default function GameScan() {
       </h1>
 
       {showPopup && (
+        // TODO: z-indexの値を調整
         <div className="popup-overlay fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="popup bg-white p-6 rounded shadow-md text-center">
             <p>{detectedName} を読み取りました！</p>
@@ -54,11 +55,10 @@ export default function GameScan() {
         </div>
       )}
 
-      <div>
-        <h1>Find-the-object-game</h1>
+
+      <div className="mt-20 [height:calc(100vh_-_160px)] flex flex-col items-center justify-center">
         <video className="" id="video" autoPlay muted playsInline></video>
-        <canvas className="hidden" id="camera-canvas" ref={canvasRef}></canvas>
-        <canvas id="react-canvas"></canvas>
+        <canvas className="hidden" ref={canvasRef}></canvas>
       </div>
       <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
         <NavigationFooter />
