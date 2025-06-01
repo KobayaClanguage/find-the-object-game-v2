@@ -20,7 +20,7 @@ export async function Scan(
   try {
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: false,
-      video: { width: 640, height: 480, facingMode: { exact: "environment" } },
+      video: { width: 640, height: 480 },
     });
 
     video.srcObject = stream;
