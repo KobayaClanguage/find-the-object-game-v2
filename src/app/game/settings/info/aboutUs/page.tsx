@@ -7,6 +7,10 @@ export default function GameSettingsInfoAboutUs() {
   const pageTitle = "設定";
   const pageSubTitle = "本Webサービスについて";
 
+  const TITLE_BAR_HEIGHT = 80; // タイトルバーの縦幅 (px)
+  const NAVIGATION_BAR_HEIGHT = 74; // ナビゲーションバーの縦幅 (px)
+  const STAMP_TITLE_HEIGHT = 80; // スタンプ名タイトルの縦幅 (px)
+
   return (
     <div className="relative h-full">
       <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
@@ -21,8 +25,9 @@ export default function GameSettingsInfoAboutUs() {
           </div>
           <h2 className="text-2xl">{pageSubTitle}</h2>
         </div>
-        {/* (画面サイズの縦幅:100vh) - (タイトルバーの縦幅:80px) - (ナビゲーションバーの縦幅:74px) - (スタンプ名タイトルの縦幅:80px) */}
-        <div className="relative mt-4 flex h-[calc(100vh-80px-74px-80px)] w-full flex-col items-center justify-start px-9 text-xl space-y-10">
+        <div
+          className={`relative mt-4 flex h-[calc(100vh-${TITLE_BAR_HEIGHT}px-${NAVIGATION_BAR_HEIGHT}px-${STAMP_TITLE_HEIGHT}px)] w-full flex-col items-center justify-start px-9 text-xl space-y-10`}
+        >
           <p className="text-2xl">
             {/* Webサービスの説明 */}
             本Webサービスは、金沢市額地区における地域の発展を目標として金沢工業大学所属の組織である
