@@ -19,7 +19,7 @@ export default function GameSettingsInfoAboutUs() {
               <ChevronLeft color="#000000" size={50} />
             </Link>
           </div>
-          <h1 className="text-2xl">{pageSubTitle}</h1>
+          <h2 className="text-2xl">{pageSubTitle}</h2>
         </div>
         {/* (画面サイズの縦幅:100vh) - (タイトルバーの縦幅:80px) - (ナビゲーションバーの縦幅:74px) - (スタンプ名タイトルの縦幅:80px) */}
         <div className="relative mt-4 flex h-[calc(100vh-80px-74px-80px)] w-full flex-col items-center justify-start px-9 text-xl space-y-10">
