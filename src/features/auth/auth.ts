@@ -13,13 +13,21 @@ import {
 } from "firebase/auth";
 import { auth } from "@/firebase/config";
 import { EmailAuthProvider } from "firebase/auth/web-extension";
+import { createDocument, deleteDocument } from "@/features/game/firestore";
 
 export async function signupWithEmail(email: string, password: string) {
   try {
-    await createUserWithEmailAndPassword(auth, email, password);
+    const useCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password,
+    );
+    const result = await createDocument(useCredential.user.uid);
+    if (!result)
+      return { success: false, errorMessage: "アカウント作成に失敗しました" };
     return { success: true };
   } catch {
-    return { success: false, error_message: "アカウント登録に失敗しました" };
+    return { success: false, errorMessage: "アカウント作成に失敗しました" };
   }
 }
 
@@ -49,7 +57,10 @@ export async function deleteAccount(password: string) {
     if (!user || !email) {
       return { success: false, errorMessage: "アカウント削除に失敗しました" };
     }
-
+    const result = await deleteDocument(user.uid);
+    if (!result) {
+      return { success: false, errorMessage: "アカウント削除に失敗しました" };
+    }
     const credential = EmailAuthProvider.credential(email, password);
 
     await reauthenticateWithCredential(user, credential);

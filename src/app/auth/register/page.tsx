@@ -29,7 +29,7 @@ export default function RegisterPage() {
           router.push("/game/stamp");
         } else {
           setErrorMessage(
-            result.error_message ?? "アカウント登録に失敗しました",
+            result.errorMessage ?? "アカウント登録に失敗しました",
           );
         }
       })
