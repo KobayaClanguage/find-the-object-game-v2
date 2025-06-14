@@ -9,8 +9,6 @@ export async function ScanQR(
   canvasRef: HTMLCanvasElement | null,
   onDetected: (name: string) => void,
 ): Promise<() => void> {
-  let contentWidth = 500;
-  let contentHeight = 500;
 
   if (!canvasRef) return () => {};
   const cvs = canvasRef;
@@ -21,17 +19,15 @@ export async function ScanQR(
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: false,
       video: {
-        width: 640,
-        height: 480,
-        facingMode: { exact: "environment" },
+        facingMode: { exact: "user" },
       },
     });
 
     video.srcObject = stream;
     await video.play(); // ← 再生されるまで待つ
 
-    contentWidth = video.videoWidth || 640;
-    contentHeight = video.videoHeight || 480;
+    const contentWidth = 640;
+    const contentHeight = 480;
 
     let intervalId: NodeJS.Timeout | null = null;
     let animationFrameId: number | null = null;
@@ -39,7 +35,7 @@ export async function ScanQR(
     const canvasUpdate = () => {
       cvs.width = contentWidth;
       cvs.height = contentHeight;
-      ctx.drawImage(video, 0, 0, contentWidth, contentHeight);
+      ctx.drawImage(video, 0, 0, 0, 0);
       animationFrameId = requestAnimationFrame(canvasUpdate);
     };
 
