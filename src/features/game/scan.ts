@@ -9,6 +9,8 @@ export async function ScanQR(
   canvasRef: HTMLCanvasElement | null,
   onDetected: (name: string) => void,
 ): Promise<() => void> {
+  const MAX_SCREEN_WIDTH = 640;
+  const MAX_SCREEN_HEIGHT = 480;
 
   if (!canvasRef) return () => {};
   const cvs = canvasRef;
@@ -24,10 +26,12 @@ export async function ScanQR(
     });
 
     video.srcObject = stream;
-    await video.play(); // ← 再生されるまで待つ
+    await video.play(); // 再生されるまで待つ
 
-    const contentWidth = 640;
-    const contentHeight = 480;
+    // null値の場合はVGA規格のサイズに合わせて設定
+    const contentWidth = stream.getVideoTracks()[0].getSettings().width || MAX_SCREEN_WIDTH;
+    const contentHeight = stream.getVideoTracks()[0].getSettings().height || MAX_SCREEN_HEIGHT;
+    console.log(contentWidth, contentHeight);
 
     let intervalId: NodeJS.Timeout | null = null;
     let animationFrameId: number | null = null;
@@ -35,7 +39,7 @@ export async function ScanQR(
     const canvasUpdate = () => {
       cvs.width = contentWidth;
       cvs.height = contentHeight;
-      ctx.drawImage(video, 0, 0, 0, 0);
+      ctx.drawImage(video, 0, 0, contentWidth, contentHeight);
       animationFrameId = requestAnimationFrame(canvasUpdate);
     };
 
@@ -44,13 +48,14 @@ export async function ScanQR(
       const code = jsQR(imageData.data, contentWidth, contentHeight);
 
       if (code) {
-        if (auth.currentUser === null) return;
+        if (!auth.currentUser) return;
         const objectsRef = doc(
           db,
           "game_progress",
           auth.currentUser.uid.toString(),
         );
 
+        // TODO: ハッシュ化 & ソフトコードに修正
         const objectsName = [
           "object_1",
           "object_2",
@@ -74,11 +79,15 @@ export async function ScanQR(
       }
     };
 
-    // ここで両処理を開始
     canvasUpdate();
-    intervalId = setInterval(checkImage, 300);
+    intervalId = setInterval(checkImage, 300); // 300ms間隔でQRコード読み取り
+    if(!intervalId) {
+      console.error("ERROR: setInterval()");
+      return () => {};
+    }
 
     return () => {
+      // アンマウント時の処理
       if (stream) {
         stream.getTracks().forEach((track) => track.stop());
       }
