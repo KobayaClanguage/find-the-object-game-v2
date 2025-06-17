@@ -7,7 +7,7 @@ import { doc, updateDoc } from "firebase/firestore";
 export async function ScanQR(
   video: HTMLVideoElement,
   canvasRef: HTMLCanvasElement | null,
-  onDetected: (name: string) => void
+  onDetected: (name: string) => void,
 ): Promise<() => void> {
   const MAX_SCREEN_WIDTH = 640;
   const MAX_SCREEN_HEIGHT = 480;
@@ -54,7 +54,7 @@ export async function ScanQR(
         const objectsRef = doc(
           db,
           "game_progress",
-          auth.currentUser.uid.toString()
+          auth.currentUser.uid.toString(),
         );
 
         // TODO: ハッシュ化 & ソフトコードに修正
