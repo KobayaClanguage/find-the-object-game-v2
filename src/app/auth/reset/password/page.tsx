@@ -7,7 +7,7 @@ import { Label } from "@/components/ui/label";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { sendResetEmail } from "@/features/auth/auth"
+import { sendResetEmail } from "@/features/auth/auth";
 
 export default function AuthResetPassword() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -60,13 +60,16 @@ export default function AuthResetPassword() {
           <Input
             placeholder="ID(メールアドレス)"
             className="h-10 rounded-none border-black shadow-none"
-            value={ email }
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
         </div>
         <p>パスワード再設定用のURLをお送りします。</p>
         <div className="text-center text-red-500">{errorMessage}</div>
-        <Button className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl" onClick={ sendEmailButton }>
+        <Button
+          className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
+          onClick={sendEmailButton}
+        >
           次へ
         </Button>
         <Button

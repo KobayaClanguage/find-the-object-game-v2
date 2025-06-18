@@ -21,7 +21,7 @@ export async function ScanQR(
     const stream = await navigator.mediaDevices.getUserMedia({
       audio: false,
       video: {
-        facingMode: { exact: "user" },
+        facingMode: { exact: "environment" },
       },
     });
 
@@ -29,8 +29,10 @@ export async function ScanQR(
     await video.play(); // 再生されるまで待つ
 
     // null値の場合はVGA規格のサイズに合わせて設定
-    const contentWidth = stream.getVideoTracks()[0].getSettings().width || MAX_SCREEN_WIDTH;
-    const contentHeight = stream.getVideoTracks()[0].getSettings().height || MAX_SCREEN_HEIGHT;
+    const contentWidth =
+      stream.getVideoTracks()[0].getSettings().width || MAX_SCREEN_WIDTH;
+    const contentHeight =
+      stream.getVideoTracks()[0].getSettings().height || MAX_SCREEN_HEIGHT;
     console.log(contentWidth, contentHeight);
 
     let intervalId: NodeJS.Timeout | null = null;
@@ -81,7 +83,7 @@ export async function ScanQR(
 
     canvasUpdate();
     intervalId = setInterval(checkImage, 300); // 300ms間隔でQRコード読み取り
-    if(!intervalId) {
+    if (!intervalId) {
       console.error("ERROR: setInterval()");
       return () => {};
     }
