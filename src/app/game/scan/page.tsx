@@ -55,19 +55,20 @@ export default function GameScan() {
           </div>
         )}
 
-      <div className="mt-20 [height:calc(100vh_-_160px)] flex flex-col items-center justify-center">
-        <video
-          className="object-fill"
-          id="video"
-          autoPlay
-          muted
-          playsInline
-        ></video>
-        <canvas className="hidden" ref={canvasRef}></canvas>
-      </div>
+        <div className="mt-20 [height:calc(100vh_-_160px)] flex flex-col items-center justify-center">
+          <video
+            className="object-fill"
+            id="video"
+            autoPlay
+            muted
+            playsInline
+          ></video>
+          <canvas className="hidden" ref={canvasRef}></canvas>
+        </div>
 
-      <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
-        <NavigationFooter />
+        <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
+          <NavigationFooter />
+        </div>
       </div>
     </AuthGuard>
   );
