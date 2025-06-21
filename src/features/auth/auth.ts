@@ -134,8 +134,8 @@ export async function sendResetEmail(email: string) {
   } catch {
     return {
       success: false,
-      errorMessage: "メールの送信に失敗しました"
-    }
+      errorMessage: "メールの送信に失敗しました",
+    };
   }
 }
 
@@ -146,7 +146,7 @@ export async function resetPassword(newPassword: string, oobCode: string) {
   } catch {
     return {
       success: false,
-      errorMessage: "パスワードのリセットに失敗しました"
-    }
+      errorMessage: "パスワードのリセットに失敗しました",
+    };
   }
 }

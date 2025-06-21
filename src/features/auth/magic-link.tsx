@@ -16,9 +16,7 @@ export function Transition() {
         `/game/settings/account/change/email/complete?oobCode=${oobCode}`,
       );
     } else if (mode === "resetPassword") {
-      router.push(
-        `/auth/reset/password/register?oobCode=${oobCode}`
-      );
+      router.push(`/auth/reset/password/register?oobCode=${oobCode}`);
     }
   });
   return (
