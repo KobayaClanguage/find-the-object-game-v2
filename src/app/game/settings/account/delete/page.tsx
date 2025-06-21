@@ -9,6 +9,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { deleteAccount } from "@/features/auth/auth";
 import { useRouter } from "next/navigation";
+import { AuthGuard } from "@/features/auth/authGuard";
 
 export default function GameSettingsAccountDelete() {
   const pageTitle = "設定";
@@ -27,7 +28,7 @@ export default function GameSettingsAccountDelete() {
   };
 
   return (
-    <>
+    <AuthGuard>
       <div className="relative h-full">
         <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
           {pageTitle}
@@ -73,6 +74,6 @@ export default function GameSettingsAccountDelete() {
       <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
         <NavigationFooter />
       </div>
-    </>
+    </AuthGuard>
   );
 }
