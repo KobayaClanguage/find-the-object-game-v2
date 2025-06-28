@@ -3,6 +3,7 @@ import jsQR from "jsqr";
 import { auth } from "@/firebase/config";
 import { db } from "@/firebase/config";
 import { doc, updateDoc } from "firebase/firestore";
+import { stampHashes } from "@/features/game/stampData";
 
 export async function ScanQR(
   video: HTMLVideoElement,
@@ -57,24 +58,10 @@ export async function ScanQR(
           auth.currentUser.uid.toString(),
         );
 
-        // TODO: ハッシュ化 & ソフトコードに修正
-        const objectsName = [
-          "object_1",
-          "object_2",
-          "object_3",
-          "object_4",
-          "object_5",
-          "object_6",
-          "object_7",
-          "object_8",
-          "object_9",
-          "object_10",
-        ];
-
-        for (const objectName of objectsName) {
-          if (code.data === objectName) {
-            await updateDoc(objectsRef, { [objectName]: true });
-            onDetected(objectName);
+        for (const stampHash of stampHashes) {
+          if (code.data === stampHash) {
+            await updateDoc(objectsRef, { [stampHash]: true });
+            onDetected(stampHash);
             return;
           }
         }

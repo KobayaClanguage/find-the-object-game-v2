@@ -1,7 +1,7 @@
 "use client";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
-import { fieldName, stampName } from "@/features/game/stampData";
+import { stampHashes, stampName } from "@/features/game/stampData";
 
 export type StampInfo = {
   id: number;
@@ -17,11 +17,11 @@ export async function fetchStamps(uid: string) {
   const stamps: StampInfo[] = [];
   let isClear = false;
 
-  for (let i = 0; i < fieldName.length; i++) {
+  for (let i = 0; i < stampHashes.length; i++) {
     stamps.push({
       id: i,
       name: stampName[i],
-      isCollected: docSnap.data()?.[fieldName[i]] ?? false,
+      isCollected: docSnap.data()?.[stampHashes[i]] ?? false,
       mapUrl: "/images/game/stamp-map-sample.png",
     });
   }

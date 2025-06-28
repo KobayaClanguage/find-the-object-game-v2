@@ -1,4 +1,5 @@
-export const fieldName = [
+// TODO: スタンプIDをハッシュ化
+export const stampHashes = [
   "object_1",
   "object_2",
   "object_3",
