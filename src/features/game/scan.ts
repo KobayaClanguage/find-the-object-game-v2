@@ -3,7 +3,7 @@ import jsQR from "jsqr";
 import { auth } from "@/firebase/config";
 import { db } from "@/firebase/config";
 import { doc, updateDoc } from "firebase/firestore";
-import { stampHashes } from "@/features/game/stampData";
+import { stampIDs } from "@/features/game/stampData";
 
 export async function ScanQR(
   video: HTMLVideoElement,
@@ -58,10 +58,10 @@ export async function ScanQR(
           auth.currentUser.uid.toString(),
         );
 
-        for (const stampHash of stampHashes) {
-          if (code.data === stampHash) {
-            await updateDoc(objectsRef, { [stampHash]: true });
-            onDetected(stampHash);
+        for (const stampID of stampIDs) {
+          if (code.data === stampID) {
+            await updateDoc(objectsRef, { [stampID]: true });
+            onDetected(stampID);
             return;
           }
         }
