@@ -7,6 +7,7 @@ import { AuthGuard } from "@/features/auth/authGuard";
 
 export default function GameScan() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
+  const [canvasReady, setCanvasReady] = useState(false);
   const router = useRouter();
   const [detectedName, setDetectedName] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState(false);
@@ -31,7 +32,7 @@ export default function GameScan() {
     return () => {
       if (stopScan) stopScan();
     };
-  }, []);
+  }, [canvasReady]);
 
   const pageTitle = "QRコード読み取り";
   return (
@@ -63,7 +64,13 @@ export default function GameScan() {
             muted
             playsInline
           ></video>
-          <canvas className="hidden" ref={canvasRef}></canvas>
+          <canvas
+            className="hidden"
+            ref={(el) => {
+              canvasRef.current = el;
+              if (el) setCanvasReady(true); // DOMがついたタイミングでフラグを立てる
+            }}
+          ></canvas>
         </div>
 
         <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
