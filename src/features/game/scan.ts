@@ -33,6 +33,7 @@ export async function ScanQR(
       });
       console.warn(
         "environmentカメラが使えないため、userカメラに切り替えました",
+        e,
       );
     } catch (err) {
       console.error("カメラ起動に失敗:", err);
