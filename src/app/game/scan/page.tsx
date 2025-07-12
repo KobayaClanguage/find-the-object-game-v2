@@ -69,8 +69,8 @@ export default function GameScan() {
             ref={(el) => {
               canvasRef.current = el;
               if (el) setCanvasReady(true); // DOMがついたタイミングでフラグを立てる
-            }}>
-          </canvas>
+            }}
+          ></canvas>
         </div>
 
         <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">

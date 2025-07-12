@@ -31,7 +31,9 @@ export async function ScanQR(
         audio: false,
         video: { facingMode: "user" },
       });
-      console.warn("environmentカメラが使えないため、userカメラに切り替えました");
+      console.warn(
+        "environmentカメラが使えないため、userカメラに切り替えました",
+      );
     } catch (err) {
       console.error("カメラ起動に失敗:", err);
       return () => {};
@@ -70,15 +72,15 @@ export async function ScanQR(
         auth.currentUser.uid.toString(),
       );
 
-        for (const stampID of stampIDs) {
-          if (code.data === stampID) {
-            await updateDoc(objectsRef, { [stampID]: true });
-            onDetected(stampID);
-            return;
-          }
+      for (const stampID of stampIDs) {
+        if (code.data === stampID) {
+          await updateDoc(objectsRef, { [stampID]: true });
+          onDetected(stampID);
+          return;
         }
       }
-    };
+    }
+  };
 
   canvasUpdate();
   intervalId = setInterval(checkImage, 300); // 300ms間隔でQRコード読み取り
