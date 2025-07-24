@@ -42,6 +42,7 @@ export async function ScanQR(
   }
 
   video.srcObject = stream;
+  if (!stream) return () => {};
   await video.play(); // 再生されるまで待つ
 
   // null値の場合はVGA規格のサイズに合わせて設定
