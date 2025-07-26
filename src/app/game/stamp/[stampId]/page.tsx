@@ -1,17 +1,16 @@
 "use client";
 import NavigationFooter from "@/features/game/NavigationFooter";
-import Image from "next/image";
+import { mapURL } from "@/features/game/mapData";
 import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { AuthGuard } from "@/features/auth/authGuard";
-
-// import { useSearchParams } from "next/navigation";
+import { useParams } from "next/navigation";
 
 export default function GameStampId() {
   const pageTitle = "マップ";
   // TODO: ページタイトルを動的に変更する
-  // const stampId = useSearchParams().get("stampId");
-  const stampId = "1";
+  const params = useParams();
+  const stampId = Number(params.stampId);
   const stampName = "駐車場";
 
   return (
@@ -31,11 +30,16 @@ export default function GameStampId() {
           </div>
           {/* (画面サイズの縦幅:100vh) - (タイトルバーの縦幅:80px) - (ナビゲーションバーの縦幅:74px) - (スタンプ名タイトルの縦幅:80px) */}
           <div className="relative h-[calc(100vh-80px-74px-80px)] w-full">
-            <Image
-              src={`/game/stamp/maps/map${stampId}.png`}
-              fill
-              alt={`${stampName} map`}
-            />
+            <iframe
+              src={mapURL[stampId]}
+              style={{ border: 0 }}
+              className="h-full w-full"
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            >
+              <p>Google Mapsの地図を表示できません。</p>
+            </iframe>
           </div>
         </div>
         <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">
