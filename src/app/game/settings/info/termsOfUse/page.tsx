@@ -1,10 +1,10 @@
 import { AuthGuard } from "@/features/auth/authGuard";
+import TermsOfUse from "@/features/game/settings/info/TermsOfUse";
 
 export default function GameSettingsInfoTermsOfUse() {
-  // TODO: フロントエンド実装
   return (
     <AuthGuard>
-      <h1>TermsOfUseページ</h1>
+      <TermsOfUse />
     </AuthGuard>
   );
 }
