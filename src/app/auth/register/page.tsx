@@ -9,6 +9,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { signupWithEmail } from "@/features/auth/auth";
+import { Diamond } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -43,31 +44,16 @@ export default function RegisterPage() {
       <div className="mb-6 flex flex-col items-center space-y-4 text-center">
         <h1 className="font-sans text-2xl font-bold">遊び方</h1>
         <ol className="space-y-2 text-left font-sans text-xl">
-          <li className="flex">
-            <Image
-              src={"/images/diamond.png"}
-              alt="ダイアモンドアイコン"
-              width={28}
-              height={28}
-            />
+          <li className="flex items-center">
+            <Diamond size={18} className="m-2" />
             <p>額地区に隠されたオブジェを見つける</p>
           </li>
-          <li className="flex">
-            <Image
-              src={"/images/diamond.png"}
-              alt="ダイアモンドアイコン"
-              width={28}
-              height={28}
-            />
+          <li className="flex items-center">
+            <Diamond size={18} className="m-2" />
             <p>オブジェのQRコードを読み取る</p>
           </li>
-          <li className="flex">
-            <Image
-              src={"/images/diamond.png"}
-              alt="ダイアモンドアイコン"
-              width={28}
-              height={28}
-            />
+          <li className="flex items-center">
+            <Diamond size={18} className="m-2" />
             <p>全て見つけたらゲームクリア</p>
           </li>
         </ol>
