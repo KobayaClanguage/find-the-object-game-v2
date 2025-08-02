@@ -5,7 +5,6 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { signupWithEmail } from "@/features/auth/auth";
@@ -14,6 +13,7 @@ import { Diamond } from "lucide-react";
 export default function RegisterPage() {
   const router = useRouter();
   const [error_message, setErrorMessage] = useState("");
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
   function signup(formData: FormData) {
     const email = formData.get("email");
@@ -93,11 +93,39 @@ export default function RegisterPage() {
               />
             </div>
 
+            <div className="mb-6 flex items-center space-x-2 justify-center">
+              <input
+                id="check_terms_of_use"
+                name="check_terms_of_use"
+                type="checkbox"
+                required
+                checked={isTermsAccepted}
+                onChange={(e) => setIsTermsAccepted(e.target.checked)}
+                className="h-4 w-4 rounded border-gray-500 text-[#0094f4] focus:ring-[#0094f4] focus:ring-2 focus:ring-offset-0"
+              />
+              <Label
+                htmlFor="check_terms_of_use"
+                className="text-sm cursor-pointer"
+              >
+                <Link
+                  href="/auth/register/termsOfUse"
+                  className="text-[#0094f4] hover:underline"
+                >
+                  利用規約
+                </Link>
+                に同意する
+              </Label>
+            </div>
             <div className="text-center text-red-500">{error_message}</div>
 
             <Button
-              className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"
+              className={`mt-6 h-14 w-full rounded-none text-2xl font-semibold ${
+                isTermsAccepted
+                  ? "bg-[#0094f4] text-white cursor-pointer"
+                  : "bg-gray-400 text-gray-200 cursor-not-allowed"
+              }`}
               type="submit"
+              disabled={!isTermsAccepted}
             >
               新規登録
             </Button>
