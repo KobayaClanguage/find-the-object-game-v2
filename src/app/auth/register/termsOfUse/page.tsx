@@ -6,7 +6,6 @@ import { ChevronLeft } from "lucide-react";
 // AuthGuardは不要
 export default function AuthRegisterTermsOfUse() {
   const pageTitle = "利用規約";
-  const pageSubTitle = "「オブジェを探せゲーム」利用規約";
   return (
     <div className="relative h-full">
       <div className="pb-16 pt-20">
