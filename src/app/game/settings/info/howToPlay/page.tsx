@@ -3,13 +3,14 @@ import Link from "next/link";
 import { ChevronLeft, Diamond, ScanQrCode, Trophy, MapPin } from "lucide-react";
 import NavigationFooter from "@/features/game/NavigationFooter";
 
-const TITLE_BAR_HEIGHT = 80; // タイトルバーの縦幅 (px)
-const NAVIGATION_BAR_HEIGHT = 74; // ナビゲーションバーの縦幅 (px)
-const STAMP_TITLE_HEIGHT = 80; // スタンプ名タイトルの縦幅 (px)
-
 export default function GameSettingsInfoHowToPlay() {
   const pageTitle = "設定";
   const pageSubTitle = "遊び方";
+
+  const TITLE_BAR_HEIGHT = 80; // タイトルバーの縦幅 (px)
+  const NAVIGATION_BAR_HEIGHT = 74; // ナビゲーションバーの縦幅 (px)
+  const STAMP_TITLE_HEIGHT = 80; // スタンプ名タイトルの縦幅 (px)
+
   return (
     <AuthGuard>
       <div className="relative h-full">
