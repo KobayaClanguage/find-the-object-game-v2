@@ -26,6 +26,7 @@ export default function RegisterPage() {
 
     signupWithEmail(email, password)
       .then((result) => {
+        console.log(result);
         if (result.success) {
           router.push("/game/stamp");
         } else {

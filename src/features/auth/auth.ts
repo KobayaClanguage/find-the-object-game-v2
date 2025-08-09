@@ -24,10 +24,22 @@ export async function signupWithEmail(email: string, password: string) {
     );
     const result = await createDocument(useCredential.user.uid);
     if (!result)
-      return { success: false, errorMessage: "アカウント作成に失敗しました" };
+      return { success: false, errorMessage: "アカウント登録に失敗しました" };
     return { success: true };
-  } catch {
-    return { success: false, errorMessage: "アカウント作成に失敗しました" };
+  } catch (error: any) {
+    if (error.code === "auth/weak-password") {
+      return { success: false, errorMessage: "パスワードが短すぎます（6文字以上にしてください）" };
+    }
+    if (error.code === "auth/email-already-in-use") {
+      return { success: false, errorMessage: "このメールアドレスは既に使用されています" };
+    }
+    if (error.code === "auth/invalid-email") {
+      return { success: false, errorMessage: "メールアドレスの形式が正しくありません" };
+    }
+    if( error.code === "auth/too-many-requests") {
+      return { success: false, errorMessage: "アカウント登録のリクエストが多すぎます。しばらくしてから再試行してください" };
+    }
+    return { success: false, errorMessage: "アカウント登録に失敗しました" };
   }
 }
 
