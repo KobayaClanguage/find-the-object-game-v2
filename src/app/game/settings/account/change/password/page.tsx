@@ -1,22 +1,22 @@
-"use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { changePassword } from "@/features/auth/auth";
-import { AuthGuard } from "@/features/auth/authGuard";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+'use client';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { changePassword } from '@/features/auth/auth';
+import { AuthGuard } from '@/features/auth/authGuard';
+import NavigationFooter from '@/features/game/NavigationFooter';
+import { ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function GameSettingsAccountChangePassword() {
-  const pageTitle = "設定";
-  const pageSubTitle = "パスワード変更";
-  const [errorMessage, setErrorMessage] = useState("");
-  const [nowPassword, setNowPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [newPasswordConfirm, setNewPasswordConfirm] = useState("");
+  const pageTitle = '設定';
+  const pageSubTitle = 'パスワード変更';
+  const [errorMessage, setErrorMessage] = useState('');
+  const [nowPassword, setNowPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [newPasswordConfirm, setNewPasswordConfirm] = useState('');
   const router = useRouter();
 
   const submitChangePassword = async () => {
@@ -24,20 +24,20 @@ export default function GameSettingsAccountChangePassword() {
       changePassword(nowPassword, newPassword)
         .then((result) => {
           if (result.success) {
-            router.push("/game/settings/account/change/password/complete");
+            router.push('/game/settings/account/change/password/complete');
           } else {
             setErrorMessage(
-              result.errorMessage ?? "パスワード変更に失敗しました",
+              result.errorMessage ?? 'パスワード変更に失敗しました',
             );
           }
         })
         .catch((result) => {
           setErrorMessage(
-            result.errorMessage ?? "パスワード変更に失敗しました",
+            result.errorMessage ?? 'パスワード変更に失敗しました',
           );
         });
     } else {
-      setErrorMessage("パスワードの変更に失敗しました");
+      setErrorMessage('パスワードの変更に失敗しました');
     }
   };
 

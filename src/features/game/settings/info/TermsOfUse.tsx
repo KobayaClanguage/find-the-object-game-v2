@@ -1,6 +1,6 @@
 export default function TermsOfUse() {
   // 連絡先メールアドレス
-  const email = "[ここに連絡先メールアドレスを記載]";
+  const email = '[ここに連絡先メールアドレスを記載]';
   // TODO: オブジェを探せゲームの利用規約をここに記載
   return (
     <div className="min-h-screen bg-gray-50">

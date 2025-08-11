@@ -1,38 +1,38 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { signinWithEmail } from "@/features/auth/auth";
-import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { signinWithEmail } from '@/features/auth/auth';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function LoginPage() {
   const router = useRouter();
-  const [error_message, setErrorMessage] = useState("");
+  const [error_message, setErrorMessage] = useState('');
 
   function signin(formData: FormData) {
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const email = formData.get('email');
+    const password = formData.get('password');
 
-    if (typeof email !== "string" || typeof password !== "string") {
-      setErrorMessage("入力値が不正です");
+    if (typeof email !== 'string' || typeof password !== 'string') {
+      setErrorMessage('入力値が不正です');
       return;
     }
 
     signinWithEmail(email, password)
       .then((result) => {
         if (result.success) {
-          router.push("/game/stamp");
+          router.push('/game/stamp');
         } else {
-          setErrorMessage(result.error_message ?? "ログインに失敗しました");
+          setErrorMessage(result.error_message ?? 'ログインに失敗しました');
         }
       })
       .catch(() => {
-        setErrorMessage("ログインに失敗しました");
+        setErrorMessage('ログインに失敗しました');
       });
   }
 
@@ -40,13 +40,13 @@ export default function LoginPage() {
     <div className="my-2 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-center space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
       <div className="mb-6 flex flex-col items-center space-y-2 text-center">
         <Image
-          src={"/images/commentLogo.png"}
+          src={'/images/commentLogo.png'}
           alt="額ロゴの吹き出し"
           width={120}
           height={49}
         />
         <Image
-          src={"/images/nukaLogo.png"}
+          src={'/images/nukaLogo.png'}
           alt="額のロゴ"
           width={198}
           height={64}
@@ -105,7 +105,7 @@ export default function LoginPage() {
           </form>
 
           <div className="mt-4 text-center font-semibold text-sm">
-            <Link href={"/auth/reset/password"}>
+            <Link href={'/auth/reset/password'}>
               パスワードをお忘れの方はこちら
             </Link>
           </div>
@@ -114,7 +114,7 @@ export default function LoginPage() {
             asChild
             className="mt-8 h-14 w-full rounded-none border-[#0094f4] border-[3px] bg-white font-bold font-sans text-2xl text-[#0094f4]"
           >
-            <Link href={"/auth/register"}>新規登録</Link>
+            <Link href={'/auth/register'}>新規登録</Link>
           </Button>
         </CardContent>
       </Card>

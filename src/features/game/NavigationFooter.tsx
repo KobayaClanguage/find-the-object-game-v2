@@ -1,5 +1,5 @@
-import { House, ScanQrCode, Settings } from "lucide-react";
-import Link from "next/link";
+import { House, ScanQrCode, Settings } from 'lucide-react';
+import Link from 'next/link';
 
 export default function NavigationFooter() {
   const buttonSize = { x: 40, y: 40 };

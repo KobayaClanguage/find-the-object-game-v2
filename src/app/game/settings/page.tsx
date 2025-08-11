@@ -1,5 +1,5 @@
-import { AuthGuard } from "@/features/auth/authGuard";
-import NavigationFooter from "@/features/game/NavigationFooter";
+import { AuthGuard } from '@/features/auth/authGuard';
+import NavigationFooter from '@/features/game/NavigationFooter';
 import {
   ChevronRight,
   Diamond,
@@ -10,11 +10,11 @@ import {
   LogOut,
   Mail,
   Trash2,
-} from "lucide-react";
-import Link from "next/link";
+} from 'lucide-react';
+import Link from 'next/link';
 
 export default function GamePage() {
-  const pageTitle = "設定";
+  const pageTitle = '設定';
 
   return (
     <AuthGuard>
@@ -34,7 +34,7 @@ export default function GamePage() {
             <div className="mb-5 flex items-center">
               <Mail width={30} height={30} className="mr-5" />
 
-              <Link href={"/game/settings/account/change/email"}>
+              <Link href={'/game/settings/account/change/email'}>
                 <span className="text-2xl">メールアドレス変更</span>
               </Link>
 
@@ -44,7 +44,7 @@ export default function GamePage() {
             <div className="mb-5 flex items-center">
               <KeyRound width={30} height={30} className="mr-5" />
 
-              <Link href={"/game/settings/account/change/password"}>
+              <Link href={'/game/settings/account/change/password'}>
                 <span className="text-2xl">パスワード変更</span>
               </Link>
 
@@ -54,7 +54,7 @@ export default function GamePage() {
             <div className="mb-5 flex items-center">
               <LogOut width={30} height={30} className="mr-5" />
 
-              <Link href={"/game/settings/account/logout"}>
+              <Link href={'/game/settings/account/logout'}>
                 <span className="text-2xl">ログアウト</span>
               </Link>
 
@@ -64,7 +64,7 @@ export default function GamePage() {
             <div className="mb-5 flex items-center">
               <Trash2 width={30} height={30} className="mr-5" />
 
-              <Link href={"/game/settings/account/delete"}>
+              <Link href={'/game/settings/account/delete'}>
                 <span className="text-2xl">アカウント削除</span>
               </Link>
 
@@ -81,7 +81,7 @@ export default function GamePage() {
             <div className="mb-5 flex items-center">
               <Gamepad2 width={30} height={30} className="mr-5" />
 
-              <Link href={"/game/settings/info/howToPlay"}>
+              <Link href={'/game/settings/info/howToPlay'}>
                 <span className="text-2xl">遊び方</span>
               </Link>
 
@@ -91,7 +91,7 @@ export default function GamePage() {
             <div className="mb-5 flex items-center">
               <Info width={30} height={30} className="mr-5" />
 
-              <Link href={"/game/settings/info/aboutUs"}>
+              <Link href={'/game/settings/info/aboutUs'}>
                 <span className="text-2xl">本webサイトについて</span>
               </Link>
 
@@ -101,7 +101,7 @@ export default function GamePage() {
             <div className="flex items-center">
               <FileText width={30} height={30} className="mr-5" />
 
-              <Link href={"/game/settings/info/termsOfUse"}>
+              <Link href={'/game/settings/info/termsOfUse'}>
                 <span className="text-2xl">利用規約</span>
               </Link>
 

@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
-import Link from "next/link";
+import { Button } from '@/components/ui/button';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function AuthResetPasswordSend() {
   return (
@@ -10,13 +10,13 @@ export default function AuthResetPasswordSend() {
       {/* ヘッダー部分 */}
       <div className="mb-6 flex flex-col items-center space-y-2 text-center">
         <Image
-          src={"/images/commentLogo.png"}
+          src={'/images/commentLogo.png'}
           alt="額ロゴの吹き出し"
           width={120}
           height={49}
         />
         <Image
-          src={"/images/nukaLogo.png"}
+          src={'/images/nukaLogo.png'}
           alt="額のロゴ"
           width={198}
           height={64}
@@ -44,7 +44,7 @@ export default function AuthResetPasswordSend() {
           asChild
           className="h-14 w-full rounded-none bg-[#0094f4] text-2xl"
         >
-          <Link href={"/auth/login"}>ログイン画面に戻る</Link>
+          <Link href={'/auth/login'}>ログイン画面に戻る</Link>
         </Button>
       </div>
     </div>

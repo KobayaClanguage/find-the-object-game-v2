@@ -1,13 +1,13 @@
-import { Button } from "@/components/ui/button";
-import { AuthGuard } from "@/features/auth/authGuard";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
-import React from "react";
+import { Button } from '@/components/ui/button';
+import { AuthGuard } from '@/features/auth/authGuard';
+import NavigationFooter from '@/features/game/NavigationFooter';
+import { ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
+import React from 'react';
 
 export default function GameSettingsAccountChangeEmailSend() {
-  const pageTitle = "設定";
-  const pageSubTitle = "メールアドレス変更";
+  const pageTitle = '設定';
+  const pageSubTitle = 'メールアドレス変更';
 
   return (
     <AuthGuard>

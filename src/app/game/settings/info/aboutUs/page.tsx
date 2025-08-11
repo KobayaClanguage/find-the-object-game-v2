@@ -1,12 +1,12 @@
-import { AuthGuard } from "@/features/auth/authGuard";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import { ChevronLeft } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { AuthGuard } from '@/features/auth/authGuard';
+import NavigationFooter from '@/features/game/NavigationFooter';
+import { ChevronLeft } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function GameSettingsInfoAboutUs() {
-  const pageTitle = "設定";
-  const pageSubTitle = "本Webサービスについて";
+  const pageTitle = '設定';
+  const pageSubTitle = '本Webサービスについて';
 
   return (
     <AuthGuard>
@@ -34,9 +34,9 @@ export default function GameSettingsInfoAboutUs() {
             <div className="mb-6 flex flex-col items-center space-y-10 text-center">
               {/* ロゴと各団体のホームページへのリンク */}
               <h2 className="text-2xl">額振興会ホームページ</h2>
-              <Link href={"https://nukashinkoukai.com/"}>
+              <Link href={'https://nukashinkoukai.com/'}>
                 <Image
-                  src={"/images/nukaLogo.png"}
+                  src={'/images/nukaLogo.png'}
                   alt="額のロゴ"
                   width={198}
                   height={64}
@@ -45,7 +45,7 @@ export default function GameSettingsInfoAboutUs() {
               <h2 className="text-2xl">額プロジェクトホームページ</h2>
               <Link
                 href={
-                  "https://www.kanazawa-it.ac.jp/yumekobo/project/21nuka.html"
+                  'https://www.kanazawa-it.ac.jp/yumekobo/project/21nuka.html'
                 }
               >
                 <Image

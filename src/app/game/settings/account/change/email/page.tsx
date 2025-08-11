@@ -1,42 +1,42 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { sendChangeEmail } from "@/features/auth/auth";
-import { AuthGuard } from "@/features/auth/authGuard";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import { ChevronLeft } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { sendChangeEmail } from '@/features/auth/auth';
+import { AuthGuard } from '@/features/auth/authGuard';
+import NavigationFooter from '@/features/game/NavigationFooter';
+import { ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function GameSettingsAccountChangeEmail() {
-  const pageTitle = "設定";
-  const pageSubTitle = "メールアドレス変更";
+  const pageTitle = '設定';
+  const pageSubTitle = 'メールアドレス変更';
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState("");
-  const [password, setPassword] = useState("");
-  const [newEmail, setNewEmail] = useState("");
-  const [newEmailConfirm, setNewEmailConfirm] = useState("");
+  const [errorMessage, setErrorMessage] = useState('');
+  const [password, setPassword] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [newEmailConfirm, setNewEmailConfirm] = useState('');
 
   const sendEmail = async () => {
     if (newEmail !== newEmailConfirm) {
-      setErrorMessage("メールアドレスが一致していません");
+      setErrorMessage('メールアドレスが一致していません');
       return;
     }
     sendChangeEmail(password, newEmail)
       .then((result) => {
         if (result.success) {
-          router.push("/game/settings/account/change/email/send");
+          router.push('/game/settings/account/change/email/send');
         } else {
           setErrorMessage(
-            result.errorMessage ?? "確認メールの送信に失敗しました",
+            result.errorMessage ?? '確認メールの送信に失敗しました',
           );
         }
       })
       .catch(() => {
-        setErrorMessage("確認メールの送信に失敗しました");
+        setErrorMessage('確認メールの送信に失敗しました');
       });
   };
 

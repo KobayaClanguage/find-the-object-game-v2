@@ -1,26 +1,26 @@
-"use client";
+'use client';
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { signupWithEmail } from "@/features/auth/auth";
-import { Diamond } from "lucide-react";
-import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { Button } from '@/components/ui/button';
+import { Card, CardContent } from '@/components/ui/card';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { signupWithEmail } from '@/features/auth/auth';
+import { Diamond } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 export default function RegisterPage() {
   const router = useRouter();
-  const [error_message, setErrorMessage] = useState("");
+  const [error_message, setErrorMessage] = useState('');
   const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
   function signup(formData: FormData) {
-    const email = formData.get("email");
-    const password = formData.get("password");
+    const email = formData.get('email');
+    const password = formData.get('password');
 
-    if (typeof email !== "string" || typeof password !== "string") {
-      setErrorMessage("入力値が不正です");
+    if (typeof email !== 'string' || typeof password !== 'string') {
+      setErrorMessage('入力値が不正です');
       return;
     }
 
@@ -28,15 +28,15 @@ export default function RegisterPage() {
       .then((result) => {
         console.log(result);
         if (result.success) {
-          router.push("/game/stamp");
+          router.push('/game/stamp');
         } else {
           setErrorMessage(
-            result.errorMessage ?? "アカウント登録に失敗しました",
+            result.errorMessage ?? 'アカウント登録に失敗しました',
           );
         }
       })
       .catch(() => {
-        setErrorMessage("アカウント登録に失敗しました");
+        setErrorMessage('アカウント登録に失敗しました');
       });
   }
 
@@ -122,8 +122,8 @@ export default function RegisterPage() {
             <Button
               className={`mt-6 h-14 w-full rounded-none font-semibold text-2xl ${
                 isTermsAccepted
-                  ? "cursor-pointer bg-[#0094f4] text-white"
-                  : "cursor-not-allowed bg-gray-400 text-gray-200"
+                  ? 'cursor-pointer bg-[#0094f4] text-white'
+                  : 'cursor-not-allowed bg-gray-400 text-gray-200'
               }`}
               type="submit"
               disabled={!isTermsAccepted}
@@ -136,7 +136,7 @@ export default function RegisterPage() {
             asChild
             className="mt-8 h-14 w-full rounded-none border-[#0094f4] border-[3px] bg-white font-bold font-sans text-2xl text-[#0094f4]"
           >
-            <Link href={"/auth/login"}>ログイン</Link>
+            <Link href={'/auth/login'}>ログイン</Link>
           </Button>
         </CardContent>
       </Card>
