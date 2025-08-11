@@ -28,7 +28,7 @@ export default function GameSettingsInfoAboutUs() {
             <h2 className="text-2xl">{pageSubTitle}</h2>
           </div>
           <div
-            className={`h-[calc(100vh-${TITLE_BAR_HEIGHT}px-${NAVIGATION_BAR_HEIGHT}px-${STAMP_TITLE_HEIGHT}px)] relative mt-4 flex w-full flex-col items-center justify-start px-9 text-xl space-y-10`}
+            className={`h-[calc(100vh-${TITLE_BAR_HEIGHT}px-${NAVIGATION_BAR_HEIGHT}px-${STAMP_TITLE_HEIGHT}px)] relative mt-4 flex w-full flex-col items-center justify-start space-y-10 px-9 text-xl`}
           >
             <p className="text-2xl">
               {/* Webサービスの説明 */}

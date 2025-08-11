@@ -93,7 +93,7 @@ export default function RegisterPage() {
               />
             </div>
 
-            <div className="mb-6 flex items-center space-x-2 justify-center">
+            <div className="mb-6 flex items-center justify-center space-x-2">
               <input
                 id="check_terms_of_use"
                 name="check_terms_of_use"
@@ -101,11 +101,11 @@ export default function RegisterPage() {
                 required
                 checked={isTermsAccepted}
                 onChange={(e) => setIsTermsAccepted(e.target.checked)}
-                className="h-4 w-4 rounded border-gray-500 text-[#0094f4] focus:ring-[#0094f4] focus:ring-2 focus:ring-offset-0"
+                className="size-4 rounded border-gray-500 text-[#0094f4] focus:ring-2 focus:ring-[#0094f4] focus:ring-offset-0"
               />
               <Label
                 htmlFor="check_terms_of_use"
-                className="text-sm cursor-pointer"
+                className="cursor-pointer text-sm"
               >
                 <Link
                   href="/auth/register/termsOfUse"
@@ -121,8 +121,8 @@ export default function RegisterPage() {
             <Button
               className={`mt-6 h-14 w-full rounded-none text-2xl font-semibold ${
                 isTermsAccepted
-                  ? "bg-[#0094f4] text-white cursor-pointer"
-                  : "bg-gray-400 text-gray-200 cursor-not-allowed"
+                  ? "cursor-pointer bg-[#0094f4] text-white"
+                  : "cursor-not-allowed bg-gray-400 text-gray-200"
               }`}
               type="submit"
               disabled={!isTermsAccepted}
