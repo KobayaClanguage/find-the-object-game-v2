@@ -65,6 +65,7 @@ export default function GamePage() {
                 <button
                   onClick={() => setIsClear(false)}
                   className="mt-4 rounded bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 "
+                  type="button"
                 >
                   閉じる
                 </button>

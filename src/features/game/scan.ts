@@ -94,7 +94,9 @@ export async function ScanQR(
   return () => {
     // アンマウント時の処理
     if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
+      for (const track of stream.getTracks()) {
+        track.stop();
+      }
     }
     if (intervalId) clearInterval(intervalId);
     if (animationFrameId) cancelAnimationFrame(animationFrameId);

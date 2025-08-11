@@ -49,6 +49,7 @@ export default function GameScan() {
               <button
                 onClick={handleClosePopup}
                 className="mt-4 rounded bg-blue-500 px-4 py-2 text-white"
+                type="button"
               >
                 閉じる
               </button>
