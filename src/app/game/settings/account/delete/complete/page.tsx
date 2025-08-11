@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function GameSettingsAccountDeleteComplete() {
-  const pageTitle = '設定';
-  const pageSubTitle = 'アカウント削除';
+  const pageTitle = "設定";
+  const pageSubTitle = "アカウント削除";
 
   return (
     <div className="relative h-full">

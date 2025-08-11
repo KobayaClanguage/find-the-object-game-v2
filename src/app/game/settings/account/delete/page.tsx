@@ -1,29 +1,29 @@
-'use client';
+"use client";
 
-import { ChevronLeft } from 'lucide-react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { deleteAccount } from '@/features/auth/auth';
-import { AuthGuard } from '@/features/auth/authGuard';
-import NavigationFooter from '@/features/game/NavigationFooter';
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { deleteAccount } from "@/features/auth/auth";
+import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
 
 export default function GameSettingsAccountDelete() {
-  const pageTitle = '設定';
-  const pageSubTitle = 'アカウント削除';
-  const [errorMessage, setErrorMessage] = useState('');
-  const [password, setPassword] = useState('');
+  const pageTitle = "設定";
+  const pageSubTitle = "アカウント削除";
+  const [errorMessage, setErrorMessage] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
   const deleteButton = async () => {
     const result = await deleteAccount(password);
     if (result.success) {
-      router.push('/game/settings/account/delete/complete');
+      router.push("/game/settings/account/delete/complete");
     } else {
-      setErrorMessage(result.errorMessage ?? 'アカウント削除に失敗しました');
+      setErrorMessage(result.errorMessage ?? "アカウント削除に失敗しました");
     }
   };
 

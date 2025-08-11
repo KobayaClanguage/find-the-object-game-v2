@@ -1,25 +1,41 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.1.4/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
+  },
+
+  "files": {
+    "includes": [
+      "src/app/**",
+      "src/features/**",
+      "src/firebase/**",
+      "src/lib/**",
+      "!src/components/ui"
+    ],
+    "ignoreUnknown": false
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
+  },
+
   "formatter": {
     "enabled": true,
-    "formatWithErrors": false,
     "indentStyle": "space",
     "indentWidth": 2,
-    "lineWidth": 80
+    "lineEnding": "lf"
   },
+
   "linter": {
     "enabled": true,
     "rules": {
       "recommended": true,
-      "suspicious": {
-        "noExplicitAny": "off"
-      },
-      "style": {
-        "useNamingConvention": "off"
-      },
-      "correctness": {
-        "useExhaustiveDependencies": "error"
-      },
       "nursery": {
         "useSortedClasses": {
           "level": "error",
@@ -32,44 +48,18 @@
       }
     }
   },
-  "files": {
-    "experimentalScannerIgnores": [
-      "node_modules",
-      "public/**",
-      ".next/**",
-      "dist/**",
-      "src/components/ui"
-    ]
-  },
+
   "javascript": {
     "formatter": {
-      "quoteStyle": "single",
-      "trailingCommas": "all"
-    },
-    "parser": {
-      "unsafeParameterDecoratorsEnabled": true
+      "quoteStyle": "double"
     }
   },
-  "overrides": [
-    {
-      "includes": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "linter": {
-        "rules": {
-          "security": {
-            "noDangerouslySetInnerHtml": "warn"
-          },
-          "nursery": {
-            "useSortedClasses": {
-              "level": "error",
-              "fix": "safe",
-              "options": {
-                "attributes": ["className"],
-                "functions": ["cn"]
-              }
-            }
-          }
-        }
-      }
+
+  "json": {
+    "formatter": {
+      "indentStyle": "space",
+      "indentWidth": 2,
+      "lineEnding": "lf"
     }
-  ]
+  }
 }

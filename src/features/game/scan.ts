@@ -1,8 +1,8 @@
-'use client';
-import { doc, updateDoc } from 'firebase/firestore';
-import jsQR from 'jsqr';
-import { stampIDs } from '@/features/game/stampData';
-import { auth, db } from '@/firebase/config';
+"use client";
+import { doc, updateDoc } from "firebase/firestore";
+import jsQR from "jsqr";
+import { stampIDs } from "@/features/game/stampData";
+import { auth, db } from "@/firebase/config";
 
 export async function ScanQR(
   video: HTMLVideoElement,
@@ -15,27 +15,27 @@ export async function ScanQR(
   if (!canvasRef) return () => {};
 
   const cvs = canvasRef;
-  const ctx = cvs.getContext('2d', { willReadFrequently: true });
+  const ctx = cvs.getContext("2d", { willReadFrequently: true });
   if (!ctx) return () => {};
 
   let stream: MediaStream | null = null;
   try {
     stream = await navigator.mediaDevices.getUserMedia({
       audio: false,
-      video: { facingMode: { exact: 'environment' } },
+      video: { facingMode: { exact: "environment" } },
     });
   } catch (e) {
     try {
       stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
-        video: { facingMode: 'user' },
+        video: { facingMode: "user" },
       });
       console.warn(
-        'environmentカメラが使えないため、userカメラに切り替えました',
+        "environmentカメラが使えないため、userカメラに切り替えました",
         e,
       );
     } catch (err) {
-      console.error('カメラ起動に失敗:', err);
+      console.error("カメラ起動に失敗:", err);
       return () => {};
     }
   }
@@ -69,7 +69,7 @@ export async function ScanQR(
       if (!auth.currentUser) return;
       const objectsRef = doc(
         db,
-        'game_progress',
+        "game_progress",
         auth.currentUser.uid.toString(),
       );
 
@@ -86,7 +86,7 @@ export async function ScanQR(
   canvasUpdate();
   intervalId = setInterval(checkImage, 300); // 300ms間隔でQRコード読み取り
   if (!intervalId) {
-    console.error('ERROR: setInterval()');
+    console.error("ERROR: setInterval()");
     return () => {};
   }
 

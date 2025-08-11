@@ -1,25 +1,25 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { sendResetEmail } from '@/features/auth/auth';
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { sendResetEmail } from "@/features/auth/auth";
 
 export default function AuthResetPassword() {
-  const [errorMessage, setErrorMessage] = useState('');
-  const [email, setEmail] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+  const [email, setEmail] = useState("");
   const router = useRouter();
 
   const sendEmailButton = async () => {
     const result = await sendResetEmail(email);
     if (result.success) {
-      router.push('/auth/reset/password/send');
+      router.push("/auth/reset/password/send");
     } else {
-      setErrorMessage(result.errorMessage ?? 'メールの送信に失敗しました');
+      setErrorMessage(result.errorMessage ?? "メールの送信に失敗しました");
     }
   };
 
@@ -28,13 +28,13 @@ export default function AuthResetPassword() {
       {/* ヘッダー部分 */}
       <div className="mb-6 flex flex-col items-center space-y-2 text-center">
         <Image
-          src={'/images/commentLogo.png'}
+          src={"/images/commentLogo.png"}
           alt="額ロゴの吹き出し"
           width={120}
           height={49}
         />
         <Image
-          src={'/images/nukaLogo.png'}
+          src={"/images/nukaLogo.png"}
           alt="額のロゴ"
           width={198}
           height={64}
@@ -76,7 +76,7 @@ export default function AuthResetPassword() {
           asChild
           className="mt-9 mb-4 h-14 w-full rounded-none border-[#0094f4] border-[3px] bg-white text-2xl text-[#0094f4] shadow-none"
         >
-          <Link href={'/auth/login'}>ログイン</Link>
+          <Link href={"/auth/login"}>ログイン</Link>
         </Button>
       </div>
     </div>

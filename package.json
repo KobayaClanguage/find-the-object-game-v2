@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "bunx @biomejs/biome lint ./src",
-    "check": "bunx @biomejs/biome check --write ./src",
+    "lint": "bunx @biomejs/biome lint",
+    "check": "bunx @biomejs/biome check --write",
     "prepare": "husky"
   },
   "dependencies": {

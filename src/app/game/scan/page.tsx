@@ -1,9 +1,9 @@
-'use client';
-import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
-import { AuthGuard } from '@/features/auth/authGuard';
-import NavigationFooter from '@/features/game/NavigationFooter';
-import { ScanQR } from '@/features/game/scan';
+"use client";
+import { useRouter } from "next/navigation";
+import { useEffect, useRef, useState } from "react";
+import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
+import { ScanQR } from "@/features/game/scan";
 
 export default function GameScan() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -13,13 +13,13 @@ export default function GameScan() {
   const [showPopup, setShowPopup] = useState(false);
   const handleClosePopup = () => {
     setShowPopup(false);
-    router.push('/game/stamp');
+    router.push("/game/stamp");
   };
 
   useEffect(() => {
     if (!canvasReady) return;
 
-    const video = document.getElementById('video') as HTMLVideoElement;
+    const video = document.getElementById("video") as HTMLVideoElement;
     let stopScan: (() => void) | null = null;
 
     const startScan = async () => {
@@ -36,7 +36,7 @@ export default function GameScan() {
     };
   }, [canvasReady]);
 
-  const pageTitle = 'QRコード読み取り';
+  const pageTitle = "QRコード読み取り";
   return (
     <AuthGuard>
       <div className="relative h-full">

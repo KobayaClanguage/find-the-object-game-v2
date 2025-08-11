@@ -1,9 +1,9 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function GameSettingsAccountLogoutComplete() {
-  const pageTitle = '設定';
-  const pageSubTitle = 'ログアウト';
+  const pageTitle = "設定";
+  const pageSubTitle = "ログアウト";
 
   return (
     <div className="relative h-full">

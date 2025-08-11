@@ -1,30 +1,30 @@
-'use client';
-import { ChevronLeft } from 'lucide-react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { logout } from '@/features/auth/auth';
-import { AuthGuard } from '@/features/auth/authGuard';
-import NavigationFooter from '@/features/game/NavigationFooter';
+"use client";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { logout } from "@/features/auth/auth";
+import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
 
 export default function GameSettingsAccountLogout() {
-  const pageTitle = '設定';
-  const pageSubTitle = 'ログアウト';
+  const pageTitle = "設定";
+  const pageSubTitle = "ログアウト";
   const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
 
   const logoutButton = async () => {
     logout()
       .then((result) => {
         if (result.success) {
-          router.push('/game/settings/account/logout/complete');
+          router.push("/game/settings/account/logout/complete");
         } else {
-          setErrorMessage(result.errorMessage ?? 'ログアウトに失敗しました');
+          setErrorMessage(result.errorMessage ?? "ログアウトに失敗しました");
         }
       })
       .catch(() => {
-        setErrorMessage('ログアウトに失敗しました');
+        setErrorMessage("ログアウトに失敗しました");
       });
   };
 

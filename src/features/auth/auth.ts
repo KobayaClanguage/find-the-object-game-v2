@@ -1,5 +1,5 @@
-'use client';
-import type { FirebaseError } from 'firebase/app';
+"use client";
+import type { FirebaseError } from "firebase/app";
 import {
   applyActionCode,
   confirmPasswordReset,
@@ -11,10 +11,10 @@ import {
   signOut,
   updatePassword,
   verifyBeforeUpdateEmail,
-} from 'firebase/auth';
-import { EmailAuthProvider } from 'firebase/auth/web-extension';
-import { createDocument, deleteDocument } from '@/features/game/firestore';
-import { auth } from '@/firebase/config';
+} from "firebase/auth";
+import { EmailAuthProvider } from "firebase/auth/web-extension";
+import { createDocument, deleteDocument } from "@/features/game/firestore";
+import { auth } from "@/firebase/config";
 
 export async function signupWithEmail(email: string, password: string) {
   try {
@@ -25,30 +25,30 @@ export async function signupWithEmail(email: string, password: string) {
     );
     const result = await createDocument(useCredential.user.uid);
     if (!result) {
-      return { success: false, errorMessage: 'アカウント登録に失敗しました' };
+      return { success: false, errorMessage: "アカウント登録に失敗しました" };
     }
     return { success: true };
   } catch (error: unknown) {
     const firebaseError = error as FirebaseError;
-    if (firebaseError.code === 'auth/weak-password') {
+    if (firebaseError.code === "auth/weak-password") {
       return {
         success: false,
-        errorMessage: 'パスワードが短すぎます（6文字以上にしてください）',
+        errorMessage: "パスワードが短すぎます（6文字以上にしてください）",
       };
     }
-    if (firebaseError.code === 'auth/email-already-in-use') {
+    if (firebaseError.code === "auth/email-already-in-use") {
       return {
         success: false,
-        errorMessage: 'このメールアドレスは既に使用されています',
+        errorMessage: "このメールアドレスは既に使用されています",
       };
     }
-    if (firebaseError.code === 'auth/invalid-email') {
+    if (firebaseError.code === "auth/invalid-email") {
       return {
         success: false,
-        errorMessage: 'メールアドレスの形式が正しくありません',
+        errorMessage: "メールアドレスの形式が正しくありません",
       };
     }
-    return { success: false, errorMessage: 'アカウント登録に失敗しました' };
+    return { success: false, errorMessage: "アカウント登録に失敗しました" };
   }
 }
 
@@ -57,7 +57,7 @@ export async function signinWithEmail(email: string, password: string) {
     await signInWithEmailAndPassword(auth, email, password);
     return { success: true };
   } catch {
-    return { success: false, error_message: 'ログインに失敗しました' };
+    return { success: false, error_message: "ログインに失敗しました" };
   }
 }
 
@@ -66,7 +66,7 @@ export async function logout() {
     await signOut(auth);
     return { success: true };
   } catch {
-    return { success: false, errorMessage: 'ログアウトに失敗しました' };
+    return { success: false, errorMessage: "ログアウトに失敗しました" };
   }
 }
 
@@ -76,11 +76,11 @@ export async function deleteAccount(password: string) {
     const email = auth.currentUser?.email;
 
     if (!user || !email) {
-      return { success: false, errorMessage: 'アカウント削除に失敗しました' };
+      return { success: false, errorMessage: "アカウント削除に失敗しました" };
     }
     const result = await deleteDocument(user.uid);
     if (!result) {
-      return { success: false, errorMessage: 'アカウント削除に失敗しました' };
+      return { success: false, errorMessage: "アカウント削除に失敗しました" };
     }
     const credential = EmailAuthProvider.credential(email, password);
 
@@ -89,7 +89,7 @@ export async function deleteAccount(password: string) {
 
     return { success: true };
   } catch {
-    return { success: false, errorMessage: 'アカウント削除に失敗しました' };
+    return { success: false, errorMessage: "アカウント削除に失敗しました" };
   }
 }
 
@@ -99,7 +99,7 @@ export async function changePassword(nowPassword: string, newPassword: string) {
     const email = auth.currentUser?.email;
 
     if (!user || !email) {
-      return { success: false, errorMessage: 'パスワード変更に失敗しました' };
+      return { success: false, errorMessage: "パスワード変更に失敗しました" };
     }
 
     const credential = EmailAuthProvider.credential(email, nowPassword);
@@ -109,7 +109,7 @@ export async function changePassword(nowPassword: string, newPassword: string) {
 
     return { success: true };
   } catch {
-    return { success: false, errorMessage: 'パスワード変更に失敗しました' };
+    return { success: false, errorMessage: "パスワード変更に失敗しました" };
   }
 }
 
@@ -119,7 +119,7 @@ export async function sendChangeEmail(password: string, newEmail: string) {
     const email = auth.currentUser?.email;
 
     if (!user || !email) {
-      return { success: false, errorMessage: '確認メールの送信に失敗しました' };
+      return { success: false, errorMessage: "確認メールの送信に失敗しました" };
     }
 
     const credential = EmailAuthProvider.credential(email, password);
@@ -129,7 +129,7 @@ export async function sendChangeEmail(password: string, newEmail: string) {
 
     return { success: true };
   } catch {
-    return { success: false, errorMessage: '確認メールの送信に失敗しました' };
+    return { success: false, errorMessage: "確認メールの送信に失敗しました" };
   }
 }
 
@@ -138,12 +138,12 @@ export async function changeEmail(actionCode: string) {
     await applyActionCode(auth, actionCode);
     return {
       success: true,
-      resultMessage: 'メールアドレスの変更が完了しました',
+      resultMessage: "メールアドレスの変更が完了しました",
     };
   } catch {
     return {
       success: false,
-      resultMessage: 'メールアドレスの変更に失敗しました',
+      resultMessage: "メールアドレスの変更に失敗しました",
     };
   }
 }
@@ -155,7 +155,7 @@ export async function sendResetEmail(email: string) {
   } catch {
     return {
       success: false,
-      errorMessage: 'メールの送信に失敗しました',
+      errorMessage: "メールの送信に失敗しました",
     };
   }
 }
@@ -167,7 +167,7 @@ export async function resetPassword(newPassword: string, oobCode: string) {
   } catch {
     return {
       success: false,
-      errorMessage: 'パスワードのリセットに失敗しました',
+      errorMessage: "パスワードのリセットに失敗しました",
     };
   }
 }

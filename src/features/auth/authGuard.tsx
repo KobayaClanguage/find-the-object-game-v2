@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { onAuthStateChanged } from 'firebase/auth';
-import { useRouter } from 'next/navigation';
-import { type ReactNode, useEffect, useState } from 'react';
-import { auth } from '@/firebase/config';
+import { onAuthStateChanged } from "firebase/auth";
+import { useRouter } from "next/navigation";
+import { type ReactNode, useEffect, useState } from "react";
+import { auth } from "@/firebase/config";
 
 type Props = {
   children: ReactNode;
@@ -19,7 +19,7 @@ export const AuthGuard = ({ children }: Props) => {
       if (user) {
         setIsAuthenticated(true);
       } else {
-        router.push('/auth/login');
+        router.push("/auth/login");
       }
       setUserChecked(true);
     });

@@ -1,11 +1,11 @@
-import { ChevronLeft, Diamond, MapPin, ScanQrCode, Trophy } from 'lucide-react';
-import Link from 'next/link';
-import { AuthGuard } from '@/features/auth/authGuard';
-import NavigationFooter from '@/features/game/NavigationFooter';
+import { ChevronLeft, Diamond, MapPin, ScanQrCode, Trophy } from "lucide-react";
+import Link from "next/link";
+import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
 
 export default function GameSettingsInfoHowToPlay() {
-  const pageTitle = '設定';
-  const pageSubTitle = '遊び方';
+  const pageTitle = "設定";
+  const pageSubTitle = "遊び方";
 
   return (
     <AuthGuard>

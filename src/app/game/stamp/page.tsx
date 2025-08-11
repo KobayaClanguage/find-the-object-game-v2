@@ -1,17 +1,17 @@
-'use client';
-import { onAuthStateChanged } from 'firebase/auth';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { AuthGuard } from '@/features/auth/authGuard';
-import NavigationFooter from '@/features/game/NavigationFooter';
-import { fetchStamps, type StampInfo } from '@/features/game/stamp';
-import { auth } from '@/firebase/config';
+"use client";
+import { onAuthStateChanged } from "firebase/auth";
+import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
+import { fetchStamps, type StampInfo } from "@/features/game/stamp";
+import { auth } from "@/firebase/config";
 
 export default function GamePage() {
-  const pageTitle = 'ホーム';
-  const completeIconUrl = '/game/stamp/stamp-complete.png';
-  const uncompleteIconUrl = '/game/stamp/stamp-uncomplete.png';
+  const pageTitle = "ホーム";
+  const completeIconUrl = "/game/stamp/stamp-complete.png";
+  const uncompleteIconUrl = "/game/stamp/stamp-uncomplete.png";
   const [stamps, setStamps] = useState<StampInfo[]>([]);
   const [isClear, setIsClear] = useState(false);
 
@@ -38,7 +38,7 @@ export default function GamePage() {
         <div className="pt-24 pb-16">
           <div className="flex items-center justify-around p-4">
             <Image
-              src={'/images/nukaLogo.png'}
+              src={"/images/nukaLogo.png"}
               alt="額のロゴ"
               width={158}
               height={51}

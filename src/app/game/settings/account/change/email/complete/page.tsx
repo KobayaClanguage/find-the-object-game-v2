@@ -1,17 +1,17 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import Link from 'next/link';
-import { useSearchParams } from 'next/navigation';
-import { Suspense, useEffect, useRef, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { changeEmail } from '@/features/auth/auth';
+import Image from "next/image";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { changeEmail } from "@/features/auth/auth";
 
 function ChangeEmail() {
   const urlParams = useSearchParams();
-  const oobCode = urlParams.get('oobCode');
+  const oobCode = urlParams.get("oobCode");
   const executed = useRef<boolean>(false);
-  const [resultMessage, setResultMessage] = useState('');
+  const [resultMessage, setResultMessage] = useState("");
 
   useEffect(() => {
     if (executed.current) return; // ReactのStrictModeによる二重レンダリング対策
@@ -42,13 +42,13 @@ export default function GameSettingsAccountChangeEmailComplete() {
       {/* ヘッダー部分 */}
       <div className="mb-6 flex flex-col items-center space-y-2 text-center">
         <Image
-          src={'/images/commentLogo.png'}
+          src={"/images/commentLogo.png"}
           alt="額ロゴの吹き出し"
           width={120}
           height={49}
         />
         <Image
-          src={'/images/nukaLogo.png'}
+          src={"/images/nukaLogo.png"}
           alt="額のロゴ"
           width={198}
           height={64}

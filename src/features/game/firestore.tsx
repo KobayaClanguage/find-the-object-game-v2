@@ -1,8 +1,8 @@
-import { deleteDoc, doc, setDoc } from 'firebase/firestore';
-import { db } from '@/firebase/config';
+import { deleteDoc, doc, setDoc } from "firebase/firestore";
+import { db } from "@/firebase/config";
 export async function createDocument(uid: string) {
   try {
-    const docRef = doc(db, 'game_progress', uid);
+    const docRef = doc(db, "game_progress", uid);
     const data = {
       object_1: false,
       object_2: false,
@@ -25,7 +25,7 @@ export async function createDocument(uid: string) {
 
 export async function deleteDocument(uid: string) {
   try {
-    const docRef = doc(db, 'game_progress', uid);
+    const docRef = doc(db, "game_progress", uid);
     await deleteDoc(docRef);
     return true;
   } catch {

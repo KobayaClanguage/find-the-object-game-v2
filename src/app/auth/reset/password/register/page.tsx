@@ -1,19 +1,19 @@
-'use client';
+"use client";
 
-import Image from 'next/image';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { resetPassword } from '@/features/auth/auth';
+import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { resetPassword } from "@/features/auth/auth";
 
 function Reset() {
-  const [errorMessage, setErrorMessage] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmNewPassword, setConfirmNewPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState("");
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmNewPassword, setConfirmNewPassword] = useState("");
   const urlParams = useSearchParams();
-  const oobCode = urlParams.get('oobCode');
+  const oobCode = urlParams.get("oobCode");
   const router = useRouter();
 
   const resetPasswordButton = async () => {
@@ -21,14 +21,14 @@ function Reset() {
     if (newPassword === confirmNewPassword) {
       const result = await resetPassword(newPassword, oobCode);
       if (result.success) {
-        router.push('/auth/reset/password/complete');
+        router.push("/auth/reset/password/complete");
       } else {
         setErrorMessage(
-          result.errorMessage ?? 'パスワードのリセットに失敗しました',
+          result.errorMessage ?? "パスワードのリセットに失敗しました",
         );
       }
     } else {
-      setErrorMessage('パスワードが一致していません');
+      setErrorMessage("パスワードが一致していません");
     }
   };
 
@@ -37,13 +37,13 @@ function Reset() {
       {/* ヘッダー部分 */}
       <div className="mb-6 flex flex-col items-center space-y-2 text-center">
         <Image
-          src={'/images/commentLogo.png'}
+          src={"/images/commentLogo.png"}
           alt="額ロゴの吹き出し"
           width={120}
           height={49}
         />
         <Image
-          src={'/images/nukaLogo.png'}
+          src={"/images/nukaLogo.png"}
           alt="額のロゴ"
           width={198}
           height={64}

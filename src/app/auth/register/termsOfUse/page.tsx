@@ -1,11 +1,11 @@
-import { ChevronLeft } from 'lucide-react';
-import Link from 'next/link';
-import TermsOfUse from '@/features/game/settings/info/TermsOfUse';
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+import TermsOfUse from "@/features/game/settings/info/TermsOfUse";
 
 // アカウント登録時にユーザが閲覧するページ
 // AuthGuardは不要
 export default function AuthRegisterTermsOfUse() {
-  const pageTitle = '利用規約';
+  const pageTitle = "利用規約";
   return (
     <div className="relative h-full">
       <div className="pt-20 pb-16">

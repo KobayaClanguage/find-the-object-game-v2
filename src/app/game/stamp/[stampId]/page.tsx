@@ -1,18 +1,18 @@
-'use client';
-import { ChevronLeft } from 'lucide-react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { AuthGuard } from '@/features/auth/authGuard';
-import NavigationFooter from '@/features/game/NavigationFooter';
+"use client";
+import { ChevronLeft } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
 
 // import { useSearchParams } from "next/navigation";
 
 export default function GameStampId() {
-  const pageTitle = 'マップ';
+  const pageTitle = "マップ";
   // TODO: ページタイトルを動的に変更する
   // const stampId = useSearchParams().get("stampId");
-  const stampId = '1';
-  const stampName = '駐車場';
+  const stampId = "1";
+  const stampName = "駐車場";
 
   return (
     <AuthGuard>
