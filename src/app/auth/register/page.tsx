@@ -5,14 +5,15 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { signupWithEmail } from "@/features/auth/auth";
+import { Diamond } from "lucide-react";
 
 export default function RegisterPage() {
   const router = useRouter();
   const [error_message, setErrorMessage] = useState("");
+  const [isTermsAccepted, setIsTermsAccepted] = useState(false);
 
   function signup(formData: FormData) {
     const email = formData.get("email");
@@ -43,31 +44,16 @@ export default function RegisterPage() {
       <div className="mb-6 flex flex-col items-center space-y-4 text-center">
         <h1 className="font-sans text-2xl font-bold">遊び方</h1>
         <ol className="space-y-2 text-left font-sans text-xl">
-          <li className="flex">
-            <Image
-              src={"/images/diamond.png"}
-              alt="ダイアモンドアイコン"
-              width={28}
-              height={28}
-            />
+          <li className="flex items-center">
+            <Diamond size={18} className="m-2" />
             <p>額地区に隠されたオブジェを見つける</p>
           </li>
-          <li className="flex">
-            <Image
-              src={"/images/diamond.png"}
-              alt="ダイアモンドアイコン"
-              width={28}
-              height={28}
-            />
+          <li className="flex items-center">
+            <Diamond size={18} className="m-2" />
             <p>オブジェのQRコードを読み取る</p>
           </li>
-          <li className="flex">
-            <Image
-              src={"/images/diamond.png"}
-              alt="ダイアモンドアイコン"
-              width={28}
-              height={28}
-            />
+          <li className="flex items-center">
+            <Diamond size={18} className="m-2" />
             <p>全て見つけたらゲームクリア</p>
           </li>
         </ol>
@@ -107,11 +93,39 @@ export default function RegisterPage() {
               />
             </div>
 
+            <div className="mb-6 flex items-center justify-center space-x-2">
+              <input
+                id="check_terms_of_use"
+                name="check_terms_of_use"
+                type="checkbox"
+                required
+                checked={isTermsAccepted}
+                onChange={(e) => setIsTermsAccepted(e.target.checked)}
+                className="size-4 rounded border-gray-500 text-[#0094f4] focus:ring-2 focus:ring-[#0094f4] focus:ring-offset-0"
+              />
+              <Label
+                htmlFor="check_terms_of_use"
+                className="cursor-pointer text-sm"
+              >
+                <Link
+                  href="/auth/register/termsOfUse"
+                  className="text-[#0094f4] hover:underline"
+                >
+                  利用規約
+                </Link>
+                に同意する
+              </Label>
+            </div>
             <div className="text-center text-red-500">{error_message}</div>
 
             <Button
-              className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"
+              className={`mt-6 h-14 w-full rounded-none text-2xl font-semibold ${
+                isTermsAccepted
+                  ? "cursor-pointer bg-[#0094f4] text-white"
+                  : "cursor-not-allowed bg-gray-400 text-gray-200"
+              }`}
               type="submit"
+              disabled={!isTermsAccepted}
             >
               新規登録
             </Button>
