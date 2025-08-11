@@ -20,7 +20,7 @@ export default function GameSettingsAccountChangePassword() {
   const router = useRouter();
 
   const submitChangePassword = async () => {
-    if (newPassword == newPasswordConfirm) {
+    if (newPassword === newPasswordConfirm) {
       changePassword(nowPassword, newPassword)
         .then((result) => {
           if (result.success) {
