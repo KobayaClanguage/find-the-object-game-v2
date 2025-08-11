@@ -17,6 +17,8 @@ export default function GameScan() {
   };
 
   useEffect(() => {
+    if (!canvasReady) return;
+
     const video = document.getElementById('video') as HTMLVideoElement;
     let stopScan: (() => void) | null = null;
 
@@ -69,7 +71,7 @@ export default function GameScan() {
             className="hidden"
             ref={(el) => {
               canvasRef.current = el;
-              if (el) setCanvasReady(true); // DOMがついたタイミングでフラグを立てる
+              if (el) setCanvasReady(true);
             }}
           />
         </div>
