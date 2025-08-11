@@ -14,6 +14,7 @@ import {
 import { auth } from "@/firebase/config";
 import { EmailAuthProvider } from "firebase/auth/web-extension";
 import { createDocument, deleteDocument } from "@/features/game/firestore";
+import { FirebaseError } from "firebase/app";
 
 export async function signupWithEmail(email: string, password: string) {
   try {
@@ -23,11 +24,31 @@ export async function signupWithEmail(email: string, password: string) {
       password,
     );
     const result = await createDocument(useCredential.user.uid);
-    if (!result)
-      return { success: false, errorMessage: "アカウント作成に失敗しました" };
+    if (!result) {
+      return { success: false, errorMessage: "アカウント登録に失敗しました" };
+    }
     return { success: true };
-  } catch {
-    return { success: false, errorMessage: "アカウント作成に失敗しました" };
+  } catch (error: unknown) {
+    const firebaseError = error as FirebaseError;
+    if (firebaseError.code === "auth/weak-password") {
+      return {
+        success: false,
+        errorMessage: "パスワードが短すぎます（6文字以上にしてください）",
+      };
+    }
+    if (firebaseError.code === "auth/email-already-in-use") {
+      return {
+        success: false,
+        errorMessage: "このメールアドレスは既に使用されています",
+      };
+    }
+    if (firebaseError.code === "auth/invalid-email") {
+      return {
+        success: false,
+        errorMessage: "メールアドレスの形式が正しくありません",
+      };
+    }
+    return { success: false, errorMessage: "アカウント登録に失敗しました" };
   }
 }
 
