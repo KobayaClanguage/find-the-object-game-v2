@@ -3,7 +3,7 @@
 import { auth } from "@/firebase/config";
 import { onAuthStateChanged } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { ReactNode, useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 
 type Props = {
   children: ReactNode;

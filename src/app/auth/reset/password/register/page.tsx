@@ -1,12 +1,12 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Image from "next/image";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Suspense, useState } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
 import { resetPassword } from "@/features/auth/auth";
+import Image from "next/image";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useState } from "react";
 
 function Reset() {
   const [errorMessage, setErrorMessage] = useState("");
@@ -56,8 +56,8 @@ function Reset() {
           height={75}
         />
       </div>
-      <div className="mb-4 mt-10 flex flex-col items-center space-y-2">
-        <h2 className="text-2xl font-bold">オブジェを探せゲーム</h2>
+      <div className="mt-10 mb-4 flex flex-col items-center space-y-2">
+        <h2 className="font-bold text-2xl">オブジェを探せゲーム</h2>
         <p className="text-2xl text-gray-700">パスワード再設定</p>
       </div>
       <div className="flex flex-col items-center justify-around space-y-6 px-10">
@@ -65,7 +65,7 @@ function Reset() {
           <strong>新しいパスワード</strong>を入力してください
         </p>
         <div className="w-full">
-          <Label className="text-xl font-normal">新しいパスワード</Label>
+          <Label className="font-normal text-xl">新しいパスワード</Label>
           <Input
             placeholder="新しいパスワード"
             type="password"
@@ -78,7 +78,7 @@ function Reset() {
           もう一度<strong>新しいパスワード</strong>を入力してください
         </p>
         <div className="w-full">
-          <Label className="text-xl font-normal">新しいパスワード(確認)</Label>
+          <Label className="font-normal text-xl">新しいパスワード(確認)</Label>
           <Input
             placeholder="新しいパスワード(確認)"
             type="password"
@@ -91,7 +91,7 @@ function Reset() {
         <div className="text-center text-red-500">{errorMessage}</div>
 
         <Button
-          className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
+          className="mt-9 mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
           onClick={resetPasswordButton}
         >
           パスワードを変更

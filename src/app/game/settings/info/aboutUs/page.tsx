@@ -1,8 +1,8 @@
-import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import Image from "next/image";
 import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
+import { ChevronLeft } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function GameSettingsInfoAboutUs() {
   const pageTitle = "設定";
@@ -14,7 +14,7 @@ export default function GameSettingsInfoAboutUs() {
         <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
           {pageTitle}
         </h1>
-        <div className="pb-16 pt-20">
+        <div className="pt-20 pb-16">
           <div className="relative mx-6 flex h-[80px] items-center justify-around">
             <div className="absolute left-0">
               <Link href="/game/settings" className="p-0">

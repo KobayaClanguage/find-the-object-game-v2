@@ -1,7 +1,7 @@
 "use client";
 
-import { Suspense } from "react";
 import { Transition } from "@/features/auth/magic-link";
+import { Suspense } from "react";
 
 export default function UpdateEmail() {
   return (

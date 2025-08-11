@@ -1,12 +1,12 @@
 "use client";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import { useState } from "react";
-import { ChevronLeft } from "lucide-react";
 import { logout } from "@/features/auth/auth";
-import { useRouter } from "next/navigation";
 import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function GameSettingsAccountLogout() {
   const pageTitle = "設定";
@@ -34,7 +34,7 @@ export default function GameSettingsAccountLogout() {
         <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
           {pageTitle}
         </h1>
-        <div className="pb-16 pt-20">
+        <div className="pt-20 pb-16">
           <div className="relative mx-6 flex h-[80px] items-center justify-around">
             <div className="absolute left-0">
               <Link href="/game/settings" className="p-0">

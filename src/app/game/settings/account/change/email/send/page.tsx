@@ -1,9 +1,9 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import React from "react";
-import { ChevronLeft } from "lucide-react";
 import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+import React from "react";
 
 export default function GameSettingsAccountChangeEmailSend() {
   const pageTitle = "設定";
@@ -16,7 +16,7 @@ export default function GameSettingsAccountChangeEmailSend() {
           {pageTitle}
         </h1>
 
-        <div className="relative mx-6 flex h-[80px] items-center justify-around pb-16 pt-32">
+        <div className="relative mx-6 flex h-[80px] items-center justify-around pt-32 pb-16">
           <div className="absolute left-0">
             <Link href="/game/settings" className="p-0">
               <ChevronLeft color="#000000" size={50} />
@@ -36,7 +36,7 @@ export default function GameSettingsAccountChangeEmailSend() {
 
           <Button
             asChild
-            className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"
+            className="mt-6 h-14 w-full rounded-none bg-[#0094f4] font-semibold text-2xl text-white"
           >
             <Link href="/auth/login">ログイン画面に戻る</Link>
           </Button>

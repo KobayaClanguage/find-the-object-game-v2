@@ -1,6 +1,6 @@
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import NavigationFooter from "@/features/game/NavigationFooter";
+import Link from "next/link";
 import React from "react";
 
 export default function GameSettingsAccountChangePasswordComplete() {
@@ -12,7 +12,7 @@ export default function GameSettingsAccountChangePasswordComplete() {
       <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
         {pageTitle}
       </h1>
-      <div className="pb-16 pt-20">
+      <div className="pt-20 pb-16">
         <div className="relative mx-6 flex h-[80px] items-center justify-around">
           <h1 className="text-2xl">{pageSubTitle}</h1>
         </div>
@@ -22,7 +22,7 @@ export default function GameSettingsAccountChangePasswordComplete() {
           <p>ログインし直してください。</p>
           <Button
             asChild
-            className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
+            className="mt-9 mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
           >
             <Link href="/auth/login">ログイン画面に戻る</Link>
           </Button>

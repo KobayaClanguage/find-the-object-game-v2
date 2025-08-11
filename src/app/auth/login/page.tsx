@@ -1,14 +1,14 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
-import Link from "next/link";
-import Image from "next/image";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { signinWithEmail } from "@/features/auth/auth";
+import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -59,9 +59,9 @@ export default function LoginPage() {
           height={75}
         />
       </div>
-      <div className="mb-4 mt-10 flex flex-col items-center space-y-2">
-        <h2 className="text-2xl font-bold">オブジェを探せゲーム</h2>
-        <p className="text-xl text-gray-700">ログイン</p>
+      <div className="mt-10 mb-4 flex flex-col items-center space-y-2">
+        <h2 className="font-bold text-2xl">オブジェを探せゲーム</h2>
+        <p className="text-gray-700 text-xl">ログイン</p>
       </div>
 
       <Card className="w-5/6 rounded-none border-2 border-gray-400 py-10">
@@ -97,14 +97,14 @@ export default function LoginPage() {
             <div className="text-center text-red-500">{error_message}</div>
 
             <Button
-              className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"
+              className="mt-6 h-14 w-full rounded-none bg-[#0094f4] font-semibold text-2xl text-white"
               type="submit"
             >
               ログイン
             </Button>
           </form>
 
-          <div className="mt-4 text-center text-sm font-semibold">
+          <div className="mt-4 text-center font-semibold text-sm">
             <Link href={"/auth/reset/password"}>
               パスワードをお忘れの方はこちら
             </Link>
@@ -112,7 +112,7 @@ export default function LoginPage() {
 
           <Button
             asChild
-            className="mt-8 h-14 w-full rounded-none border-[3px] border-[#0094f4] bg-white font-sans text-2xl font-bold text-[#0094f4]"
+            className="mt-8 h-14 w-full rounded-none border-[#0094f4] border-[3px] bg-white font-bold font-sans text-2xl text-[#0094f4]"
           >
             <Link href={"/auth/register"}>新規登録</Link>
           </Button>

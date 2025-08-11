@@ -1,20 +1,20 @@
 "use client";
+import { createDocument, deleteDocument } from "@/features/game/firestore";
+import { auth } from "@/firebase/config";
+import type { FirebaseError } from "firebase/app";
 import {
+  applyActionCode,
+  confirmPasswordReset,
   createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
   deleteUser,
   reauthenticateWithCredential,
+  sendPasswordResetEmail,
+  signInWithEmailAndPassword,
+  signOut,
   updatePassword,
   verifyBeforeUpdateEmail,
-  applyActionCode,
-  sendPasswordResetEmail,
-  confirmPasswordReset,
 } from "firebase/auth";
-import { auth } from "@/firebase/config";
 import { EmailAuthProvider } from "firebase/auth/web-extension";
-import { createDocument, deleteDocument } from "@/features/game/firestore";
-import { FirebaseError } from "firebase/app";
 
 export async function signupWithEmail(email: string, password: string) {
   try {

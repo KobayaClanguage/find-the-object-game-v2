@@ -1,17 +1,17 @@
+import { AuthGuard } from "@/features/auth/authGuard";
 import NavigationFooter from "@/features/game/NavigationFooter";
-import Link from "next/link";
 import {
+  ChevronRight,
   Diamond,
-  Mail,
-  KeyRound,
-  LogOut,
-  Trash2,
+  FileText,
   Gamepad2,
   Info,
-  FileText,
-  ChevronRight,
+  KeyRound,
+  LogOut,
+  Mail,
+  Trash2,
 } from "lucide-react";
-import { AuthGuard } from "@/features/auth/authGuard";
+import Link from "next/link";
 
 export default function GamePage() {
   const pageTitle = "設定";
@@ -23,7 +23,7 @@ export default function GamePage() {
           {pageTitle}
         </h1>
 
-        <div className="mx-auto justify-center pb-24 pt-28">
+        <div className="mx-auto justify-center pt-28 pb-24">
           <div className="mx-auto mb-5 flex w-[90%] items-center">
             <Diamond width={30} height={30} className="mr-5" />
 

@@ -1,14 +1,14 @@
 "use client";
-import Link from "next/link";
-import { ChevronLeft } from "lucide-react";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { changePassword } from "@/features/auth/auth";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
+import { ChevronLeft } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function GameSettingsAccountChangePassword() {
   const pageTitle = "設定";
@@ -47,7 +47,7 @@ export default function GameSettingsAccountChangePassword() {
         <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
           {pageTitle}
         </h1>
-        <div className="pb-16 pt-20">
+        <div className="pt-20 pb-16">
           <div className="relative mx-6 flex h-[80px] items-center justify-around">
             <div className="absolute left-0">
               <Link href="/game/settings" className="p-0">
@@ -62,7 +62,7 @@ export default function GameSettingsAccountChangePassword() {
               確認のため、 <strong>現在のパスワード</strong>を入力してください
             </p>
             <div className="w-full">
-              <Label className="text-xl font-normal">現在のパスワード</Label>
+              <Label className="font-normal text-xl">現在のパスワード</Label>
               <Input
                 placeholder="現在のパスワード"
                 type="password"
@@ -75,7 +75,7 @@ export default function GameSettingsAccountChangePassword() {
               <strong>新しいパスワード</strong>を入力してください。
             </p>
             <div className="w-full">
-              <Label className="text-xl font-normal">新しいパスワード</Label>
+              <Label className="font-normal text-xl">新しいパスワード</Label>
               <Input
                 placeholder="新しいパスワード"
                 type="password"
@@ -88,7 +88,7 @@ export default function GameSettingsAccountChangePassword() {
               もう一度<strong>新しいパスワード</strong>を入力してください
             </p>
             <div className="w-full">
-              <Label className="text-xl font-normal">
+              <Label className="font-normal text-xl">
                 新しいパスワード(確認)
               </Label>
               <Input
@@ -101,7 +101,7 @@ export default function GameSettingsAccountChangePassword() {
             </div>
             <div className="text-center text-red-500">{errorMessage}</div>
             <Button
-              className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
+              className="mt-9 mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
               onClick={submitChangePassword}
             >
               パスワードを変更
