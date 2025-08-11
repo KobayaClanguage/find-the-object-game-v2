@@ -23,7 +23,7 @@ export default function GamePage() {
           {pageTitle}
         </h1>
 
-        <div className="mx-auto justify-center pt-28 pb-24">
+        <div className="mx-auto justify-center pb-24 pt-28">
           <div className="mx-auto mb-5 flex w-[90%] items-center">
             <Diamond width={30} height={30} className="mr-5" />
 

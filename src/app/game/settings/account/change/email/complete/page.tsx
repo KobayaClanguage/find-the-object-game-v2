@@ -61,8 +61,8 @@ export default function GameSettingsAccountChangeEmailComplete() {
           height={75}
         />
       </div>
-      <div className="mt-10 mb-4 flex flex-col items-center space-y-2">
-        <h2 className="font-bold text-2xl">オブジェを探せゲーム</h2>
+      <div className="mb-4 mt-10 flex flex-col items-center space-y-2">
+        <h2 className="text-2xl font-bold">オブジェを探せゲーム</h2>
         <p className="text-2xl text-gray-700">メールアドレス変更</p>
       </div>
       <div className="px-10">
@@ -72,7 +72,7 @@ export default function GameSettingsAccountChangeEmailComplete() {
         <p className="text-2xl">ログインし直してください</p>
         <Button
           asChild
-          className="mt-14 mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
+          className="mb-4 mt-14 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
         >
           <Link href="/auth/login">ログイン画面に戻る</Link>
         </Button>

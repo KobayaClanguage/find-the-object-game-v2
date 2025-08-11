@@ -43,7 +43,7 @@ export default function RegisterPage() {
   return (
     <div className="my-2 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-center space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
       <div className="mb-6 flex flex-col items-center space-y-4 text-center">
-        <h1 className="font-bold font-sans text-2xl">遊び方</h1>
+        <h1 className="font-sans text-2xl font-bold">遊び方</h1>
         <ol className="space-y-2 text-left font-sans text-xl">
           <li className="flex items-center">
             <Diamond size={18} className="m-2" />
@@ -59,9 +59,9 @@ export default function RegisterPage() {
           </li>
         </ol>
       </div>
-      <div className="mt-10 mb-4 flex flex-col items-center space-y-2">
-        <h2 className="font-bold text-2xl">オブジェを探せゲーム</h2>
-        <p className="text-gray-700 text-xl">新規登録</p>
+      <div className="mb-4 mt-10 flex flex-col items-center space-y-2">
+        <h2 className="text-2xl font-bold">オブジェを探せゲーム</h2>
+        <p className="text-xl text-gray-700">新規登録</p>
       </div>
 
       <Card className="w-5/6 rounded-none border-2 border-gray-400 py-10">
@@ -120,7 +120,7 @@ export default function RegisterPage() {
             <div className="text-center text-red-500">{error_message}</div>
 
             <Button
-              className={`mt-6 h-14 w-full rounded-none font-semibold text-2xl ${
+              className={`mt-6 h-14 w-full rounded-none text-2xl font-semibold ${
                 isTermsAccepted
                   ? "cursor-pointer bg-[#0094f4] text-white"
                   : "cursor-not-allowed bg-gray-400 text-gray-200"
@@ -134,7 +134,7 @@ export default function RegisterPage() {
 
           <Button
             asChild
-            className="mt-8 h-14 w-full rounded-none border-[#0094f4] border-[3px] bg-white font-bold font-sans text-2xl text-[#0094f4]"
+            className="mt-8 h-14 w-full rounded-none border-[3px] border-[#0094f4] bg-white font-sans text-2xl font-bold text-[#0094f4]"
           >
             <Link href={"/auth/login"}>ログイン</Link>
           </Button>

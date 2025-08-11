@@ -8,7 +8,7 @@ export default function AuthRegisterTermsOfUse() {
   const pageTitle = "利用規約";
   return (
     <div className="relative h-full">
-      <div className="pt-20 pb-16">
+      <div className="pb-16 pt-20">
         <div className="relative mx-6 flex h-[80px] items-center justify-around">
           <div className="absolute left-0">
             <Link href="/auth/register" className="p-0">

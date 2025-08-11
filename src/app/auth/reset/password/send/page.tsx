@@ -29,8 +29,8 @@ export default function AuthResetPasswordSend() {
           height={75}
         />
       </div>
-      <div className="mt-10 mb-4 flex flex-col items-center space-y-2">
-        <h1 className="font-bold text-2xl">オブジェを探せゲーム</h1>
+      <div className="mb-4 mt-10 flex flex-col items-center space-y-2">
+        <h1 className="text-2xl font-bold">オブジェを探せゲーム</h1>
         <h2 className="text-2xl text-gray-700">パスワード再設定</h2>
       </div>
       <div className="flex flex-col items-center justify-around space-y-10 px-10">

@@ -33,7 +33,7 @@ export default function GameSettingsAccountDelete() {
         <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
           {pageTitle}
         </h1>
-        <div className="pt-20 pb-16">
+        <div className="pb-16 pt-20">
           <div className="relative mx-6 flex h-[80px] items-center justify-around">
             <div className="absolute left-0">
               <Link href="/game/settings" className="p-0">
@@ -51,7 +51,7 @@ export default function GameSettingsAccountDelete() {
                 確認のため、<b>パスワード</b>を入力してください。
               </p>
               <div className="mb-8">
-                <Label className="font-normal text-xl">パスワード</Label>
+                <Label className="text-xl font-normal">パスワード</Label>
                 <Input
                   placeholder="パスワード"
                   type="password"
@@ -63,7 +63,7 @@ export default function GameSettingsAccountDelete() {
             </div>
             <div className="text-center text-red-500">{errorMessage}</div>
             <Button
-              className="mt-9 mb-4 h-14 w-full rounded-none bg-[#ff0000] text-2xl"
+              className="mb-4 mt-9 h-14 w-full rounded-none bg-[#ff0000] text-2xl"
               onClick={deleteButton}
             >
               アカウント削除

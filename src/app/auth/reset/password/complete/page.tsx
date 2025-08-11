@@ -29,15 +29,15 @@ export default function AuthResetPasswordComplete() {
           height={75}
         />
       </div>
-      <div className="mt-10 mb-4 flex flex-col items-center space-y-2">
-        <h2 className="font-bold text-2xl">オブジェを探せゲーム</h2>
+      <div className="mb-4 mt-10 flex flex-col items-center space-y-2">
+        <h2 className="text-2xl font-bold">オブジェを探せゲーム</h2>
         <p className="text-2xl text-gray-700">パスワード再設定</p>
       </div>
       <div className="px-10">
         <p className="text-2xl">パスワードの再設定が完了しました。</p>
         <Button
           asChild
-          className="mt-14 mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
+          className="mb-4 mt-14 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
         >
           <Link href="/auth/login">ログイン画面に戻る</Link>
         </Button>

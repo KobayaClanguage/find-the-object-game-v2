@@ -35,7 +35,7 @@ export default function GamePage() {
         <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
           {pageTitle}
         </h1>
-        <div className="pt-24 pb-16">
+        <div className="pb-16 pt-24">
           <div className="flex items-center justify-around p-4">
             <Image
               src={"/images/nukaLogo.png"}
@@ -60,7 +60,7 @@ export default function GamePage() {
           {isClear && (
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
               <div className="rounded-2xl bg-white p-8 text-center shadow-xl">
-                <h2 className="mb-4 font-bold text-2xl">🎉 おめでとう！ 🎉</h2>
+                <h2 className="mb-4 text-2xl font-bold">🎉 おめでとう！ 🎉</h2>
                 <p className="mb-4">すべてのオブジェを見つけました！</p>
                 <button
                   onClick={() => setIsClear(false)}
@@ -73,7 +73,7 @@ export default function GamePage() {
             </div>
           )}
 
-          <h2 className="w-full text-center font-bold text-lg">オブジェ一覧</h2>
+          <h2 className="w-full text-center text-lg font-bold">オブジェ一覧</h2>
           {/* スタンプ一覧 */}
           <div className="grid grid-cols-2 gap-2 p-4">
             {stamps.map((item) => (

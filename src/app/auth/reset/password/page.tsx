@@ -47,8 +47,8 @@ export default function AuthResetPassword() {
           height={75}
         />
       </div>
-      <div className="mt-10 mb-4 flex flex-col items-center space-y-2">
-        <h1 className="font-bold text-2xl">オブジェを探せゲーム</h1>
+      <div className="mb-4 mt-10 flex flex-col items-center space-y-2">
+        <h1 className="text-2xl font-bold">オブジェを探せゲーム</h1>
         <h2 className="text-2xl text-gray-700">パスワード再設定</h2>
       </div>
       <div className="flex flex-col items-center justify-around space-y-6 px-10">
@@ -56,7 +56,7 @@ export default function AuthResetPassword() {
           登録したメールアドレスを入力してください。
         </p>
         <div className="w-full">
-          <Label className="font-normal text-xl">メールアドレス</Label>
+          <Label className="text-xl font-normal">メールアドレス</Label>
           <Input
             placeholder="ID(メールアドレス)"
             className="h-10 rounded-none border-black shadow-none"
@@ -67,14 +67,14 @@ export default function AuthResetPassword() {
         <p>パスワード再設定用のURLをお送りします。</p>
         <div className="text-center text-red-500">{errorMessage}</div>
         <Button
-          className="mt-9 mb-4 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
+          className="mb-4 mt-9 h-14 w-full rounded-none bg-[#0094f4] text-2xl"
           onClick={sendEmailButton}
         >
           次へ
         </Button>
         <Button
           asChild
-          className="mt-9 mb-4 h-14 w-full rounded-none border-[#0094f4] border-[3px] bg-white text-2xl text-[#0094f4] shadow-none"
+          className="mb-4 mt-9 h-14 w-full rounded-none border-[3px] border-[#0094f4] bg-white text-2xl text-[#0094f4] shadow-none"
         >
           <Link href={"/auth/login"}>ログイン</Link>
         </Button>

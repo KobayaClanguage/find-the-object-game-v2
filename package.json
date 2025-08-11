@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "bunx @biomejs/biome lint",
+    "lint": "bun x next lint --fix",
     "check": "bunx @biomejs/biome check --write",
     "prepare": "husky"
   },
@@ -43,7 +43,8 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "bunx @biomejs/biome check --write"
+      "bunx run check",
+      "bun run lint --file"
     ]
   }
 }

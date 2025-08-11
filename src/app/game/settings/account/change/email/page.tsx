@@ -47,7 +47,7 @@ export default function GameSettingsAccountChangeEmail() {
           {pageTitle}
         </h1>
 
-        <div className="pt-20 pb-16">
+        <div className="pb-16 pt-20">
           <div className="relative mx-6 flex h-[80px] items-center justify-around">
             <div className="absolute left-0">
               <Link href="/game/settings" className="p-0">
@@ -63,7 +63,7 @@ export default function GameSettingsAccountChangeEmail() {
             確認のため、<b>パスワード</b>を入力してください。
           </p>
           <div className="mb-8">
-            <Label className="font-normal text-xl">パスワード</Label>
+            <Label className="text-xl font-normal">パスワード</Label>
             <Input
               placeholder="パスワード"
               type="password"
@@ -77,7 +77,7 @@ export default function GameSettingsAccountChangeEmail() {
             <b>新しいメールアドレス</b>を入力してください。
           </p>
           <div className="mb-8">
-            <Label className="font-normal text-xl">新しいメールアドレス</Label>
+            <Label className="text-xl font-normal">新しいメールアドレス</Label>
             <Input
               placeholder="新しいメールアドレス"
               className="h-10 rounded-none border-black shadow-none"
@@ -90,7 +90,7 @@ export default function GameSettingsAccountChangeEmail() {
             確認のため、もう一度<b>新しいメールアドレス</b>を入力してください。
           </p>
           <div className="mb-8">
-            <Label className="font-normal text-xl">
+            <Label className="text-xl font-normal">
               新しいメールアドレス（確認）
             </Label>
             <Input
@@ -102,7 +102,7 @@ export default function GameSettingsAccountChangeEmail() {
           </div>
           <div className="text-center text-red-500">{errorMessage}</div>
           <Button
-            className="mt-6 h-14 w-full rounded-none bg-[#0094f4] font-semibold text-2xl text-white"
+            className="mt-6 h-14 w-full rounded-none bg-[#0094f4] text-2xl font-semibold text-white"
             onClick={sendEmail}
           >
             確認メールを送信
