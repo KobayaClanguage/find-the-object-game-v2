@@ -1,12 +1,12 @@
 'use client';
-import { Button } from '@/components/ui/button';
-import { logout } from '@/features/auth/auth';
-import { AuthGuard } from '@/features/auth/authGuard';
-import NavigationFooter from '@/features/game/NavigationFooter';
 import { ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { Button } from '@/components/ui/button';
+import { logout } from '@/features/auth/auth';
+import { AuthGuard } from '@/features/auth/authGuard';
+import NavigationFooter from '@/features/game/NavigationFooter';
 
 export default function GameSettingsAccountLogout() {
   const pageTitle = '設定';

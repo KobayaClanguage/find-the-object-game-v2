@@ -1,7 +1,6 @@
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import NavigationFooter from '@/features/game/NavigationFooter';
-import Link from 'next/link';
-import React from 'react';
 
 export default function GameSettingsAccountChangePasswordComplete() {
   const pageTitle = '設定';

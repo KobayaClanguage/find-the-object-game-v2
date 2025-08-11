@@ -1,8 +1,8 @@
+import { ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
 import { AuthGuard } from '@/features/auth/authGuard';
 import NavigationFooter from '@/features/game/NavigationFooter';
 import TermsOfUse from '@/features/game/settings/info/TermsOfUse';
-import { ChevronLeft } from 'lucide-react';
-import Link from 'next/link';
 
 export default function GameSettingsInfoTermsOfUse() {
   const pageTitle = '利用規約';

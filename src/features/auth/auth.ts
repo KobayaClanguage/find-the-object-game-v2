@@ -1,6 +1,4 @@
 'use client';
-import { createDocument, deleteDocument } from '@/features/game/firestore';
-import { auth } from '@/firebase/config';
 import type { FirebaseError } from 'firebase/app';
 import {
   applyActionCode,
@@ -15,6 +13,8 @@ import {
   verifyBeforeUpdateEmail,
 } from 'firebase/auth';
 import { EmailAuthProvider } from 'firebase/auth/web-extension';
+import { createDocument, deleteDocument } from '@/features/game/firestore';
+import { auth } from '@/firebase/config';
 
 export async function signupWithEmail(email: string, password: string) {
   try {

@@ -1,9 +1,8 @@
 'use client';
-import { stampIDs } from '@/features/game/stampData';
-import { auth } from '@/firebase/config';
-import { db } from '@/firebase/config';
 import { doc, updateDoc } from 'firebase/firestore';
 import jsQR from 'jsqr';
+import { stampIDs } from '@/features/game/stampData';
+import { auth, db } from '@/firebase/config';
 
 export async function ScanQR(
   video: HTMLVideoElement,

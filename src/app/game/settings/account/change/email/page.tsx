@@ -1,15 +1,15 @@
 'use client';
 
+import { ChevronLeft } from 'lucide-react';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { sendChangeEmail } from '@/features/auth/auth';
 import { AuthGuard } from '@/features/auth/authGuard';
 import NavigationFooter from '@/features/game/NavigationFooter';
-import { ChevronLeft } from 'lucide-react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { useState } from 'react';
 
 export default function GameSettingsAccountChangeEmail() {
   const pageTitle = '設定';

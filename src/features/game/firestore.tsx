@@ -1,5 +1,5 @@
-import { db } from '@/firebase/config';
 import { deleteDoc, doc, setDoc } from 'firebase/firestore';
+import { db } from '@/firebase/config';
 export async function createDocument(uid: string) {
   try {
     const docRef = doc(db, 'game_progress', uid);

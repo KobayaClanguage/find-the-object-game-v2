@@ -1,8 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
-  "organizeImports": {
-    "enabled": true
-  },
+  "$schema": "https://biomejs.dev/schemas/2.1.4/schema.json",
   "formatter": {
     "enabled": true,
     "formatWithErrors": false,
@@ -40,7 +37,8 @@
     }
   },
   "files": {
-    "ignore": [
+    "includes": ["src/**"],
+    "experimentalScannerIgnores": [
       "node_modules",
       "public/**",
       ".next/**",
@@ -59,7 +57,7 @@
   },
   "overrides": [
     {
-      "include": [
+      "includes": [
         "*.ts",
         "*.tsx",
         "*.js",

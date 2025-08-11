@@ -1,7 +1,7 @@
 'use client';
+import { doc, getDoc } from 'firebase/firestore';
 import { stampIDs, stampName } from '@/features/game/stampData';
 import { db } from '@/firebase/config';
-import { doc, getDoc } from 'firebase/firestore';
 
 export type StampInfo = {
   id: number;

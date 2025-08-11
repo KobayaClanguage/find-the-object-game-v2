@@ -1,5 +1,3 @@
-import { AuthGuard } from '@/features/auth/authGuard';
-import NavigationFooter from '@/features/game/NavigationFooter';
 import {
   ChevronRight,
   Diamond,
@@ -12,6 +10,8 @@ import {
   Trash2,
 } from 'lucide-react';
 import Link from 'next/link';
+import { AuthGuard } from '@/features/auth/authGuard';
+import NavigationFooter from '@/features/game/NavigationFooter';
 
 export default function GamePage() {
   const pageTitle = '設定';

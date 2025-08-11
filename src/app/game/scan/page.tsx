@@ -1,9 +1,9 @@
 'use client';
+import { useRouter } from 'next/navigation';
+import { useEffect, useRef, useState } from 'react';
 import { AuthGuard } from '@/features/auth/authGuard';
 import NavigationFooter from '@/features/game/NavigationFooter';
 import { ScanQR } from '@/features/game/scan';
-import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
 
 export default function GameScan() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);

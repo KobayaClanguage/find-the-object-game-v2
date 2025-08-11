@@ -1,12 +1,12 @@
 'use client';
 
+import Image from 'next/image';
+import { useRouter, useSearchParams } from 'next/navigation';
+import { Suspense, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { resetPassword } from '@/features/auth/auth';
-import Image from 'next/image';
-import { useRouter, useSearchParams } from 'next/navigation';
-import { Suspense, useState } from 'react';
 
 function Reset() {
   const [errorMessage, setErrorMessage] = useState('');

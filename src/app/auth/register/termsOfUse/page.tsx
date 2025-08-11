@@ -1,6 +1,6 @@
-import TermsOfUse from '@/features/game/settings/info/TermsOfUse';
 import { ChevronLeft } from 'lucide-react';
 import Link from 'next/link';
+import TermsOfUse from '@/features/game/settings/info/TermsOfUse';
 
 // アカウント登録時にユーザが閲覧するページ
 // AuthGuardは不要
