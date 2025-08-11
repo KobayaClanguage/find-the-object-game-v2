@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "bunx @biomejs/biome lint ./src",
-    "check": "bunx @biomejs/biome check --apply ./src",
+    "check": "bunx @biomejs/biome check --write ./src",
     "prepare": "husky"
   },
   "dependencies": {
@@ -43,7 +43,7 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "bunx @biomejs/biome check --apply"
+      "bunx @biomejs/biome check --write"
     ]
   }
 }
