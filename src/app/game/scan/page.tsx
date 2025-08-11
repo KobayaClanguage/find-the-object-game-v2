@@ -43,8 +43,8 @@ export default function GameScan() {
         </h1>
 
         {showPopup && (
-          <div className="popup-overlay fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="popup rounded bg-white p-6 text-center shadow-md">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div className="rounded bg-white p-6 text-center shadow-md">
               <p>{detectedName} を読み取りました！</p>
               <button
                 onClick={handleClosePopup}
