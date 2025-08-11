@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "prepare": "husky",
-    "fmt": "biome format --write"
+    "check": "bunx @biomejs/biome check --write ./src"
   },
   "dependencies": {
     "@radix-ui/react-label": "^2.1.2",
