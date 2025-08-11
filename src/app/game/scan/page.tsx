@@ -43,8 +43,8 @@ export default function GameScan() {
         </h1>
 
         {showPopup && (
-          <div className="popup-overlay fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="popup bg-white p-6 rounded shadow-md text-center">
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div className="rounded bg-white p-6 text-center shadow-md">
               <p>{detectedName} を読み取りました！</p>
               <button
                 onClick={handleClosePopup}
@@ -56,7 +56,7 @@ export default function GameScan() {
           </div>
         )}
 
-        <div className="mt-20 [height:calc(100vh_-_160px)] flex flex-col items-center justify-center">
+        <div className="mt-20 flex flex-col items-center justify-center [height:calc(100vh_-_160px)]">
           <video
             className="object-fill"
             id="video"
