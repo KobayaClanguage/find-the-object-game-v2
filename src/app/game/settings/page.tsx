@@ -1,17 +1,17 @@
-import NavigationFooter from "@/features/game/NavigationFooter";
-import Link from "next/link";
 import {
+  ChevronRight,
   Diamond,
-  Mail,
-  KeyRound,
-  LogOut,
-  Trash2,
+  FileText,
   Gamepad2,
   Info,
-  FileText,
-  ChevronRight,
+  KeyRound,
+  LogOut,
+  Mail,
+  Trash2,
 } from "lucide-react";
+import Link from "next/link";
 import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
 
 export default function GamePage() {
   const pageTitle = "設定";

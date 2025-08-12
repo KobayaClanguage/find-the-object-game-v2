@@ -1,12 +1,12 @@
 "use client";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import { fetchStamps, StampInfo } from "@/features/game/stamp";
+import { onAuthStateChanged } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "@/firebase/config";
 import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
+import { fetchStamps, type StampInfo } from "@/features/game/stamp";
+import { auth } from "@/firebase/config";
 
 export default function GamePage() {
   const pageTitle = "ホーム";
@@ -64,7 +64,8 @@ export default function GamePage() {
                 <p className="mb-4">すべてのオブジェを見つけました！</p>
                 <button
                   onClick={() => setIsClear(false)}
-                  className="mt-4 rounded bg-blue-500 px-6 py-2 text-white hover:bg-blue-600 "
+                  className="mt-4 rounded bg-blue-500 px-6 py-2 text-white hover:bg-blue-600"
+                  type="button"
                 >
                   閉じる
                 </button>

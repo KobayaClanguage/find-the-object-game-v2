@@ -1,9 +1,8 @@
 "use client";
-import jsQR from "jsqr";
-import { auth } from "@/firebase/config";
-import { db } from "@/firebase/config";
 import { doc, updateDoc } from "firebase/firestore";
+import jsQR from "jsqr";
 import { stampIDs } from "@/features/game/stampData";
+import { auth, db } from "@/firebase/config";
 
 export async function ScanQR(
   video: HTMLVideoElement,
@@ -94,7 +93,9 @@ export async function ScanQR(
   return () => {
     // アンマウント時の処理
     if (stream) {
-      stream.getTracks().forEach((track) => track.stop());
+      for (const track of stream.getTracks()) {
+        track.stop();
+      }
     }
     if (intervalId) clearInterval(intervalId);
     if (animationFrameId) cancelAnimationFrame(animationFrameId);

@@ -1,5 +1,5 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
 
   "vcs": {
     "enabled": false,
@@ -8,8 +8,21 @@
   },
 
   "files": {
-    "ignoreUnknown": false,
-    "ignore": ["node_modules", "public/**", ".next/**", "dist/**"]
+    "includes": [
+      "src/app/**",
+      "src/features/**",
+      "src/firebase/**",
+      "src/lib/**",
+      "!src/components/ui"
+    ],
+    "ignoreUnknown": false
+  },
+  "assist": {
+    "actions": {
+      "source": {
+        "organizeImports": "on"
+      }
+    }
   },
 
   "formatter": {
@@ -17,10 +30,6 @@
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf"
-  },
-
-  "organizeImports": {
-    "enabled": true
   },
 
   "linter": {
@@ -32,8 +41,7 @@
           "level": "error",
           "fix": "safe",
           "options": {
-            "attributes": ["className"],
-            "functions": ["cn"]
+            "attributes": ["className"]
           }
         }
       }

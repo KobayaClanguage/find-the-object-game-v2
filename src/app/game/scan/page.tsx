@@ -1,9 +1,9 @@
 "use client";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import { ScanQR } from "@/features/game/scan";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
+import { ScanQR } from "@/features/game/scan";
 
 export default function GameScan() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -17,6 +17,8 @@ export default function GameScan() {
   };
 
   useEffect(() => {
+    if (!canvasReady) return;
+
     const video = document.getElementById("video") as HTMLVideoElement;
     let stopScan: (() => void) | null = null;
 
@@ -49,6 +51,7 @@ export default function GameScan() {
               <button
                 onClick={handleClosePopup}
                 className="mt-4 rounded bg-blue-500 px-4 py-2 text-white"
+                type="button"
               >
                 閉じる
               </button>
@@ -63,14 +66,14 @@ export default function GameScan() {
             autoPlay
             muted
             playsInline
-          ></video>
+          />
           <canvas
             className="hidden"
             ref={(el) => {
               canvasRef.current = el;
-              if (el) setCanvasReady(true); // DOMがついたタイミングでフラグを立てる
+              if (el) setCanvasReady(true);
             }}
-          ></canvas>
+          />
         </div>
 
         <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">

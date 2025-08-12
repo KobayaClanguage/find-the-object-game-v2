@@ -1,11 +1,11 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useRef, useState } from "react";
+import { Button } from "@/components/ui/button";
 import { changeEmail } from "@/features/auth/auth";
-import { useEffect, useRef, Suspense, useState } from "react";
 
 function ChangeEmail() {
   const urlParams = useSearchParams();

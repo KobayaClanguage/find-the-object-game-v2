@@ -1,15 +1,11 @@
-import { AuthGuard } from "@/features/auth/authGuard";
+import { ChevronLeft, Diamond, MapPin, ScanQrCode, Trophy } from "lucide-react";
 import Link from "next/link";
-import { ChevronLeft, Diamond, ScanQrCode, Trophy, MapPin } from "lucide-react";
+import { AuthGuard } from "@/features/auth/authGuard";
 import NavigationFooter from "@/features/game/NavigationFooter";
 
 export default function GameSettingsInfoHowToPlay() {
   const pageTitle = "設定";
   const pageSubTitle = "遊び方";
-
-  const TITLE_BAR_HEIGHT = 80; // タイトルバーの縦幅 (px)
-  const NAVIGATION_BAR_HEIGHT = 74; // ナビゲーションバーの縦幅 (px)
-  const STAMP_TITLE_HEIGHT = 80; // スタンプ名タイトルの縦幅 (px)
 
   return (
     <AuthGuard>
@@ -26,11 +22,9 @@ export default function GameSettingsInfoHowToPlay() {
             </div>
             <h2 className="text-2xl">{pageSubTitle}</h2>
           </div>
-          <div
-            className={`h-[calc(100vh-${TITLE_BAR_HEIGHT}px-${NAVIGATION_BAR_HEIGHT}px-${STAMP_TITLE_HEIGHT}px)] relative mt-4 flex w-full flex-col items-center justify-start px-3 text-xl space-y-10`}
-          >
-            <div className="w-full text-left space-x-6 space-y-2">
-              <h1 className="font-bold text-2xl">ゲームの概要</h1>
+          <div className="px-5">
+            <div className="w-full space-x-6 space-y-2 text-left">
+              <h1 className="text-2xl font-bold">ゲームの概要</h1>
               <ul className="space-y-6">
                 <li className="flex items-center space-x-2">
                   <Diamond size={20} />
@@ -46,12 +40,11 @@ export default function GameSettingsInfoHowToPlay() {
                 </li>
               </ul>
             </div>
-            <div>
-              <h1 className="font-bold text-2xl mb-4">ゲームの進め方</h1>
+            <div className="mt-5">
+              <h1 className="mb-4 text-2xl font-bold">ゲームの進め方</h1>
               <ul className="space-y-6">
                 <li className="flex items-center space-x-4">
-                  {/* TODO: アイコン追加 */}
-                  <div className="inline-flex items-center justify-center rounded-lg bg-gray-200 p-3 size-16 flex-shrink-0">
+                  <div className="inline-flex size-16 shrink-0 items-center justify-center rounded-lg bg-gray-200 p-3">
                     <MapPin />
                   </div>
                   <div>
@@ -64,7 +57,7 @@ export default function GameSettingsInfoHowToPlay() {
                   </div>
                 </li>
                 <li className="flex items-center space-x-4">
-                  <div className="inline-flex items-center justify-center rounded-lg bg-gray-200 p-3 size-16 flex-shrink-0">
+                  <div className="inline-flex size-16 shrink-0 items-center justify-center rounded-lg bg-gray-200 p-3">
                     <ScanQrCode />
                   </div>
                   <div>
@@ -76,7 +69,7 @@ export default function GameSettingsInfoHowToPlay() {
                   </div>
                 </li>
                 <li className="flex items-center space-x-4">
-                  <div className="inline-flex items-center justify-center rounded-lg bg-gray-200 p-3 size-16 flex-shrink-0">
+                  <div className="inline-flex size-16 shrink-0 items-center justify-center rounded-lg bg-gray-200 p-3">
                     <Trophy />
                   </div>
                   <div>

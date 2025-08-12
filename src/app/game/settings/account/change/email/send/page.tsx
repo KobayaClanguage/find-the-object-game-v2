@@ -1,9 +1,8 @@
+import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import React from "react";
-import { ChevronLeft } from "lucide-react";
 import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
 
 export default function GameSettingsAccountChangeEmailSend() {
   const pageTitle = "設定";

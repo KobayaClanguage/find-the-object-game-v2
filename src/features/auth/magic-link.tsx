@@ -1,6 +1,5 @@
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useSearchParams } from "next/navigation";
 
 export function Transition() {
   const router = useRouter();

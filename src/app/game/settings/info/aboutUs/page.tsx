@@ -1,8 +1,8 @@
-import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import NavigationFooter from "@/features/game/NavigationFooter";
 import Image from "next/image";
+import Link from "next/link";
 import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
 
 export default function GameSettingsInfoAboutUs() {
   const pageTitle = "設定";

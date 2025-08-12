@@ -1,14 +1,14 @@
 "use client";
-import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
-import NavigationFooter from "@/features/game/NavigationFooter";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { changePassword } from "@/features/auth/auth";
-import { useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { changePassword } from "@/features/auth/auth";
 import { AuthGuard } from "@/features/auth/authGuard";
+import NavigationFooter from "@/features/game/NavigationFooter";
 
 export default function GameSettingsAccountChangePassword() {
   const pageTitle = "設定";
@@ -20,7 +20,7 @@ export default function GameSettingsAccountChangePassword() {
   const router = useRouter();
 
   const submitChangePassword = async () => {
-    if (newPassword == newPasswordConfirm) {
+    if (newPassword === newPasswordConfirm) {
       changePassword(nowPassword, newPassword)
         .then((result) => {
           if (result.success) {
