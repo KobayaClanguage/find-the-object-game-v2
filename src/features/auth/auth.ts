@@ -10,10 +10,62 @@ import {
   applyActionCode,
   sendPasswordResetEmail,
   confirmPasswordReset,
+  signInAnonymously,
+  linkWithCredential,
+  sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "@/firebase/config";
 import { EmailAuthProvider } from "firebase/auth/web-extension";
 import { createDocument, deleteDocument } from "@/features/game/firestore";
+
+export async function Anonymously() {
+  try {
+    const signInResult = await signInAnonymously(auth);
+    const result = await createDocument(signInResult.user.uid);
+    if (!result) {
+      return {
+        success: false,
+        errorMessage: "匿名アカウント作成に失敗しました",
+      };
+    }
+    return { success: true };
+  } catch (error) {
+    console.error("匿名アカウント作成エラー:", error);
+    return { success: false, errorMessage: "匿名アカウント作成に失敗しました" };
+  }
+}
+
+export async function sendLinkEmail(password: string, email: string) {
+  try {
+    const user = auth.currentUser;
+
+    if (!user || !user.isAnonymous) {
+      throw new Error("匿名ログインしているユーザーでないため、紐づけ不可");
+    }
+
+    const credential = EmailAuthProvider.credential(email, password);
+    const linkedUserCredential = await linkWithCredential(user, credential);
+    await sendEmailVerification(linkedUserCredential.user);
+    return { success: true };
+  } catch {
+    return { success: false, errorMessage: "確認メールの送信に失敗しました" };
+  }
+}
+
+export async function linkEmail(actionCode: string) {
+  try {
+    await applyActionCode(auth, actionCode);
+    return {
+      success: true,
+      resultMessage: "メールアドレスの連携が完了しました",
+    };
+  } catch {
+    return {
+      success: false,
+      resultMessage: "メールアドレスの連携に失敗しました",
+    };
+  }
+}
 
 export async function signupWithEmail(email: string, password: string) {
   try {

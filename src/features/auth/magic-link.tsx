@@ -17,6 +17,8 @@ export function Transition() {
       );
     } else if (mode === "resetPassword") {
       router.push(`/auth/reset/password/register?oobCode=${oobCode}`);
+    } else if (mode === "verifyEmail") {
+      router.push(`/auth/verify/?oobCode=${oobCode}`);
     }
   });
   return (
