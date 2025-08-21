@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "bun x next lint --fix",
-    "check": "bunx @biomejs/biome check --write",
+    "check": "bun x @biomejs/biome check --write",
     "prepare": "husky"
   },
   "dependencies": {

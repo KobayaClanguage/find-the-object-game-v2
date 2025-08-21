@@ -109,7 +109,7 @@ export default function RegisterPage() {
                 className="cursor-pointer text-sm"
               >
                 <Link
-                  href="/auth/register/termsOfUse"
+                  href="/unauth/info/termsOfUse"
                   className="text-[#0094f4] hover:underline"
                 >
                   利用規約
