@@ -1,7 +1,7 @@
 import { X } from "lucide-react";
 import Image from "next/image";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
@@ -50,15 +50,16 @@ export default function Home() {
           className="h-16 rounded-full bg-[#0094F4] py-3 text-xl font-bold text-white shadow-md transition-transform hover:scale-105 active:scale-95"
           asChild
         >
-          <Link href={"/game/stamp"}>はじめる</Link>
+          {/* TODO: アカウント登録画面にリンクを貼り替える */}
+          <Link href={"/preparation"}>はじめる</Link>
         </Button>
         <Button
           type="button"
           className="h-16 rounded-full border-2 border-[#0094F4] bg-white py-3 text-xl font-bold text-blue-500 shadow-md transition-transform hover:scale-105 active:scale-95"
           asChild
         >
-          {/* TODO: 認証が終わっていなくても遊び方が見れるように遊び方コンポーネントを切り出す */}
-          <Link href={"/#howToPlay"}>遊び方</Link>
+          {/* TODO: 遊び方ページの実装 */}
+          <Link href={"/preparation"}>遊び方</Link>
         </Button>
       </div>
     </main>
