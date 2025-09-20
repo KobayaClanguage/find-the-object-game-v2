@@ -47,7 +47,20 @@ export default function GameScan() {
         {showPopup && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div className="rounded bg-white p-6 text-center shadow-md">
-              <p>{detectedName} を読み取りました！</p>
+              <p className="text-2xl">{detectedName} を見つけた！</p>
+              <video
+                src="/game/KarutaVideo/a.mp4"
+                controls
+                className="mt-4 h-96"
+              >
+                <track
+                  src="/game/KarutaVideo/a.vtt"
+                  kind="captions"
+                  srcLang="ja"
+                  label="Japanese"
+                  default
+                />
+              </video>
               <button
                 onClick={handleClosePopup}
                 className="mt-4 rounded bg-blue-500 px-4 py-2 text-white"
@@ -83,3 +96,4 @@ export default function GameScan() {
     </AuthGuard>
   );
 }
+("C:\Users\HKoba\main\find-the-object-game-v2\public\game\KarutaVideo\a.mp4");
