@@ -1,6 +1,5 @@
 "use client";
 import { doc, getDoc } from "firebase/firestore";
-import { stampIDs, stampName } from "@/features/game/stampData";
 import { db } from "@/firebase/config";
 
 export type StampInfo = {
@@ -14,14 +13,18 @@ export async function fetchStamps(uid: string) {
   const docRef = doc(db, "game_progress", uid);
   const docSnap = await getDoc(docRef);
 
+  const QRNameDocRef = doc(db, "QRcode", "UUID-Name");
+  const QRNameDocSnap = await getDoc(QRNameDocRef);
+  const QRName = Object.values(QRNameDocSnap.data() ?? {});
+
   const stamps: StampInfo[] = [];
   let isClear = false;
 
-  for (let i = 0; i < stampIDs.length; i++) {
+  for (let i = 0; i < QRName.length; i++) {
     stamps.push({
       id: i,
-      name: stampName[i],
-      isCollected: docSnap.data()?.[stampIDs[i]] ?? false,
+      name: QRName[i],
+      isCollected: docSnap.data()?.[QRName[i]] ?? false,
       mapUrl: "/images/game/stamp-map-sample.png",
     });
   }
