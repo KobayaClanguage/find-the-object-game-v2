@@ -9,23 +9,33 @@ export type StampInfo = {
   mapUrl: string;
 };
 
-export async function fetchStamps(uid: string) {
-  const docRef = doc(db, "game_progress", uid);
-  const docSnap = await getDoc(docRef);
+export async function fetchStamps(uid: string) {  
+  // FirebaseのGameProgressからIDごとにTrue/Falseを取得
+  const GameProgressDocRef = doc(db, "game_progress", uid);
+  const GameProgressDocSnap = await getDoc(GameProgressDocRef);
+  const GameProgress = GameProgressDocSnap.data() as { [key: string]: boolean };
+  console.log("GameProgress:", GameProgress); // IDごとのTrue/Falseを取得
 
-  const QRNameDocRef = doc(db, "QRcode", "UUID-Name");
-  const QRNameDocSnap = await getDoc(QRNameDocRef);
-  const QRName = Object.values(QRNameDocSnap.data() ?? {});
+  const NameMasterDocRef = doc(db, "ObjectInfo", "NameMaster");
+  const NamaMasterDocSnap = await getDoc(NameMasterDocRef);
+  const ObjectName = NamaMasterDocSnap.data() as { [key: string]: string };
+  console.log("ObjectName:", ObjectName); // IDごとのオブジェ名を取得
+
+  const MapMasterDocRef = doc(db, "ObjectInfo", "MapMaster");
+  const MapMasterDocSnap = await getDoc(MapMasterDocRef);
+  const ObjectMap = MapMasterDocSnap.data() as { [key: string]: string };
+  console.log("ObjectMap:", ObjectMap); // IDごとのMapURLを取得
+
 
   const stamps: StampInfo[] = [];
   let isClear = false;
-
-  for (let i = 0; i < QRName.length; i++) {
+  console.log("Object keys length:", Object.keys(GameProgress).length);
+  for (let i = 1; i <= Object.keys(GameProgress).length; i++) {
     stamps.push({
       id: i,
-      name: QRName[i],
-      isCollected: docSnap.data()?.[QRName[i]] ?? false,
-      mapUrl: "/images/game/stamp-map-sample.png",
+      name: ObjectName[i],
+      isCollected: GameProgress[i] ?? false,
+      mapUrl: ObjectMap[i],
     });
   }
   if (stamps.every((stamp) => stamp.isCollected === true)) {
