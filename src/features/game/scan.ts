@@ -1,13 +1,13 @@
 "use client";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, getDoc, updateDoc } from "firebase/firestore";
 import jsQR from "jsqr";
-import { stampIDs } from "@/features/game/stampData";
 import { auth, db } from "@/firebase/config";
 
 export async function ScanQR(
   video: HTMLVideoElement,
   canvasRef: HTMLCanvasElement | null,
   onDetected: (name: string) => void,
+  onDetectedVideoFileName: (fileName: string) => void,
 ): Promise<() => void> {
   const MAX_SCREEN_WIDTH = 640;
   const MAX_SCREEN_HEIGHT = 480;
@@ -67,18 +67,21 @@ export async function ScanQR(
 
     if (code) {
       if (!auth.currentUser) return;
-      const objectsRef = doc(
-        db,
-        "game_progress",
-        auth.currentUser.uid.toString(),
-      );
+      const GameProgressDocRef = doc(db, "game_progress", auth.currentUser.uid.toString());
 
-      for (const stampID of stampIDs) {
-        if (code.data === stampID) {
-          await updateDoc(objectsRef, { [stampID]: true });
-          onDetected(stampID);
-          return;
+      const QRCodeDocRef = doc(db, "QRCode", code.data);
+      const QRCodeDocSnap = await getDoc(QRCodeDocRef);
+      if (QRCodeDocSnap.exists()) {
+        const QRCodeData = QRCodeDocSnap.data();
+        if (QRCodeData) {
+          await updateDoc(GameProgressDocRef, { [QRCodeData.UUID]: true });
+          onDetected(QRCodeData.Name);
+          onDetectedVideoFileName(QRCodeData.VideoFileName);
+        } else {
+          console.warn("読み取ったQRコードはスタンプに対応していません:", code.data);
         }
+      } else {
+        console.warn("読み取ったQRコードは存在しません:", code.data);
       }
     }
   };

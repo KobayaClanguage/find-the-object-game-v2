@@ -10,6 +10,7 @@ export default function GameScan() {
   const [canvasReady, setCanvasReady] = useState(false);
   const router = useRouter();
   const [detectedName, setDetectedName] = useState<string | null>(null);
+  const [VideoFileName, setVideoFileName] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState(false);
   const handleClosePopup = () => {
     setShowPopup(false);
@@ -23,10 +24,17 @@ export default function GameScan() {
     let stopScan: (() => void) | null = null;
 
     const startScan = async () => {
-      stopScan = await ScanQR(video, canvasRef.current, (name) => {
-        setDetectedName(name);
-        setShowPopup(true);
-      });
+      stopScan = await ScanQR(
+        video,
+        canvasRef.current,
+        (QRCodeUUID) => {
+          setDetectedName(QRCodeUUID);
+          setShowPopup(true);
+        },
+        (fileName: string) => {
+          setVideoFileName(fileName);
+        }
+      );
     };
 
     startScan();
@@ -47,7 +55,12 @@ export default function GameScan() {
         {showPopup && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div className="rounded bg-white p-6 text-center shadow-md">
-              <p>{detectedName} を読み取りました！</p>
+              <p>{detectedName} の額を読み取りました！</p>
+              <video
+                src={`/KarutaVideo/${VideoFileName}`}
+                controls
+                className="mx-auto mt-4 h-96"
+              ></video>
               <button
                 onClick={handleClosePopup}
                 className="mt-4 rounded bg-blue-500 px-4 py-2 text-white"
