@@ -26,17 +26,26 @@ export async function fetchStamps(uid: string) {
   const ObjectMap = MapMasterDocSnap.data() as { [key: string]: string };
   console.log("ObjectMap:", ObjectMap); // IDごとのMapURLを取得
 
+  const UUIDMasterDocRef = doc(db, "ObjectInfo", "UUIDMaster");
+  const UUIDMasterDocSnap = await getDoc(UUIDMasterDocRef);
+  const ObjectUUID = UUIDMasterDocSnap.data() as { [key: string]: string };
+  console.log("ObjectUUID:", ObjectUUID); // IDごとのUUIDを取得
 
   const stamps: StampInfo[] = [];
   let isClear = false;
   console.log("Object keys length:", Object.keys(GameProgress).length);
-  for (let i = 1; i <= Object.keys(GameProgress).length; i++) {
+  for (let i = 0; i < Object.keys(GameProgress).length; i++) {
+    console.log(ObjectName[Object.values(ObjectUUID)[i]]);
+    console.log(Object.values(GameProgress)[i]);
+    console.log(ObjectMap[Object.values(ObjectUUID)[i]]);
+
     stamps.push({
       id: i,
-      name: ObjectName[i],
-      isCollected: GameProgress[i] ?? false,
-      mapUrl: ObjectMap[i],
+      name: ObjectName[Object.values(ObjectUUID)[i]],
+      isCollected: GameProgress[Object.values(ObjectUUID)[i]],
+      mapUrl: ObjectMap[Object.values(ObjectUUID)[i]]
     });
+
   }
   if (stamps.every((stamp) => stamp.isCollected === true)) {
     isClear = true;
