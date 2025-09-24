@@ -42,20 +42,16 @@ export async function fetchStamps(uid: string) {
 
   const stamps: StampInfo[] = [];
   let isClear = false;
-  console.log("Object keys length:", Object.keys(GameProgress).length);
-  for (let i = 0; i < Object.keys(GameProgress).length; i++) {
-    console.log(ObjectName[Object.values(ObjectUUID)[i]]);
-    console.log(Object.values(GameProgress)[i]);
-    console.log(ObjectMap[Object.values(ObjectUUID)[i]]);
 
+  for (let i = 0; i < Names.length; i++) {
     stamps.push({
       id: i,
-      name: ObjectName[Object.values(ObjectUUID)[i]],
-      isCollected: GameProgress[Object.values(ObjectUUID)[i]],
-      mapUrl: ObjectMap[Object.values(ObjectUUID)[i]]
+      name: Names[i],
+      isCollected: GameProgressDocSnap.data()?.[IDs[i]] ?? false,
+      mapUrl: "/images/game/stamp-map-sample.png",
     });
-
   }
+
   if (stamps.every((stamp) => stamp.isCollected === true)) {
     isClear = true;
   }
