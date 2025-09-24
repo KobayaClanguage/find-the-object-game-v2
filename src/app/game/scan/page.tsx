@@ -55,13 +55,6 @@ export default function GameScan() {
                 controls
                 className="mx-auto mt-4 h-96"
               >
-                <track
-                  src="/game/KarutaVideo/額中かるた『あ』.vtt"
-                  kind="captions"
-                  srcLang="ja"
-                  label="Japanese"
-                  default
-                />
               </video>
               <button
                 onClick={handleClosePopup}
