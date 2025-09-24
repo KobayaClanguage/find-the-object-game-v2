@@ -1,5 +1,9 @@
 "use client";
+<<<<<<< Updated upstream
 import { doc, getDoc } from "firebase/firestore";
+=======
+import { collection, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
+>>>>>>> Stashed changes
 import { db } from "@/firebase/config";
 
 export type StampInfo = {
@@ -31,6 +35,15 @@ export async function fetchStamps(uid: string) {
   const ObjectUUID = UUIDMasterDocSnap.data() as { [key: string]: string };
   console.log("ObjectUUID:", ObjectUUID); // IDごとのUUIDを取得
 
+  const NameQuery = query(collection(db, "NameMap"), orderBy("OrderNo", "asc"));
+  const NameQuerySnap = await getDocs(NameQuery);
+  var Names: string[] = [];
+  var IDs: string[] = [];
+  NameQuerySnap.forEach(NameDocSnap => {
+    Names.push(NameDocSnap.data()["Name"]);
+    IDs.push(NameDocSnap.id);
+  });
+
   const stamps: StampInfo[] = [];
   let isClear = false;
   console.log("Object keys length:", Object.keys(GameProgress).length);
@@ -39,11 +52,20 @@ export async function fetchStamps(uid: string) {
     console.log(Object.values(GameProgress)[i]);
     console.log(ObjectMap[Object.values(ObjectUUID)[i]]);
 
+<<<<<<< Updated upstream
     stamps.push({
       id: i,
       name: ObjectName[Object.values(ObjectUUID)[i]],
       isCollected: GameProgress[Object.values(ObjectUUID)[i]],
       mapUrl: ObjectMap[Object.values(ObjectUUID)[i]]
+=======
+  for (let i = 0; i < Names.length; i++) {
+    stamps.push({
+      id: i,
+      name: Names[i],
+      isCollected: docSnap.data()?.[IDs[i]] ?? false,
+      mapUrl: "/images/game/stamp-map-sample.png",
+>>>>>>> Stashed changes
     });
 
   }
