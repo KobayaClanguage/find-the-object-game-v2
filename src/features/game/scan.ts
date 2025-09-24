@@ -69,14 +69,23 @@ export async function ScanQR(
       if (!auth.currentUser) return;
       const GameProgressDocRef = doc(db, "game_progress", auth.currentUser.uid.toString());
 
-      const QRCodeDocRef = doc(db, "QRCode", code.data);
-      const QRCodeDocSnap = await getDoc(QRCodeDocRef);
-      if (QRCodeDocSnap.exists()) {
-        const QRCodeData = QRCodeDocSnap.data();
-        if (QRCodeData) {
-          await updateDoc(GameProgressDocRef, { [QRCodeData.UUID]: true });
-          onDetected(QRCodeData.Name);
-          onDetectedVideoFileName(QRCodeData.VideoFileName);
+      const UUIDDocRef = doc(db, "UUIDmap", code.data);
+      const UUIDDocSnap = await getDoc(UUIDDocRef);
+      if (UUIDDocSnap.exists()) {
+        const UUIDData = UUIDDocSnap.data();
+        if (UUIDData) {
+          await updateDoc(GameProgressDocRef, { [UUIDData.UUID]: true });
+
+          onDetected(UUIDData.Name);
+          const VideoFileNameDocRef = doc(db, "VideoFileNameMap", UUIDData.ID);
+          const VideoFileNameDocSnap = await getDoc(VideoFileNameDocRef);
+          const VideoFileNameData = VideoFileNameDocSnap.data()?.["VideoFileName"];
+          onDetectedVideoFileName(VideoFileNameData);
+
+          const NameDocRef = doc(db, "NameMap", UUIDData.ID);
+          const NameDocSnap = await getDoc(NameDocRef);
+          const NameData = NameDocSnap.data()?.["Name"];
+          onDetected(NameData)
         } else {
           console.warn("読み取ったQRコードはスタンプに対応していません:", code.data);
         }

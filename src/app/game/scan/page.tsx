@@ -29,12 +29,14 @@ export default function GameScan() {
         canvasRef.current,
         (QRCodeUUID) => {
           setDetectedName(QRCodeUUID);
-          setShowPopup(true);
         },
         (fileName: string) => {
           setVideoFileName(fileName);
+          setShowPopup(true);
         }
       );
+      
+
     };
 
     startScan();
