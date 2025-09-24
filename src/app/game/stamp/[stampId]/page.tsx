@@ -10,13 +10,18 @@ import { useState } from "react";
 
 export default function GameStampId() {
   const pageTitle = "マップ";
-  // TODO: ページタイトルを動的に変更する
-  // const stampId = useSearchParams().get("stampId");
-  const stampName = "駐車場";
-
-  const [MapURL, setMapURL] = useState();
   const params = useParams();
   const ID = String(params.stampId);
+
+  const [stampName, setStampName] = useState();
+  const GetName = async() => {
+    const NameDocRef = doc(db, "NameMap", ID);
+    const NameDocSnap = await getDoc(NameDocRef);
+    setStampName(NameDocSnap.data()?.["Name"]);
+  }
+  GetName();
+
+  const [MapURL, setMapURL] = useState();
   const GetMapURL = async() => {
     const MapURLdocRef = doc(db, "MapURLmap", ID);
     const MapURLSnap = await getDoc(MapURLdocRef);

@@ -1,6 +1,5 @@
 "use client";
 import { collection, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
-import { stampIDs, stampName } from "@/features/game/stampData";
 import { db } from "@/firebase/config";
 
 export type StampInfo = {
@@ -21,14 +20,21 @@ export async function fetchStamps(uid: string) {
   });
   console.log(IDs);
 
+  const NameQuery = query(collection(db, "NameMap"), orderBy("OrderNo", "asc"));
+  const NameQuerySnap = await getDocs(NameQuery);
+  const Names: string[] = [];
+  NameQuerySnap.forEach(NameDocSnap => {
+    Names.push(NameDocSnap.data()["Name"]);
+  });
+
   const stamps: StampInfo[] = [];
   let isClear = false;
 
-  for (let i = 0; i < 3; i++) {
+  for (let i = 0; i < IDs.length; i++) {
     stamps.push({
       id: IDs[i],
-      name: stampName[i],
-      isCollected: docSnap.data()?.[stampIDs[i]] ?? false,
+      name: Names[i],
+      isCollected: docSnap.data()?.[IDs[i]] ?? false,
     });
   }
   if (stamps.every((stamp) => stamp.isCollected === true)) {
