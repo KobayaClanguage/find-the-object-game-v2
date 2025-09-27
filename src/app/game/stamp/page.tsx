@@ -10,8 +10,6 @@ import { auth } from "@/firebase/config";
 
 export default function GamePage() {
   const pageTitle = "ホーム";
-  const completeIconUrl = "/game/stamp/stamp-complete.png";
-  const uncompleteIconUrl = "/game/stamp/stamp-uncomplete.png";
   const [stamps, setStamps] = useState<StampInfo[]>([]);
   const [isClear, setIsClear] = useState(false);
 
@@ -79,13 +77,14 @@ export default function GamePage() {
             {stamps.map((item) => (
               <div key={item.id} className="flex flex-col items-center">
                 <Link href={`/game/stamp/${item.id}`}>
+                <div className="relative size-[120px]">
                   <Image
-                    src={item.isCollected ? completeIconUrl : uncompleteIconUrl}
+                    src={`/game/stamp/${item.iconFileName}`}
                     alt={item.name}
-                    width={120}
-                    height={120}
+                    fill
                     className="object-contain"
                   />
+                </div>
                   <p className="text-center">{item.name}</p>
                 </Link>
               </div>
