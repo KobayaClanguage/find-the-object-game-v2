@@ -64,11 +64,9 @@ export async function ScanQR(
   const checkImage = async () => {
     const imageData = ctx.getImageData(0, 0, contentWidth, contentHeight);
     const code = jsQR(imageData.data, contentWidth, contentHeight);
-
-    if (code) {
+    if (code?.data) {
       if (!auth.currentUser) return;
       const GameProgressDocRef = doc(db, "game_progress", auth.currentUser.uid.toString());
-
       const UUIDDocRef = doc(db, "UUIDmap", code.data);
       const UUIDDocSnap = await getDoc(UUIDDocRef);
       if (UUIDDocSnap.exists()) {
