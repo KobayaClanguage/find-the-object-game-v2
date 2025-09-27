@@ -65,7 +65,7 @@ export async function ScanQR(
     const imageData = ctx.getImageData(0, 0, contentWidth, contentHeight);
     const code = jsQR(imageData.data, contentWidth, contentHeight);
 
-    if (code?.data) {
+    if (code) {
       if (!auth.currentUser) return;
       const GameProgressDocRef = doc(db, "game_progress", auth.currentUser.uid.toString());
 
