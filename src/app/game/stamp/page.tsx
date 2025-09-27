@@ -82,6 +82,7 @@ export default function GamePage() {
                     src={`/game/stamp/${item.iconFileName}`}
                     alt={item.name}
                     fill
+                    sizes="120px"
                     className="object-contain"
                   />
                 </div>
