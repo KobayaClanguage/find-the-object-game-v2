@@ -72,7 +72,7 @@ export async function ScanQR(
       if (UUIDDocSnap.exists()) {
         const UUIDData = UUIDDocSnap.data();
         if (UUIDData) {
-          await updateDoc(GameProgressDocRef, { [UUIDData.UUID]: true });
+          await updateDoc(GameProgressDocRef, { [UUIDData.ID]: true });
 
           onDetected(UUIDData.Name);
           const VideoFileNameDocRef = doc(db, "VideoFileNameMap", UUIDData.ID);
