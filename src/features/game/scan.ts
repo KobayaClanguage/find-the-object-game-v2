@@ -87,7 +87,6 @@ export async function ScanQR(
         }
         detectedObjectName(objectInfoDonSnap.data().Name);
         detectedObjectVideoFileName(objectInfoDonSnap.data().VideoFileName);
-        console.log(objectInfoDonSnap.data().VideoFileName);
 
         return;
       }
