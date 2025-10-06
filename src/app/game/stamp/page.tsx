@@ -89,7 +89,7 @@ export default function GamePage() {
                       fill
                       sizes={`${objectIconSize}px`}
                       className="object-contain"
-                      priority={index <= firstViewIndex}
+                      priority={index < firstViewIndex}
                     />
                   </div>
                   <p>{item.Name}</p>
