@@ -10,8 +10,8 @@ import { auth } from "@/firebase/config";
 
 export default function GamePage() {
   const pageTitle = "ホーム";
-  const completeIconUrl = "/game/stamp/stamp-complete.png";
-  const uncompleteIconUrl = "/game/stamp/stamp-uncomplete.png";
+  const objectIconSize = "120";
+  const firstViewIndex = 2;
   const [stamps, setStamps] = useState<StampInfo[]>([]);
   const [isClear, setIsClear] = useState(false);
 
@@ -42,18 +42,21 @@ export default function GamePage() {
               alt="額のロゴ"
               width={158}
               height={51}
+              priority={true}
             />
             <Image
               src="/images/cross.png"
               alt="☓アイコン"
               width={30}
               height={30}
+              priority={true}
             />
             <Image
               src="/images/KITimage.png"
               alt="KITロゴ"
               width={150}
               height={75}
+              priority={true}
             />
           </div>
 
@@ -76,17 +79,20 @@ export default function GamePage() {
           <h2 className="w-full text-center text-lg font-bold">オブジェ一覧</h2>
           {/* スタンプ一覧 */}
           <div className="grid grid-cols-2 gap-2 p-4">
-            {stamps.map((item) => (
-              <div key={item.id} className="flex flex-col items-center">
-                <Link href={`/game/stamp/${item.id}`}>
-                  <Image
-                    src={item.isCollected ? completeIconUrl : uncompleteIconUrl}
-                    alt={item.name}
-                    width={120}
-                    height={120}
-                    className="object-contain"
-                  />
-                  <p className="text-center">{item.name}</p>
+            {stamps.map((item, index) => (
+              <div key={item.ID} className="flex flex-col items-center text-center">
+                <Link href={`/game/stamp/${item.ID}`} className="flex flex-col items-center gap-2">
+                  <div className="relative" style={{ width: `${objectIconSize}px`, height: `${objectIconSize}px` }}>
+                    <Image
+                      src={`/game/stamp/${item.isCollected ? 'Collected' : 'UnCollected'}/${item.IconFileName}`}
+                      alt={item.Name}
+                      fill
+                      sizes={`${objectIconSize}px`}
+                      className="object-contain"
+                      priority={index <= firstViewIndex}
+                    />
+                  </div>
+                  <p>{item.Name}</p>
                 </Link>
               </div>
             ))}

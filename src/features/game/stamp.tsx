@@ -1,32 +1,41 @@
 "use client";
-import { doc, getDoc } from "firebase/firestore";
-import { stampIDs, stampName } from "@/features/game/stampData";
+import { collection, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "@/firebase/config";
 
 export type StampInfo = {
-  id: number;
-  name: string;
+  ID: string;
+  Name: string;
+  IconFileName: string;
+  OrderNo: number;
   isCollected: boolean;
-  mapUrl: string;
 };
 
 export async function fetchStamps(uid: string) {
-  const docRef = doc(db, "game_progress", uid);
-  const docSnap = await getDoc(docRef);
+  const objectInfoCollectionRef = collection(db, "ObjectInfo");
+  const objectInfoQuery = query(objectInfoCollectionRef, orderBy("OrderNo", "asc"));
+  const objectInfoQuerySnap = await getDocs(objectInfoQuery);
 
-  const stamps: StampInfo[] = [];
+  const gameProgressDocRef = doc(db, "game_progress", uid);
+  const gameProgressDocSnap = await getDoc(gameProgressDocRef);
+
+  let stamps: StampInfo[] = [];
   let isClear = false;
 
-  for (let i = 0; i < stampIDs.length; i++) {
-    stamps.push({
-      id: i,
-      name: stampName[i],
-      isCollected: docSnap.data()?.[stampIDs[i]] ?? false,
-      mapUrl: "/images/game/stamp-map-sample.png",
+  if (gameProgressDocSnap.exists() && !objectInfoQuerySnap.empty) {
+    stamps = objectInfoQuerySnap.docs.map(objectInfo => {
+      return {
+        ID: objectInfo.id,
+        Name: objectInfo.data().Name || "No Name",
+        IconFileName: gameProgressDocSnap.data()[objectInfo.id] ? objectInfo.data().CollectedIconFileName : objectInfo.data().UnCollectedIconFileName || "default.png",
+        OrderNo: objectInfo.data().OrderNo  || 0,
+        isCollected: gameProgressDocSnap.data()[objectInfo.id] || false,
+      } as StampInfo;
     });
   }
-  if (stamps.every((stamp) => stamp.isCollected === true)) {
-    isClear = true;
+  if (gameProgressDocSnap.exists()) {
+    if (Object.values(gameProgressDocSnap.data()).every((stamp: boolean) => stamp === true)) {
+      isClear = true;
+    }
   }
   return { stamps, isClear };
 }
