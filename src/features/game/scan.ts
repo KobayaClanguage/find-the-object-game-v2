@@ -74,22 +74,21 @@ export async function ScanQR(
       if (!UUIDmapDonSnap.exists()) {
         console.warn("該当するUUIDが存在しません:", code.data);
         return;
-      } else {
-        const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid);
-        await updateDoc(gameProgressRef, { [code.data]: true });
+      }
+      const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid.toString());
+      await updateDoc(gameProgressRef, { [code.data]: true });
 
-        const ID = UUIDmapDonSnap.data()?.ID;
-        const objectInfoRef = doc(db, "ObjectInfo", ID);
-        const objectInfoDonSnap = await getDoc(objectInfoRef);
-        if (!objectInfoDonSnap.exists()) {
-          console.warn("該当するObjectInfoが存在しません:", code.data);
-          return;
-        }
-        detectedObjectName(objectInfoDonSnap.data().Name);
-        detectedObjectVideoFileName(objectInfoDonSnap.data().VideoFileName);
-
+      const ID = UUIDmapDonSnap.data()?.ID;
+      const objectInfoRef = doc(db, "ObjectInfo", ID);
+      const objectInfoDonSnap = await getDoc(objectInfoRef);
+      if (!objectInfoDonSnap.exists()) {
+        console.warn("該当するObjectInfoが存在しません:", code.data);
         return;
       }
+      detectedObjectName(objectInfoDonSnap.data().Name);
+      detectedObjectVideoFileName(objectInfoDonSnap.data().VideoFileName);
+
+      return;
     }
   };
 
