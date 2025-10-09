@@ -75,7 +75,7 @@ export async function ScanQR(
         console.warn("該当するUUIDが存在しません:", code.data);
         return;
       } else {
-        const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid.toString());
+        const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid);
         await updateDoc(gameProgressRef, { [code.data]: true });
 
         const ID = UUIDmapDonSnap.data()?.ID;
