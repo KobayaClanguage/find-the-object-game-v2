@@ -1,22 +1,20 @@
-import { deleteDoc, doc, setDoc } from "firebase/firestore";
+import { collection, deleteDoc, doc, getDocs, setDoc } from "firebase/firestore";
 import { db } from "@/firebase/config";
-export async function createDocument(uid: string) {
-  try {
-    const docRef = doc(db, "game_progress", uid);
-    const data = {
-      object_1: false,
-      object_2: false,
-      object_3: false,
-      object_4: false,
-      object_5: false,
-      object_6: false,
-      object_7: false,
-      object_8: false,
-      object_9: false,
-      object_10: false,
-    };
 
-    await setDoc(docRef, data);
+export async function createGameProgressDocument(uid: string) {
+  try {
+    const objectInfoCollectionRef = collection(db, "ObjectInfo");
+    const objectInfoQuerySnap = await getDocs(objectInfoCollectionRef);
+    if(objectInfoQuerySnap.empty) {
+      return false;
+    }
+    const gameProgressDataInit: {[key: string]: boolean} = {};
+    objectInfoQuerySnap.forEach((doc) => {
+      gameProgressDataInit[doc.id] = false;
+    });
+
+    const GameProgressDocRef = doc(db, "game_progress", uid);
+    await setDoc(GameProgressDocRef, gameProgressDataInit);
     return true;
   } catch {
     return false;
