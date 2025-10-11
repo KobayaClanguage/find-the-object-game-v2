@@ -10,7 +10,6 @@ import { auth } from "@/firebase/config";
 
 export default function GamePage() {
   const pageTitle = "ホーム";
-  const objectIconSize = "120";
   const firstViewIndex = 2;
   const [stamps, setStamps] = useState<StampInfo[]>([]);
   const [isClear, setIsClear] = useState(false);
@@ -81,17 +80,15 @@ export default function GamePage() {
           <div className="grid grid-cols-2 gap-2 p-4">
             {stamps.map((item, index) => (
               <div key={item.ID} className="flex flex-col items-center text-center">
-                <Link href={`/game/stamp/${item.ID}`} className="flex flex-col items-center gap-2">
-                  <div className="relative" style={{ width: `${objectIconSize}px`, height: `${objectIconSize}px` }}>
-                    <Image
-                      src={`/game/stamp/${item.isCollected ? 'Collected' : 'UnCollected'}/${item.IconFileName}`}
-                      alt={item.Name}
-                      fill
-                      sizes={`${objectIconSize}px`}
-                      className="object-contain"
-                      priority={index < firstViewIndex}
-                    />
-                  </div>
+                <Link href={`/game/stamp/${item.ID}`} className="flex w-[120px] flex-col items-center gap-2">
+                  <Image
+                    src={`/game/stamp/${item.isCollected ? 'Collected' : 'UnCollected'}/${item.IconFileName}`}
+                    alt={item.Name}
+                    width={ 1070 }
+                    height={ 1255 }
+                    className="object-contain"
+                    priority={index < firstViewIndex}
+                  />
                   <p>{item.Name}</p>
                 </Link>
               </div>
