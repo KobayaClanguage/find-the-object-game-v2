@@ -4,7 +4,6 @@ import {
   applyActionCode,
   confirmPasswordReset,
   createUserWithEmailAndPassword,
-  deleteUser,
   reauthenticateWithCredential,
   sendPasswordResetEmail,
   signInWithEmailAndPassword,
@@ -13,7 +12,7 @@ import {
   verifyBeforeUpdateEmail,
 } from "firebase/auth";
 import { EmailAuthProvider } from "firebase/auth/web-extension";
-import { createDocument, deleteDocument } from "@/features/game/firestore";
+import { createDocument } from "@/features/game/firestore";
 import { auth } from "@/firebase/config";
 
 export async function signupWithEmail(email: string, password: string) {
@@ -72,20 +71,25 @@ export async function logout() {
 
 export async function deleteAccount(password: string) {
   try {
-    const user = auth.currentUser;
+    const idToken = await auth.currentUser?.getIdToken(true);
     const email = auth.currentUser?.email;
-
-    if (!user || !email) {
-      return { success: false, errorMessage: "アカウント削除に失敗しました" };
-    }
-    const result = await deleteDocument(user.uid);
-    if (!result) {
+    const user = auth.currentUser;
+    if(!idToken || !email || !user) {
       return { success: false, errorMessage: "アカウント削除に失敗しました" };
     }
     const credential = EmailAuthProvider.credential(email, password);
-
     await reauthenticateWithCredential(user, credential);
-    await deleteUser(user);
+
+    const deleteResponse = await fetch('/api/auth/deleteAccount', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${idToken}`,
+      },
+    });
+
+    if (!deleteResponse.ok) {
+      return { success: false, errorMessage: "アカウント削除に失敗しました" };
+    }
 
     return { success: true };
   } catch {
