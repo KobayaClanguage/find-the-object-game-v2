@@ -13,7 +13,7 @@ import {
   verifyBeforeUpdateEmail,
 } from "firebase/auth";
 import { EmailAuthProvider } from "firebase/auth/web-extension";
-import { deleteDocument } from "@/features/game/firestore";
+import { createGameProgressDocument, deleteDocument } from "@/features/game/firestore";
 import { auth } from "@/firebase/config";
 
 export async function signupWithEmail(email: string, password: string) {
@@ -26,6 +26,9 @@ export async function signupWithEmail(email: string, password: string) {
     if(!useCredential) {
       return { success: false, errorMessage: "アカウント登録に失敗しました" };
     }
+
+    await createGameProgressDocument(useCredential.user.uid);
+
     return { success: true };
   } catch (error: unknown) {
     const firebaseError = error as FirebaseError;
