@@ -68,16 +68,17 @@ export async function ScanQR(
 
     if (code) {
       if (!auth.currentUser) return;
-      const UUIDmapRef = doc(db, "UUIDmap", code.data);
-      const UUIDmapDonSnap = await getDoc(UUIDmapRef);
 
-      if (!UUIDmapDonSnap.exists()) {
-        console.warn("該当するUUIDが存在しません:", code.data);
-        return;
-      }
-
-      const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid);
       try {
+        const UUIDmapRef = doc(db, "UUIDmap", code.data);
+        const UUIDmapDonSnap = await getDoc(UUIDmapRef);
+
+        if (!UUIDmapDonSnap.exists()) {
+          console.warn("該当するUUIDが存在しません:", code.data);
+          return;
+        }
+
+        const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid);
         await updateDoc(gameProgressRef, { [code.data]: true });
         const ID = UUIDmapDonSnap.data()?.ID;
         const objectInfoRef = doc(db, "ObjectInfo", ID);
