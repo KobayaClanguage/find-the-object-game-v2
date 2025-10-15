@@ -1,19 +1,6 @@
 import { NextResponse, type NextRequest } from 'next/server';
-import * as admin from 'firebase-admin';
 import { deleteAccountAndGameProgressData } from '@/features/auth/server-actions';
-
-if (!admin.apps.length) {
-  try {
-    const serviceAccount = JSON.parse(
-      process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string
-    );
-    admin.initializeApp({
-      credential: admin.credential.cert(serviceAccount),
-    });
-  } catch (error) {
-    console.error("Firebase Admin SDK initialization error:", (error as Error).message);
-  }
-}
+import admin from "@/firebase/admin"
 
 export async function POST(request: NextRequest) {
   try {
