@@ -12,8 +12,7 @@ import { createGameProgressDocument } from "@/features/game/firestore";
 
 export default function GamePage() {
   const pageTitle = "ホーム";
-  const completeIconUrl = "/game/stamp/stamp-complete.png";
-  const uncompleteIconUrl = "/game/stamp/stamp-uncomplete.png";
+  const firstViewIndex = 2;
   const [stamps, setStamps] = useState<StampInfo[]>([]);
   const [isClear, setIsClear] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -57,18 +56,21 @@ export default function GamePage() {
               alt="額のロゴ"
               width={158}
               height={51}
+              priority={true}
             />
             <Image
               src="/images/cross.png"
               alt="☓アイコン"
               width={30}
               height={30}
+              priority={true}
             />
             <Image
               src="/images/KITimage.png"
               alt="KITロゴ"
               width={150}
               height={75}
+              priority={true}
             />
           </div>
 
@@ -92,17 +94,18 @@ export default function GamePage() {
           <div className="text-center text-lg font-bold text-red-500">{errorMessage}</div>
           {/* スタンプ一覧 */}
           <div className="grid grid-cols-2 gap-2 p-4">
-            {stamps.map((item) => (
-              <div key={item.id} className="flex flex-col items-center">
-                <Link href={`/game/stamp/${item.id}`}>
+            {stamps.map((item, index) => (
+              <div key={item.ID} className="flex flex-col items-center text-center">
+                <Link href={`/game/stamp/${item.ID}`} className="flex w-[120px] flex-col items-center gap-2">
                   <Image
-                    src={item.isCollected ? completeIconUrl : uncompleteIconUrl}
-                    alt={item.name}
-                    width={120}
-                    height={120}
+                    src={`/game/stamp/${item.isCollected ? 'Collected' : 'UnCollected'}/${item.IconFileName}`}
+                    alt={item.Name}
+                    width={ 1070 }
+                    height={ 1255 }
                     className="object-contain"
+                    priority={index < firstViewIndex}
                   />
-                  <p className="text-center">{item.name}</p>
+                  <p>{item.Name}</p>
                 </Link>
               </div>
             ))}
