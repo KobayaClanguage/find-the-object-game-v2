@@ -1,14 +1,14 @@
 "use client";
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
 import jsQR from "jsqr";
-import { stampIDs } from "@/features/game/stampData";
 import { auth, db } from "@/firebase/config";
 
 export async function ScanQR(
   video: HTMLVideoElement,
   canvasRef: HTMLCanvasElement | null,
-  onDetected: (name: string) => void,
-  onFirebaseError: (isFirebaseError: boolean) => void
+  detectedObjectName: (name: string) => void,
+  detectedObjectVideoFileName: (videoFileName: string) => void,
+  onFirebaseError: (isFirebaseError: boolean) => void,
 ): Promise<() => void> {
   const MAX_SCREEN_WIDTH = 640;
   const MAX_SCREEN_HEIGHT = 480;
@@ -68,23 +68,30 @@ export async function ScanQR(
 
     if (code) {
       if (!auth.currentUser) return;
-      const objectsRef = doc(
-        db,
-        "game_progress",
-        auth.currentUser.uid,
-      );
+      const UUIDmapRef = doc(db, "UUIDmap", code.data);
+      const UUIDmapDonSnap = await getDoc(UUIDmapRef);
 
-      for (const stampID of stampIDs) {
-        if (code.data === stampID) {
-          try {
-            await updateDoc(objectsRef, { [stampID]: true });
-            onDetected(stampID);
-          } catch {
-            onFirebaseError(true);
-          }
+      if (!UUIDmapDonSnap.exists()) {
+        console.warn("該当するUUIDが存在しません:", code.data);
+        return;
+      }
+
+      const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid);
+      try {
+        await updateDoc(gameProgressRef, { [code.data]: true });
+        const ID = UUIDmapDonSnap.data()?.ID;
+        const objectInfoRef = doc(db, "ObjectInfo", ID);
+        const objectInfoDonSnap = await getDoc(objectInfoRef);
+        if (!objectInfoDonSnap.exists()) {
+          console.warn("該当するObjectInfoが存在しません:", code.data);
           return;
         }
+        detectedObjectName(objectInfoDonSnap.data().Name);
+        detectedObjectVideoFileName(objectInfoDonSnap.data().VideoFileName);
+      } catch {
+        onFirebaseError(true)
       }
+      return;
     }
   };
 
