@@ -8,6 +8,7 @@ export async function ScanQR(
   video: HTMLVideoElement,
   canvasRef: HTMLCanvasElement | null,
   onDetected: (name: string) => void,
+  onFirebaseError: (isFirebaseError: boolean) => void
 ): Promise<() => void> {
   const MAX_SCREEN_WIDTH = 640;
   const MAX_SCREEN_HEIGHT = 480;
@@ -70,13 +71,17 @@ export async function ScanQR(
       const objectsRef = doc(
         db,
         "game_progress",
-        auth.currentUser.uid.toString(),
+        auth.currentUser.uid,
       );
 
       for (const stampID of stampIDs) {
         if (code.data === stampID) {
-          await updateDoc(objectsRef, { [stampID]: true });
-          onDetected(stampID);
+          try {
+            await updateDoc(objectsRef, { [stampID]: true });
+            onDetected(stampID);
+          } catch {
+            onFirebaseError(true);
+          }
           return;
         }
       }
