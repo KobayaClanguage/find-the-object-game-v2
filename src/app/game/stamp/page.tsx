@@ -6,21 +6,36 @@ import { useEffect, useState } from "react";
 import { AuthGuard } from "@/features/auth/authGuard";
 import NavigationFooter from "@/features/game/NavigationFooter";
 import { fetchStamps, type StampInfo } from "@/features/game/stamp";
-import { auth } from "@/firebase/config";
+import { auth, db } from "@/firebase/config";
+import { doc, getDoc } from "firebase/firestore";
+import { createGameProgressDocument } from "@/features/game/firestore";
 
 export default function GamePage() {
   const pageTitle = "ホーム";
   const firstViewIndex = 2;
   const [stamps, setStamps] = useState<StampInfo[]>([]);
   const [isClear, setIsClear] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
       onAuthStateChanged(auth, async (user) => {
         if (user) {
-          const Stamps = await fetchStamps(user.uid);
-          setStamps(Stamps.stamps ?? []);
-          setIsClear(Stamps.isClear);
+          try{
+            const GameProgressDocRef = doc(db, "game_progress", user.uid);
+            const GameProgressDocSnap = await getDoc(GameProgressDocRef);
+            if(!GameProgressDocSnap.exists()) {
+              const GameProgressInitResult = await createGameProgressDocument(user.uid);
+              if (!GameProgressInitResult) {
+                setErrorMessage("ゲームデータの初期化もしくは取得に失敗しました");
+              }
+            }
+            const Stamps = await fetchStamps(user.uid);
+            setStamps(Stamps.stamps ?? []);
+            setIsClear(Stamps.isClear);
+          } catch {
+            setErrorMessage("ゲームデータの取得に失敗しました");
+          }
         }
       });
     };
@@ -76,6 +91,7 @@ export default function GamePage() {
           )}
 
           <h2 className="w-full text-center text-lg font-bold">オブジェ一覧</h2>
+          <div className="text-center text-lg font-bold text-red-500">{errorMessage}</div>
           {/* スタンプ一覧 */}
           <div className="grid grid-cols-2 gap-2 p-4">
             {stamps.map((item, index) => (

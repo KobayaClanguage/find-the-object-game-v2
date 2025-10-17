@@ -8,6 +8,7 @@ export async function ScanQR(
   canvasRef: HTMLCanvasElement | null,
   detectedObjectName: (name: string) => void,
   detectedObjectVideoFileName: (videoFileName: string) => void,
+  onFirebaseError: (isFirebaseError: boolean) => void,
 ): Promise<() => void> {
   const MAX_SCREEN_WIDTH = 640;
   const MAX_SCREEN_HEIGHT = 480;
@@ -68,26 +69,29 @@ export async function ScanQR(
     if (code) {
       if (!auth.currentUser) return;
 
-      const UUIDmadRef = doc(db, "UUIDmap", code.data);
-      const UUIDmapDonSnap = await getDoc(UUIDmadRef);
+      try {
+        const UUIDmapRef = doc(db, "UUIDmap", code.data);
+        const UUIDmapDonSnap = await getDoc(UUIDmapRef);
 
-      if (!UUIDmapDonSnap.exists()) {
-        console.warn("該当するUUIDが存在しません:", code.data);
-        return;
+        if (!UUIDmapDonSnap.exists()) {
+          console.warn("該当するUUIDが存在しません:", code.data);
+          return;
+        }
+
+        const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid);
+        await updateDoc(gameProgressRef, { [code.data]: true });
+        const ID = UUIDmapDonSnap.data()?.ID;
+        const objectInfoRef = doc(db, "ObjectInfo", ID);
+        const objectInfoDonSnap = await getDoc(objectInfoRef);
+        if (!objectInfoDonSnap.exists()) {
+          console.warn("該当するObjectInfoが存在しません:", code.data);
+          return;
+        }
+        detectedObjectName(objectInfoDonSnap.data().Name);
+        detectedObjectVideoFileName(objectInfoDonSnap.data().VideoFileName);
+      } catch {
+        onFirebaseError(true)
       }
-      const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid.toString());
-      await updateDoc(gameProgressRef, { [code.data]: true });
-
-      const ID = UUIDmapDonSnap.data()?.ID;
-      const objectInfoRef = doc(db, "ObjectInfo", ID);
-      const objectInfoDonSnap = await getDoc(objectInfoRef);
-      if (!objectInfoDonSnap.exists()) {
-        console.warn("該当するObjectInfoが存在しません:", code.data);
-        return;
-      }
-      detectedObjectName(objectInfoDonSnap.data().Name);
-      detectedObjectVideoFileName(objectInfoDonSnap.data().VideoFileName);
-
       return;
     }
   };
