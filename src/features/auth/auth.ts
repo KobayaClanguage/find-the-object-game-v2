@@ -12,7 +12,7 @@ import {
   verifyBeforeUpdateEmail,
 } from "firebase/auth";
 import { EmailAuthProvider } from "firebase/auth/web-extension";
-import { createDocument } from "@/features/game/firestore";
+import { createGameProgressDocument } from "@/features/game/firestore";
 import { auth } from "@/firebase/config";
 
 export async function signupWithEmail(email: string, password: string) {
