@@ -22,10 +22,12 @@ export async function signupWithEmail(email: string, password: string) {
       email,
       password,
     );
-    const result = await createDocument(useCredential.user.uid);
-    if (!result) {
+    if(!useCredential) {
       return { success: false, errorMessage: "アカウント登録に失敗しました" };
     }
+
+    await createGameProgressDocument(useCredential.user.uid);
+
     return { success: true };
   } catch (error: unknown) {
     const firebaseError = error as FirebaseError;
