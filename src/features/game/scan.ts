@@ -79,8 +79,8 @@ export async function ScanQR(
         }
 
         const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid);
-        await updateDoc(gameProgressRef, { [code.data]: true });
         const ID = UUIDmapDonSnap.data()?.ID;
+        await updateDoc(gameProgressRef, { [ID]: true });
         const objectInfoRef = doc(db, "ObjectInfo", ID);
         const objectInfoDonSnap = await getDoc(objectInfoRef);
         if (!objectInfoDonSnap.exists()) {
@@ -89,7 +89,8 @@ export async function ScanQR(
         }
         detectedObjectName(objectInfoDonSnap.data().Name);
         detectedObjectVideoFileName(objectInfoDonSnap.data().VideoFileName);
-      } catch {
+      } catch(error) {
+        console.error(error);
         onFirebaseError(true)
       }
       return;
