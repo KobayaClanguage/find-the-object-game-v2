@@ -37,12 +37,6 @@ export async function signupWithEmail(email: string, password: string) {
         errorMessage: "パスワードが短すぎます（6文字以上にしてください）",
       };
     }
-    if (firebaseError.code === "auth/email-already-in-use") {
-      return {
-        success: false,
-        errorMessage: "このメールアドレスは既に使用されています",
-      };
-    }
     if (firebaseError.code === "auth/invalid-email") {
       return {
         success: false,
