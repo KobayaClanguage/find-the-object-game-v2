@@ -9,10 +9,18 @@ export default function GameScan() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [canvasReady, setCanvasReady] = useState(false);
   const router = useRouter();
-  const [detectedName, setDetectedName] = useState<string | null>(null);
-  const [showPopup, setShowPopup] = useState(false);
-  const handleClosePopup = () => {
-    setShowPopup(false);
+  const [showReadPopup, setShowQRReadPopup] = useState(false);
+  const [isFirebaseError, setFirebaseError] = useState(false);
+  const [detectedObjectName, setDetectedObjectName] = useState<string | null>(null);
+  const [detectedObjectVideoFileName, setDetectedObjectVideoFileName] = useState<string>("");
+
+  const handleCloseReadPopup = () => {
+    setShowQRReadPopup(false);
+    router.push("/game/stamp");
+  };
+
+  const handleCloseFirebaseErrorPopup = () => {
+    setFirebaseError(false);
     router.push("/game/stamp");
   };
 
@@ -23,10 +31,22 @@ export default function GameScan() {
     let stopScan: (() => void) | null = null;
 
     const startScan = async () => {
-      stopScan = await ScanQR(video, canvasRef.current, (name) => {
-        setDetectedName(name);
-        setShowPopup(true);
-      });
+      stopScan = await ScanQR(
+        video,
+        canvasRef.current,
+        (ObjectName) => {
+          setDetectedObjectName(ObjectName);
+          setShowQRReadPopup(true);
+        },
+        (videoFileName) => {
+          setDetectedObjectVideoFileName(videoFileName);
+        },
+        (isFirebaseError) => {
+          if (isFirebaseError) {
+            setFirebaseError(true);
+          }
+        }        
+      );
     };
 
     startScan();
@@ -44,12 +64,28 @@ export default function GameScan() {
           {pageTitle}
         </h1>
 
-        {showPopup && (
+        {showReadPopup && (
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
             <div className="rounded bg-white p-6 text-center shadow-md">
-              <p>{detectedName} を読み取りました！</p>
+              <p>{detectedObjectName} を読み取りました！</p>
+              <video className="mt-4 h-96" controls src={`/game/stamp/KarutaVideo/${detectedObjectVideoFileName}`}></video>
               <button
-                onClick={handleClosePopup}
+                onClick={handleCloseReadPopup}
+                className="mt-4 rounded bg-blue-500 px-4 py-2 text-white"
+                type="button"
+              >
+                閉じる
+              </button>
+            </div>
+          </div>
+        )}
+
+        {isFirebaseError && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div className="rounded bg-white p-6 text-center shadow-md">
+              <p>通信エラーが発生しました</p>
+              <button
+                onClick={handleCloseFirebaseErrorPopup}
                 className="mt-4 rounded bg-blue-500 px-4 py-2 text-white"
                 type="button"
               >
