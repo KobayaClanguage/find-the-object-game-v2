@@ -15,7 +15,7 @@ export default function GameSettingsAccountDeleteComplete() {
           <h1 className="text-2xl">{pageSubTitle}</h1>
         </div>
         {/* (画面サイズの縦幅:100vh) - (タイトルバーの縦幅:80px) - (ナビゲーションバーの縦幅:74px) - (サブタイトルの縦幅:80px) */}
-        <div className="relative mt-4 flex h-[calc(100vh-80px-74px-80px)] w-full flex-col items-center justify-start px-9 text-xl">
+        <div className="relative mt-4 flex h-[calc(100vh-80px-74px-80px-48px)] w-full flex-col items-center justify-start px-9 text-xl">
           <p className="text-2xl">アカウントを削除しました</p>
           <Button
             asChild

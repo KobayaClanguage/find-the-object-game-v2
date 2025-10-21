@@ -95,7 +95,7 @@ export default function GameScan() {
           </div>
         )}
 
-        <div className="mt-20 flex flex-col items-center justify-center [height:calc(100vh_-_160px)]">
+        <div className="mt-20 flex flex-col items-center justify-center [height:calc(100vh_-_200px)]">
           <video
             className="object-fill"
             id="video"
