@@ -33,7 +33,7 @@ export default function GameSettingsAccountDelete() {
         <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
           {pageTitle}
         </h1>
-        <div className="pt-20">
+        <div className="pb-16 pt-20">
           <div className="relative mx-6 flex h-[80px] items-center justify-around">
             <div className="absolute left-0">
               <Link href="/game/settings" className="p-0">
@@ -43,7 +43,7 @@ export default function GameSettingsAccountDelete() {
             <h1 className="text-2xl">{pageSubTitle}</h1>
           </div>
           {/* (画面サイズの縦幅:100vh) - (タイトルバーの縦幅:80px) - (ナビゲーションバーの縦幅:74px) - (サブタイトルバーの縦幅:80px) */}
-          <div className="relative flex h-[calc(100vh-80px-74px-80px-48px)] w-full flex-col items-center justify-start px-9 text-xl">
+          <div className="relative mt-4 flex h-[calc(100vh-80px-74px-80px)] w-full flex-col items-center justify-start px-9 text-xl">
             <p className="text-2xl">本当にアカウントを削除しますか？</p>
             <p className="mb-8 text-xl">削除したアカウントは元に戻せません。</p>
             <div className="mx-auto w-4/5">
