@@ -37,7 +37,12 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="my-2 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-center space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
+    <div className="my-2 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-center space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full"
+    style={{
+      paddingBottom: `var(--recaptcha-notice-height, 16px)`
+    }}
+    >
+
       <div className="mb-6 flex flex-col items-center space-y-2 text-center">
         <Image
           src={"/images/commentLogo.png"}

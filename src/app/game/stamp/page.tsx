@@ -45,11 +45,15 @@ export default function GamePage() {
 
   return (
     <AuthGuard>
-      <div className="relative h-full">
+      <div className="relative h-full"
+      style={{
+        paddingBottom: `calc(var(--recaptcha-notice-height, 16px) + var(--navigation-footer-height, 80px))`
+      }}>
+
         <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
           {pageTitle}
         </h1>
-        <div className="pb-32 pt-24">
+        <div className="pt-24">
           <div className="flex items-center justify-around p-4">
             <Image
               src={"/images/nukaLogo.png"}

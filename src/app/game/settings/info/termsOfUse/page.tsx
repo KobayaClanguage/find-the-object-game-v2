@@ -8,7 +8,12 @@ export default function GameSettingsInfoTermsOfUse() {
   const pageTitle = "利用規約";
   return (
     <AuthGuard>
-      <div className="relative h-full">
+      <div className="relative h-full"
+      style={{
+        paddingBottom: `calc(var(--recaptcha-notice-height, 16px) + var(--navigation-footer-height, 80px))`
+      }}
+      >
+
         <div className="fixed inset-x-0 top-0 z-10">
           <h1 className="bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
             {pageTitle}
@@ -19,7 +24,7 @@ export default function GameSettingsInfoTermsOfUse() {
             </Link>
           </div>
         </div>
-        <div className="pb-16 pt-20">
+        <div className="pt-20">
           <TermsOfUse />
         </div>
         <div className="fixed inset-x-0 bottom-0 flex items-center justify-around border bg-white p-4 shadow-md">

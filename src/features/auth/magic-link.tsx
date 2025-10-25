@@ -19,7 +19,11 @@ export function Transition() {
     }
   });
   return (
-    <div>
+    <div
+    style={{
+      paddingBottom: `var(--recaptcha-notice-height, 16px)`
+    }}
+    >
       画面が変わります。しばらくお待ちください。
       <br />
       変わらない場合は再度やり直してください。
