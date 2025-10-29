@@ -2,7 +2,11 @@ import Image from "next/image";
 
 export default function PreparationPage() {
   return (
-    <div className="flex min-h-screen w-full max-w-md flex-col items-center justify-center bg-white px-4 md:max-w-full md:px-8">
+    <div className="flex min-h-screen w-full max-w-md flex-col items-center justify-center bg-white px-4 md:max-w-full md:px-8"
+    style={{
+      paddingBottom: `var(--recaptcha-notice-height, 16px)`
+    }}
+    >
       <div className="mb-8 flex flex-col items-center space-y-4 text-center">
         <Image
           src="/images/commentLogo.png"

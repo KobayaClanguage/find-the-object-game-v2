@@ -42,7 +42,12 @@ export default function GameSettingsAccountChangeEmail() {
 
   return (
     <AuthGuard>
-      <div className="relative h-full">
+      <div className="relative h-full"
+      style={{
+        paddingBottom: `calc(var(--recaptcha-notice-height, 16px) + var(--navigation-footer-height, 80px))`
+      }}
+      >
+
         <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
           {pageTitle}
         </h1>

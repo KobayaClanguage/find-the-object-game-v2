@@ -18,12 +18,17 @@ export default function GamePage() {
 
   return (
     <AuthGuard>
-      <div className="relative h-full">
+      <div className="relative h-full"
+      style={{
+        paddingBottom: `calc(var(--recaptcha-notice-height, 16px) + var(--navigation-footer-height, 80px))`
+      }}
+      >
+
         <h1 className="fixed inset-x-0 top-0 bg-[#0094f4] p-4 pt-7 text-center text-3xl text-white">
           {pageTitle}
         </h1>
 
-        <div className="mx-auto justify-center pb-24 pt-28">
+        <div className="mx-auto justify-center pt-28">
           <div className="mx-auto mb-5 flex w-[90%] items-center">
             <Diamond width={30} height={30} className="mr-5" />
 

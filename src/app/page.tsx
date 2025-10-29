@@ -5,7 +5,11 @@ import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <main className="my-20 flex min-h-screen flex-col items-center bg-white p-6">
+    <main className="my-20 flex min-h-screen flex-col items-center bg-white p-6"
+    style={{
+      paddingBottom: `var(--recaptcha-notice-height, 16px)`
+    }}
+    >
       {/* 上部タイトル */}
       <h1 className="mb-12 text-3xl font-bold text-gray-800">
         オブジェを探せゲーム

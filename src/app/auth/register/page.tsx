@@ -41,7 +41,11 @@ export default function RegisterPage() {
   }
 
   return (
-    <div className="my-2 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-center space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full">
+    <div className="my-2 flex min-h-[90vh] w-full max-w-md flex-col items-center justify-center space-y-4 bg-white sm:px-4 md:mb-5 md:max-w-full"
+    style={{
+      paddingBottom: `var(--recaptcha-notice-height, 16px)`
+    }}
+    >
       <div className="mb-6 flex flex-col items-center space-y-4 text-center">
         <h1 className="font-sans text-2xl font-bold">遊び方</h1>
         <ol className="space-y-2 text-left font-sans text-xl">
