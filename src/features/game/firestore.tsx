@@ -8,6 +8,6 @@ export const collections = {
 export const docRefs = {
   ObjectInfo: (docID: string) => doc(db, "ObjectInfo", docID),
   UUIDMap: (docID: string) => doc(db, "UUIDMap", docID),
-  GameProgress: (docID: string) => doc(db, "game_progress", docID)
+  GameProgress: (docID: string) => doc(db, "GameProgress", docID)
 }
 
