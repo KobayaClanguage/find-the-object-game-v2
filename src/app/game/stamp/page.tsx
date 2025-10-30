@@ -6,9 +6,10 @@ import { useEffect, useState } from "react";
 import { AuthGuard } from "@/features/auth/authGuard";
 import NavigationFooter from "@/features/game/NavigationFooter";
 import { fetchStamps, type StampInfo } from "@/features/game/stamp";
-import { auth, db } from "@/firebase/config";
-import { doc, getDoc } from "firebase/firestore";
-import { createGameProgressDocument } from "@/features/game/firestore";
+import { auth } from "@/firebase/config";
+import { getDoc } from "firebase/firestore";
+import { createGameProgressDocument } from "@/features/game/createGameProgress";
+import { docRefs } from "@/features/game/firestore";
 
 export default function GamePage() {
   const pageTitle = "ホーム";
@@ -22,8 +23,7 @@ export default function GamePage() {
       onAuthStateChanged(auth, async (user) => {
         if (user) {
           try{
-            const GameProgressDocRef = doc(db, "game_progress", user.uid);
-            const GameProgressDocSnap = await getDoc(GameProgressDocRef);
+            const GameProgressDocSnap = await getDoc(docRefs.GameProgress(user.uid));
             if(!GameProgressDocSnap.exists()) {
               const GameProgressInitResult = await createGameProgressDocument(user.uid);
               if (!GameProgressInitResult) {

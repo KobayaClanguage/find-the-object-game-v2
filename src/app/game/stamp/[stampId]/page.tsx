@@ -3,10 +3,10 @@ import { ChevronLeft } from "lucide-react";
 import Link from "next/link";
 import { AuthGuard } from "@/features/auth/authGuard";
 import NavigationFooter from "@/features/game/NavigationFooter";
-import { doc, getDoc} from "firebase/firestore";
-import { db } from "@/firebase/config";
+import { getDoc} from "firebase/firestore";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { docRefs } from "@/features/game/firestore";
 
 export default function GameStampId() {
   const pageTitle = "マップ";
@@ -19,9 +19,8 @@ export default function GameStampId() {
 
   useEffect(() => {
     const GetObjectInfo = async() => {
-      const NameDocRef = doc(db, "ObjectInfo", ID);
       try {
-        const NameDocSnap = await getDoc(NameDocRef);
+        const NameDocSnap = await getDoc(docRefs.ObjectInfo(ID));
         setStampName(NameDocSnap.data()?.["Name"]);
         setMapURL(NameDocSnap.data()?.["MapURL"]);
       } catch {

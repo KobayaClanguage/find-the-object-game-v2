@@ -1,7 +1,8 @@
 "use client";
-import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { updateDoc, getDoc } from "firebase/firestore";
 import jsQR from "jsqr";
-import { auth, db } from "@/firebase/config";
+import { auth } from "@/firebase/config";
+import { docRefs } from "@/features/game/firestore";
 
 export async function ScanQR(
   video: HTMLVideoElement,
@@ -70,19 +71,16 @@ export async function ScanQR(
       if (!auth.currentUser) return;
 
       try {
-        const UUIDmapRef = doc(db, "UUIDmap", code.data);
-        const UUIDmapDonSnap = await getDoc(UUIDmapRef);
-
+        const UUIDmapDonSnap = await getDoc(docRefs.UUIDMap(code.data));
         if (!UUIDmapDonSnap.exists()) {
           console.warn("該当するUUIDが存在しません:", code.data);
           return;
         }
 
-        const gameProgressRef = doc(db, "game_progress", auth.currentUser.uid);
+        const gameProgressRef = docRefs.GameProgress(auth.currentUser.uid);
         const ID = UUIDmapDonSnap.data()?.ID;
         await updateDoc(gameProgressRef, { [ID]: true });
-        const objectInfoRef = doc(db, "ObjectInfo", ID);
-        const objectInfoDonSnap = await getDoc(objectInfoRef);
+        const objectInfoDonSnap = await getDoc(docRefs.ObjectInfo(ID));
         if (!objectInfoDonSnap.exists()) {
           console.warn("該当するObjectInfoが存在しません:", code.data);
           return;
