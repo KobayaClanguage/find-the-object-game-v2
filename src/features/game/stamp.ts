@@ -1,6 +1,6 @@
 "use client";
-import { collection, doc, getDoc, getDocs, orderBy, query } from "firebase/firestore";
-import { db } from "@/firebase/config";
+import { getDoc, getDocs, orderBy, query } from "firebase/firestore";
+import { collections, docRefs } from "@/features/game/firestore";
 
 export type StampInfo = {
   ID: string;
@@ -11,12 +11,10 @@ export type StampInfo = {
 };
 
 export async function fetchStamps(uid: string) {
-  const objectInfoCollectionRef = collection(db, "ObjectInfo");
-  const objectInfoQuery = query(objectInfoCollectionRef, orderBy("OrderNo", "asc"));
+  const objectInfoQuery = query(collections.objectInfo, orderBy("OrderNo", "asc"));
   const objectInfoQuerySnap = await getDocs(objectInfoQuery);
 
-  const gameProgressDocRef = doc(db, "game_progress", uid);
-  const gameProgressDocSnap = await getDoc(gameProgressDocRef);
+  const gameProgressDocSnap = await getDoc(docRefs.GameProgress(uid));
 
   let stamps: StampInfo[] = [];
   let isClear = false;
